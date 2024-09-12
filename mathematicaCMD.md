@@ -1,5 +1,4 @@
-# mathematica
-## CMD快速入门
+# Mathematica
 ### 1. **基本算术运算**
 
 ```mathematica
