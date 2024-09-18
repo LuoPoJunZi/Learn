@@ -11,6 +11,6 @@
 ## **Mathematica**
 - 关于基础的Mathematica的基础命令，本人刚刚接触，所学的不多
 ## **Matlab**
- 关于基础的Matlab的基础命令，命令在B站上的郭彥甫老师MATLAB课程+AI整理的，[B站链接](https://www.youtube.com/watch?v=KHFZLkm9qs0&list=PLVHBjRDK0kALcQMwAFbR5q2driYZCHNIx)和[油管链接](https://www.bilibili.com/video/BV1GJ41137UH/?spm_id_from=333.337.search-card.all.click&vd_source=525cbd54f7471bc27a6dd5315d634b56)
+- 关于基础的Matlab的基础命令，命令在B站上的郭彥甫老师MATLAB课程+AI整理的，[B站链接](https://www.youtube.com/watch?v=KHFZLkm9qs0&list=PLVHBjRDK0kALcQMwAFbR5q2driYZCHNIx)和[油管链接](https://www.bilibili.com/video/BV1GJ41137UH/?spm_id_from=333.337.search-card.all.click&vd_source=525cbd54f7471bc27a6dd5315d634b56)
 ## **Python**
 - 关于Python的爬图项目
