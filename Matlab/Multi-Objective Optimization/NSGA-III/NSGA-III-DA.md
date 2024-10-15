@@ -1,4 +1,4 @@
-## Detailed analysis 
+## Detailed Analysis 
 对 NSGA-III 的主要组成部分及其在代码中的体现的详细分析
 ### 1. **问题定义与初始化**
 
