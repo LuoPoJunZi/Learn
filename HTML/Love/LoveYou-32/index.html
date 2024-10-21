@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- 设置字符集为UTF-8 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- 兼容IE浏览器 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 设置视口，确保响应式设计 -->
+  <title>落魄君子&#10084;&#65039;</title> <!-- 网页标题 -->
+  <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_slide.js"></script> <!-- 引入鼠标滑动特效脚本 -->
+  <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicklove.js"></script> <!-- 引入点击爱心特效脚本 -->
+  <style type="text/css"> <!-- 开始CSS样式 -->
+    html, body {
+      height: 100%; <!-- 设置html和body的高度为100% -->
+      padding: 0; <!-- 清除内边距 -->
+      margin: 0; <!-- 清除外边距 -->
+      background: #000; <!-- 设置背景颜色为黑色 -->
+    }
+    canvas {
+      position: absolute; <!-- 使canvas绝对定位 -->
+      width: 100%; <!-- 设置canvas宽度为100% -->
+      height: 100%; <!-- 设置canvas高度为100% -->
+    }
+    .namebox{
+      color: #fff; <!-- 设置文字颜色为白色 -->
+      position: absolute;   
+      top: 50%; <!-- 设置垂直居中 -->
+      left: 50%; <!-- 设置水平居中 -->
+      -webkit-transform: translate(-50%, -50%); <!-- 使用transform进行居中 -->
+      -moz-transform: translate(-50%, -50%);   
+      -ms-transform: translate(-50%, -50%);   
+      -o-transform: translate(-50%, -50%);   
+      transform: translate(-50%, -50%);   
+    }
+    .namebox h1{
+      margin: 0 auto; <!-- 清除h1的外边距，居中显示 -->
+    }
+  </style>
+
+</head>
+<body>
+<canvas id="pinkboard"></canvas> <!-- 创建一个canvas元素，用于绘制粒子效果 -->
+<script>
+  var settings = {
+    particles: {
+      length: 500, // 最大粒子数量
+      duration: 2, // 粒子持续时间（秒）
+      velocity: 100, // 粒子速度（像素/秒）
+      effect: -0.75, // 用于调整效果的参数
+      size: 30, // 粒子大小（像素）
+    },
+  };
+
+  (function() { // 自执行函数，用于兼容不同浏览器的requestAnimationFrame
+    var b = 0; // 上一帧时间
+    var c = ["ms", "moz", "webkit", "o"]; // 浏览器前缀数组
+    for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
+      window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"]; // 为requestAnimationFrame赋值
+      window.cancelAnimationFrame = window[c[a] + "CancelAnimationFrame"] || window[c[a] + "CancelRequestAnimationFrame"]; // 为cancelAnimationFrame赋值
+    }
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = function(h, e) { // 自定义requestAnimationFrame函数
+        var d = new Date().getTime(); // 当前时间
+        var f = Math.max(0, 16 - (d - b)); // 计算下一帧的延迟时间
+        var g = window.setTimeout(function() { h(d + f); }, f); // 设置超时
+        b = d + f; // 更新上一帧时间
+        return g; // 返回超时ID
+      };
+    }
+    if (!window.cancelAnimationFrame) {
+      window.cancelAnimationFrame = function(d) { clearTimeout(d); }; // 自定义cancelAnimationFrame函数
+    }
+  })();
+
+  // 定义点(Point)类
+  var Point = (function() {
+    function Point(x, y) {
+      this.x = (typeof x !== 'undefined') ? x : 0; // 初始化x坐标
+      this.y = (typeof y !== 'undefined') ? y : 0; // 初始化y坐标
+    }
+    Point.prototype.clone = function() {
+      return new Point(this.x, this.y); // 克隆点
+    };
+    Point.prototype.length = function(length) {
+      if (typeof length == 'undefined')
+        return Math.sqrt(this.x * this.x + this.y * this.y); // 计算点的长度
+      this.normalize(); // 归一化
+      this.x *= length; // 根据长度调整x坐标
+      this.y *= length; // 根据长度调整y坐标
+      return this; // 返回当前点
+    };
+
+    Point.prototype.normalize = function() {
+      var length = this.length(); // 获取长度
+      this.x /= length; // 归一化x坐标
+      this.y /= length; // 归一化y坐标
+      return this; // 返回当前点
+    };
+    return Point; // 返回Point类
+  })();
+
+  // 定义粒子(Particle)类
+  var Particle = (function() {
+    function Particle() {
+      this.position = new Point(); // 初始化粒子位置
+      this.velocity = new Point(); // 初始化粒子速度
+      this.acceleration = new Point(); // 初始化粒子加速度
+      this.age = 0; // 粒子年龄
+    }
+    Particle.prototype.initialize = function(x, y, dx, dy) {
+      this.position.x = x; // 设置粒子位置
+      this.position.y = y;
+      this.velocity.x = dx; // 设置粒子速度
+      this.velocity.y = dy;
+      this.acceleration.x = dx * settings.particles.effect; // 设置粒子加速度
+      this.acceleration.y = dy * settings.particles.effect;
+      this.age = 0; // 重置年龄
+    };
+    Particle.prototype.update = function(deltaTime) {
+      this.position.x += this.velocity.x * deltaTime; // 更新粒子位置
+      this.position.y += this.velocity.y * deltaTime;
+      this.velocity.x += this.acceleration.x * deltaTime; // 更新粒子速度
+      this.velocity.y += this.acceleration.y * deltaTime;
+      this.age += deltaTime; // 增加粒子年龄
+    };
+
+    Particle.prototype.draw = function(context, image) { // 绘制粒子
+      function ease(t) { // 缓动函数
+        return (--t) * t * t + 1; // 立方缓动
+      }
+      var size = image.width * ease(this.age / settings.particles.duration); // 计算当前粒子大小
+      context.globalAlpha = 1 - this.age / settings.particles.duration; // 设置透明度
+      context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size); // 绘制粒子图像
+    };
+    return Particle; // 返回Particle类
+  })();
+
+  /*
+
+  * ParticlePool类
+  * 用于管理和绘制粒子池
+  */
+  var ParticlePool = (function() {
+    var particles, // 粒子数组
+        firstActive = 0, // 第一个活跃粒子索引
+        firstFree = 0, // 第一个空闲粒子索引
+        duration = settings.particles.duration; // 粒子持续时间
+    function ParticlePool(length) {
+      particles = new Array(length); // 创建粒子数组
+      for (var i = 0; i < particles.length; i++)
+        particles[i] = new Particle(); // 初始化粒子
+    }
+    ParticlePool.prototype.add = function(x, y, dx, dy) { // 添加粒子
+      particles[firstFree].initialize(x, y, dx, dy); // 初始化粒子
+      firstFree++; // 更新空闲粒子索引
+      if (firstFree == particles.length) firstFree = 0; // 循环处理
+      if (firstActive == firstFree) firstActive++; // 确保至少有一个活跃粒子
+      if (firstActive == particles.length) firstActive = 0; // 循环处理
+    };
+    ParticlePool.prototype.update = function(deltaTime) { // 更新粒子状态
+      var i;
+      // 更新活跃粒子
+      if (firstActive < firstFree) {
+        for (i = firstActive; i < firstFree; i++)
+          particles[i].update(deltaTime);
+      }
+      if (firstFree < firstActive) {
+        for (i = firstActive; i < particles.length; i++)
+          particles[i].update(deltaTime);
+        for (i = 0; i < firstFree; i++)
+          particles[i].update(deltaTime);
+      }
+      // 移除非活跃粒子
+      while (particles[firstActive].age >= duration && firstActive != firstFree) {
+        firstActive++; // 更新活跃粒子索引
+        if (firstActive == particles.length) firstActive = 0; // 循环处理
+      }
+    };
+    ParticlePool.prototype.draw = function(context, image) { // 绘制粒子
+      if (firstActive < firstFree) {
+        for (i = firstActive; i < firstFree; i++)
+          particles[i].draw(context, image); // 绘制活跃粒子
+      }
+      if (firstFree < firstActive) {
+        for (i = firstActive; i < particles.length; i++)
+          particles[i].draw(context, image); // 绘制活跃粒子
+        for (i = 0; i < firstFree; i++)
+          particles[i].draw(context, image); // 绘制活跃粒子
+      }
+    };
+    return ParticlePool; // 返回ParticlePool类
+  })();
+
+  /*
+
+  * 将所有功能组合在一起
+  */
+  (function(canvas) {
+    var context = canvas.getContext('2d'), // 获取canvas的2D上下文
+        particles = new ParticlePool(settings.particles.length), // 创建粒子池
+        particleRate = settings.particles.length / settings.particles.duration, // 每秒产生的粒子数量
+        time; // 当前时间
+
+    // 获取心形曲线上的点
+    function pointOnHeart(t) {
+      return new Point(
+              160 * Math.pow(Math.sin(t), 3),
+              130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+      );
+    }
+
+    // 创建粒子图像
+    var image = (function() {
+      var canvas = document.createElement('canvas'), // 创建一个虚拟canvas
+          context = canvas.getContext('2d');
+      canvas.width = settings.particles.size; // 设置canvas宽度
+      canvas.height = settings.particles.size; // 设置canvas高度
+
+      // 将参数t转为点
+      function to(t) {
+        var point = pointOnHeart(t); // 获取心形上的点
+        point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350; // 根据canvas大小调整点的x坐标
+        point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350; // 根据canvas大小调整点的y坐标
+        return point; // 返回调整后的点
+      }
+
+      // 创建路径
+      context.beginPath();
+      var t = -Math.PI; // 从-PI开始
+      var point = to(t); // 获取第一个点
+      context.moveTo(point.x, point.y); // 移动到第一个点
+      while (t < Math.PI) {
+        t += 0.01; // 逐步增加t
+        point = to(t); // 获取下一个点
+        context.lineTo(point.x, point.y); // 绘制线段
+      }
+      context.closePath(); // 关闭路径
+
+      // 填充路径
+      context.fillStyle = '#ff30c5'; // 设置填充颜色
+      context.fill(); // 填充路径
+
+      // 创建粒子图像
+      var image = new Image();
+      image.src = canvas.toDataURL(); // 将canvas内容转为图片数据
+      return image; // 返回图像
+    })();
+
+    // 渲染动画
+    function render() {
+      requestAnimationFrame(render); // 请求下一个动画帧
+      var newTime = new Date().getTime() / 1000, // 获取当前时间
+          deltaTime = newTime - (time || newTime); // 计算时间间隔
+      time = newTime; // 更新当前时间
+
+      context.clearRect(0, 0, canvas.width, canvas.height); // 清空canvas
+
+      // 创建新粒子
+      var amount = particleRate * deltaTime; // 计算新粒子数量
+      for (var i = 0; i < amount; i++) {
+        var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random()); // 获取心形上的随机位置
+        var dir = pos.clone().length(settings.particles.velocity); // 获取粒子方向并设置速度
+        particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y); // 添加粒子到粒子池
+      }
+      // 更新和绘制粒子
+      particles.update(deltaTime); // 更新粒子状态
+      particles.draw(context, image); // 绘制粒子
+    }
+
+    // 处理canvas的重新大小
+    function onResize() {
+      canvas.width = canvas.clientWidth; // 设置canvas宽度为客户端宽度
+      canvas.height = canvas.clientHeight; // 设置canvas高度为客户端高度
+    }
+    window.onresize = onResize; // 绑定resize事件
+
+    // 启动渲染
+    setTimeout(function() {
+      onResize(); // 初始化canvas大小
+      render(); // 启动渲染
+    }, 10);
+  })(document.getElementById('pinkboard')); // 获取canvas元素并传入自执行函数
+</script>
+<div class="namebox"> <!-- 名称框 -->
+  <h1>落魄君子&#10084;&#65039;小爱同学</h1> <!-- 显示标题 -->
+</div>
+</body>
+</html>
