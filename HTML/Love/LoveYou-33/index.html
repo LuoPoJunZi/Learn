@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!-- 设置文档类型和字符编码 -->
+    <title>💗</title> <!-- 设置网页标题 -->
+    <style>
+        canvas {
+            position: absolute; /* 绝对定位，使canvas覆盖整个窗口 */
+            left: 0; /* canvas左侧位置 */
+            top: 0; /* canvas顶部位置 */
+            width: 100%; /* canvas宽度为100% */
+            height: 100%; /* canvas高度为100% */
+            background-color: rgba(0, 0, 0, .2); /* canvas背景色为半透明黑色 */
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="heart" width="1920" height="947"></canvas> <!-- 创建一个canvas元素用于绘制心形图案 -->
+<script>
+    // 兼容不同浏览器的requestAnimationFrame实现
+    window.requestAnimationFrame =
+        window.__requestAnimationFrame || // 首先检查自定义实现
+        window.requestAnimationFrame || // 标准实现
+        window.webkitRequestAnimationFrame || // Safari实现
+        window.mozRequestAnimationFrame || // Firefox实现
+        window.oRequestAnimationFrame || // Opera实现
+        window.msRequestAnimationFrame || // IE实现
+        (function () { // 如果以上都不支持，使用setTimeout模拟
+            return function (callback, element) {
+                var lastTime = element.__lastTime; // 获取上次时间
+                if (lastTime === undefined) {
+                    lastTime = 0; // 如果未定义则初始化为0
+                }
+                var currTime = Date.now(); // 当前时间
+                var timeToCall = Math.max(1, 33 - (currTime - lastTime)); // 计算调用时间
+                window.setTimeout(callback, timeToCall); // 设置超时
+                element.__lastTime = currTime + timeToCall; // 更新最后一次时间
+            };
+        })();
+
+    // 检测是否为移动设备
+    window.isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(((navigator.userAgent || navigator.vendor || window.opera)).toLowerCase()));
+    
+    var loaded = false; // 标记页面是否已加载
+    var init = function () {
+        if (loaded) return; // 如果已加载则不重复执行
+        loaded = true; // 标记为已加载
+
+        var mobile = window.isDevice; // 检查当前是否为移动设备
+        var koef = mobile ? 0.5 : 1; // 根据设备类型设置缩放系数
+        var canvas = document.getElementById('heart'); // 获取canvas元素
+        var ctx = canvas.getContext('2d'); // 获取2D上下文
+        var width = canvas.width = koef * innerWidth; // 设置canvas宽度
+        var height = canvas.height = koef * innerHeight; // 设置canvas高度
+        var rand = Math.random; // 缓存随机数函数
+        ctx.fillStyle = "rgba(0,0,0,1)"; // 设置填充颜色为黑色
+        ctx.fillRect(0, 0, width, height); // 填充整个canvas为黑色
+
+        // 定义心形位置函数
+        var heartPosition = function (rad) {
+            // 使用心形参数方程计算坐标
+            return [Math.pow(Math.sin(rad), 3), -(15 * Math.cos(rad) - 5 * Math.cos(2 * rad) - 2 * Math.cos(3 * rad) - Math.cos(4 * rad))];
+        };
+
+        // 变换坐标系函数
+        var scaleAndTranslate = function (pos, sx, sy, dx, dy) {
+            return [dx + pos[0] * sx, dy + pos[1] * sy]; // 根据比例和位移返回新坐标
+        };
+
+        // 监听窗口大小改变事件
+        window.addEventListener('resize', function () {
+            width = canvas.width = koef * innerWidth; // 更新canvas宽度
+            height = canvas.height = koef * innerHeight; // 更新canvas高度
+            ctx.fillStyle = "rgba(0,0,0,1)"; // 设置填充颜色为黑色
+            ctx.fillRect(0, 0, width, height); // 填充整个canvas为黑色
+        });
+
+        var traceCount = mobile ? 20 : 50; // 根据设备类型设置追踪点数量
+        var pointsOrigin = []; // 存储心形原始点
+        var i;
+        var dr = mobile ? 0.3 : 0.1; // 根据设备类型设置步长
+        // 生成心形的原始点
+        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 210, 13, 0, 0));
+        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 150, 9, 0, 0));
+        for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 90, 5, 0, 0));
+        var heartPointsCount = pointsOrigin.length; // 获取心形点的数量
+
+        var targetPoints = []; // 存储目标点
+        // 更新目标点位置的脉动函数
+        var pulse = function (kx, ky) {
+            for (i = 0; i < pointsOrigin.length; i++) {
+                targetPoints[i] = []; // 初始化目标点数组
+                targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2; // 计算目标点x坐标
+                targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2; // 计算目标点y坐标
+            }
+        };
+
+        var e = []; // 存储粒子
+        for (i = 0; i < heartPointsCount; i++) {
+            var x = rand() * width; // 随机生成x坐标
+            var y = rand() * height; // 随机生成y坐标
+            e[i] = { // 初始化粒子属性
+                vx: 0, // x方向速度
+                vy: 0, // y方向速度
+                R: 2, // 粒子半径
+                speed: rand() + 5, // 粒子速度
+                q: ~~(rand() * heartPointsCount), // 随机目标点索引
+                D: 2 * (i % 2) - 1, // 方向标记，用于改变目标点
+                force: 0.2 * rand() + 0.7, // 力的衰减因子
+                f: "hsla(0," + ~~(40 * rand() + 60) + "%," + ~~(60 * rand() + 20) + "%,.3)", // 粒子颜色
+                trace: [] // 追踪点
+            };
+            // 初始化追踪点
+            for (var k = 0; k < traceCount; k++) e[i].trace[k] = {x: x, y: y};
+        }
+
+        // 配置项
+        var config = {
+            traceK: 0.4, // 追踪点的平滑系数
+            timeDelta: 0.01 // 时间增量
+        };
+
+        var time = 0; // 初始化时间
+        var loop = function () {
+            var n = -Math.cos(time); // 计算脉动因子
+            pulse((1 + n) * .5, (1 + n) * .5); // 更新目标点
+            time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta; // 更新时间
+            ctx.fillStyle = "rgba(0,0,0,.1)"; // 设置填充颜色为半透明黑色
+            ctx.fillRect(0, 0, width, height); // 清空canvas
+
+            // 更新每个粒子
+            for (i = e.length; i--;) {
+                var u = e[i]; // 获取当前粒子
+                var q = targetPoints[u.q]; // 获取目标点
+                var dx = u.trace[0].x - q[0]; // 计算x方向的距离
+                var dy = u.trace[0].y - q[1]; // 计算y方向的距离
+                var length = Math.sqrt(dx * dx + dy * dy); // 计算两点间的距离
+                if (10 > length) { // 如果距离小于10
+                    if (0.95 < rand()) {
+                        u.q = ~~(rand() * heartPointsCount); // 随机选择新的目标点
+                    } else {
+                        if (0.99 < rand()) {
+                            u.D *= -1; // 反转方向
+                        }
+                        u.q += u.D; // 更新目标点索引
+                        u.q %= heartPointsCount; // 确保索引在有效范围内
+                        if (0 > u.q) {
+                            u.q += heartPointsCount; // 如果索引小于0，循环回到最后
+                        }
+                    }
+                }
+                // 更新速度
+                u.vx += -dx / length * u.speed; // x方向加速
+                u.vy += -dy / length * u.speed; // y方向加速
+                u.trace[0].x += u.vx; // 更新追踪点位置
+                u.trace[0].y += u.vy; // 更新追踪点位置
+                u.vx *= u.force; // 应用力的衰减
+                u.vy *= u.force; // 应用力的衰减
+
+                // 更新追踪点的平滑效果
+                for (k = 0; k < u.trace.length - 1;) {
+                    var T = u.trace[k]; // 当前追踪点
+                    var N = u.trace[++k]; // 下一个追踪点
+                    N.x -= config.traceK * (N.x - T.x); // 平滑处理x坐标
+                    N.y -= config.traceK * (N.y - T.y); // 平滑处理y坐标
+                }
+                ctx.fillStyle = u.f; // 设置当前粒子的颜色
+                // 绘制追踪点
+                for (k = 0; k < u.trace.length; k++) {
+                    ctx.fillRect(u.trace[k].x, u.trace[k].y, 1, 1); // 绘制追踪点
+                }
+            }
+            ctx.fillStyle = "rgba(255,255,255,1)"; // 设置目标点颜色为白色
+            // 绘制目标点
+            for (i = u.trace.length + 13; i--;) ctx.fillRect(targetPoints[i][0], targetPoints[i][1], 2, 2); 
+
+            window.requestAnimationFrame(loop, canvas); // 循环调用自身以实现动画效果
+        };
+        loop(); // 启动动画循环
+    };
+
+    // 检查文档加载状态并初始化
+    var s = document.readyState; 
+    if (s === 'complete' || s === 'loaded' || s === 'interactive') init(); // 如果页面已加载，则初始化
+    else document.addEventListener('DOMContentLoaded', init, false); // 否则在DOMContentLoaded事件后初始化
+</script>
+
+</body>
+</html>
