@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8"> <!-- 设置字符编码为UTF-8 -->
+	<title>我爱你</title> <!-- 网页标题 -->
+	<meta name="language" content="zh-CN"> <!-- 设置网页语言为中文（中国） -->
+	<meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code"> <!-- GitHub链接 -->
+	<meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! "> <!-- 网页描述 -->
+	<link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png"> <!-- 网页图标 -->
+
+	<style>
+		/* 设置html和body的样式 */
+		html,
+		body {
+			margin: 0px; /* 去除默认边距 */
+			width: 100%; /* 设置宽度为100% */
+			height: 100%; /* 设置高度为100% */
+			overflow: hidden; /* 隐藏溢出内容 */
+			background: #000; /* 背景颜色为黑色 */
+		}
+	</style>
+
+</head>
+
+<body>
+	<canvas id="canvas" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas> <!-- 主画布 -->
+	<canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas"></canvas> <!-- 第二个画布 -->
+	<div class="overlay">
+		<div class="tabs">
+			<div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span
+					class="tabs-label">Share</span></div> <!-- 标签栏 -->
+
+			<div class="tabs-panels">
+				<ul class="tabs-panel commands">
+					<!-- 命令面板，内容动态生成 -->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+		// 初始化变量
+		function initVars() {
+			pi = Math.PI; // π常量
+			ctx = canvas.getContext("2d"); // 获取画布的2D上下文
+			canvas.width = canvas.clientWidth; // 设置画布宽度
+			canvas.height = canvas.clientHeight; // 设置画布高度
+			cx = canvas.width / 2; // 画布中心X坐标
+			cy = canvas.height / 2; // 画布中心Y坐标
+			playerZ = -25; // 玩家Z坐标
+			playerX = playerY = playerVX = playerVY = playerVZ = pitch = yaw = pitchV = yawV = 0; // 初始化玩家和视角相关变量
+			scale = 600; // 缩放比例
+			seedTimer = 0; seedInterval = 5, seedLife = 100; gravity = .02; // 种子计时器和重力相关设置
+			seeds = new Array(); // 种子数组
+			sparkPics = new Array(); // 火花图片数组
+			s = "https://cantelope.org/NYE/"; // 图片和音效的基础路径
+			for (i = 1; i <= 10; ++i) {
+				sparkPic = new Image(); // 创建新的图片对象
+				sparkPic.src = s + "spark" + i + ".png"; // 设置图片源
+				sparkPics.push(sparkPic); // 将图片添加到数组中
+			}
+			sparks = new Array(); // 火花数组
+			// 加载音效文件
+			pow1 = new Audio(s + "pow1.ogg");
+			pow2 = new Audio(s + "pow2.ogg");
+			pow3 = new Audio(s + "pow3.ogg");
+			pow4 = new Audio(s + "pow4.ogg");
+			frames = 0; // 帧计数器
+		}
+
+		// 光栅化点
+		function rasterizePoint(x, y, z) {
+			var p, d;
+			x -= playerX; // 相对玩家X坐标
+			y -= playerY; // 相对玩家Y坐标
+			z -= playerZ; // 相对玩家Z坐标
+			p = Math.atan2(x, z); // 计算角度
+			d = Math.sqrt(x * x + z * z); // 计算距离
+			x = Math.sin(p - yaw) * d; // 根据偏航旋转X坐标
+			z = Math.cos(p - yaw) * d; // 根据偏航旋转Z坐标
+			p = Math.atan2(y, z); // 计算新的角度
+			d = Math.sqrt(y * y + z * z); // 计算新的距离
+			y = Math.sin(p - pitch) * d; // 根据俯仰旋转Y坐标
+			z = Math.cos(p - pitch) * d; // 根据俯仰旋转Z坐标
+			// 计算绘制坐标
+			var rx1 = -1000, ry1 = 1, rx2 = 1000, ry2 = 1, rx3 = 0, ry3 = 0, rx4 = x, ry4 = z,
+				uc = (ry4 - ry3) * (rx2 - rx1) - (rx4 - rx3) * (ry2 - ry1);
+			if (!uc) return { x: 0, y: 0, d: -1 }; // 如果平行，返回
+			var ua = ((rx4 - rx3) * (ry1 - ry3) - (ry4 - ry3) * (rx1 - rx3)) / uc; // 计算ua
+			var ub = ((rx2 - rx1) * (ry1 - ry3) - (ry2 - ry1) * (rx1 - rx3)) / uc; // 计算ub
+			if (!z) z = .000000001; // 防止除以0
+			// 检查点是否在可视范围内
+			if (ua > 0 && ua < 1 && ub > 0 && ub < 1) {
+				return {
+					x: cx + (rx1 + ua * (rx2 - rx1)) * scale, // 计算X坐标
+					y: cy + y / z * scale, // 计算Y坐标
+					d: Math.sqrt(x * x + y * y + z * z) // 返回距离
+				};
+			} else {
+				return {
+					x: cx + (rx1 + ua * (rx2 - rx1)) * scale, // 计算X坐标
+					y: cy + y / z * scale, // 计算Y坐标
+					d: -1 // 返回不可见
+				};
+			}
+		}
+
+		// 生成种子
+		function spawnSeed() {
+			seed = new Object(); // 创建新的种子对象
+			seed.x = -50 + Math.random() * 100; // 随机X坐标
+			seed.y = 25; // Y坐标
+			seed.z = -50 + Math.random() * 100; // 随机Z坐标
+			seed.vx = .1 - Math.random() * .2; // 随机X速度
+			seed.vy = -1.5; // Y速度
+			seed.vz = .1 - Math.random() * .2; // 随机Z速度
+			seed.born = frames; // 记录生成时间
+			seeds.push(seed); // 将种子添加到数组中
+		}
+
+		// 爆炸效果
+		function splode(x, y, z) {
+			t = 5 + parseInt(Math.random() * 150); // 随机爆炸持续时间
+			sparkV = 1 + Math.random() * 2.5; // 随机火花速度
+			type = parseInt(Math.random() * 3); // 随机火花类型
+			switch (type) {
+				case 0:
+					pic1 = parseInt(Math.random() * 10); // 随机选择一种火花图片
+					break;
+				case 1:
+					pic1 = parseInt(Math.random() * 10);
+					do { pic2 = parseInt(Math.random() * 10); } while (pic2 == pic1); // 确保两种图片不同
+					break;
+				case 2:
+					pic1 = parseInt(Math.random() * 10);
+					do { pic2 = parseInt(Math.random() * 10); } while (pic2 == pic1); // 确保不同
+					do { pic3 = parseInt(Math.random() * 10); } while (pic3 == pic1 || pic3 == pic2); // 确保不同
+					break;
+			}
+			for (m = 1; m < t; ++m) {
+				spark = new Object(); // 创建火花对象
+				spark.x = x; spark.y = y; spark.z = z; // 设置火花坐标
+				spark.vx = Math.random() * sparkV - sparkV / 2; // 随机火花X速度
+				spark.vy = Math.random() * sparkV - sparkV / 2; // 随机火花Y速度
+				spark.vz = Math.random() * sparkV - sparkV / 2; // 随机火花Z速度
+				spark.born = frames; // 记录生成时间
+				spark.type = type; // 设置火花类型
+				sparks.push(spark); // 将火花添加到数组中
+			}
+		}
+
+		// 主循环
+		function mainLoop() {
+			// 更新帧计数
+			frames++;
+			ctx.clearRect(0, 0, canvas.width, canvas.height); // 清除画布
+
+			// 处理种子和火花
+			if (seedTimer++ > seedInterval) {
+				spawnSeed(); // 生成新的种子
+				seedTimer = 0; // 重置计时器
+			}
+
+			// 更新火花
+			for (var i = 0; i < sparks.length; ++i) {
+				var spark = sparks[i];
+				spark.x += spark.vx; // 更新X坐标
+				spark.y += spark.vy; // 更新Y坐标
+				spark.z += spark.vz; // 更新Z坐标
+			}
+
+			// 处理种子的运动和绘制
+			for (var i = 0; i < seeds.length; ++i) {
+				var seed = seeds[i];
+				seed.x += seed.vx; // 更新X坐标
+				seed.y += seed.vy; // 更新Y坐标
+				seed.z += seed.vz; // 更新Z坐标
+				if (seed.y <= 0) {
+					splode(seed.x, seed.y, seed.z); // 如果种子到达地面，则爆炸
+					seeds.splice(i, 1); // 移除种子
+					i--; // 退回一位，处理下一个种子
+				}
+			}
+
+			// 绘制火花
+			for (var i = 0; i < sparks.length; ++i) {
+				var spark = sparks[i];
+				if (frames - spark.born > 200) { // 如果火花的年龄超过200帧，则移除
+					sparks.splice(i, 1); // 移除火花
+					i--; // 退回一位
+					continue;
+				}
+				var pos = rasterizePoint(spark.x, spark.y, spark.z); // 计算火花的绘制位置
+				if (pos.d > 0) {
+					var pic = sparkPics[spark.type]; // 获取火花图片
+					ctx.drawImage(pic, pos.x, pos.y); // 绘制火花
+				}
+			}
+
+			// 绘制种子
+			for (var i = 0; i < seeds.length; ++i) {
+				var seed = seeds[i];
+				var pos = rasterizePoint(seed.x, seed.y, seed.z); // 计算种子的绘制位置
+				if (pos.d > 0) {
+					ctx.fillStyle = "rgba(255,255,255," + (1 - (frames - seed.born) / seedLife) + ")"; // 设置种子透明度
+					ctx.fillRect(pos.x - 2, pos.y - 2, 4, 4); // 绘制种子
+				}
+			}
+
+			requestAnimationFrame(mainLoop); // 请求下一帧
+		}
+
+		// 启动主循环
+		initVars(); // 初始化变量
+		mainLoop(); // 启动循环
+	</script>
+</body>
+
+</html>
