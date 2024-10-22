@@ -31,18 +31,20 @@
 
 ```matlab
 % 适应度函数
-function f = fitness(x)
-% 输入参数:
-% x - 1x9的参数向量，包含多个决策变量
+% 输入:
+%   x - 变量输入向量，包含优化问题中的决策变量
 % 输出:
-% f - 向量输出，表示适应度值，包含多个目标的评估结果
+%   f - 适应度值向量，包含多个目标函数的输出值
 
-    % 调用 my_model1 函数，计算目标值 y1 和 y2
-    [y1, y2] = my_model1(x);
+function f = fitness(x)
+    % 调用 my_model1 函数计算目标函数的值
+    % 该函数返回多个目标 y1, y2, y3
+    [y1, y2, y3] = my_model1(x);
     
-    % 将目标值组成输出向量 f
-    f = [y1, y2];
+    % 将目标函数的值组合成一个向量 f
+    f = [y1, y2, y3];
 end
+
 ```
 
 ## `my_model1.m` 文件的详细中文注释版本：
@@ -372,24 +374,24 @@ end
 % output.m 文件
 % 此脚本用于计算和输出模型参数的初始化值
 
-% 定义决策变量 x 的值
-x = [0.115095090561727, 0.991103525413818, 0.980332036771668, ...
-     0.0315009108191873, 0.689166977373571, 0.0928958497394059, ...
-     0.970775199581360, 0.000181002625542093, 0.0236656311097715, ...
-     0.807721792366841]; 
+% 定义决策变量 x 的具体值
+x = [0.261853019189095, 0.954033395717644, 0.929755925150390, ...
+     0.0420539659350538, 0.662361595432101, 0.150500955291545, ...
+     0.948314964274653, 0.0110000915659857, 0.0856124488473688, ...
+     0.918417984591724];
 
-% 计算模型参数
-aT = 343 + x(1) * (363 - 343); % 温度计算
-aP = 2 + x(2) * (5 - 2); % 压力计算
-asigma_mem = 0.1 + x(3) * (0.3 - 0.1); % 膜的导电性
-atmem = 0.02 + x(4) * (0.05 - 0.02); % 膜的厚度
-adp = 1.00E-07 + x(5) * (6.00E-07 - 1.00E-07); % 孔隙半径
-adm = 0.0001 + x(6) * (0.0005 - 0.0001); % 膜厚度
-aeps = 0.5 + x(7) * (0.9 - 0.5); % 膜的孔隙率
-ada = 0.001 + x(8) * (0.006 - 0.001); % 气隙厚度
-aTc = 300 + x(9) * (308 - 300); % 冷却液温度
-ac3 = 0.002; % 常数
-aj = 0.1 + x(10) * (2 - 0.1); % 电流密度
+% 根据决策变量计算各个参数
+T = 343 + x(1) * (363 - 343); % 计算温度 T，范围从 343 到 363
+P = 2 + x(2) * (5 - 2);       % 计算压力 P，范围从 2 到 5
+sigma_mem = 0.1 + x(3) * (0.3 - 0.1); % 计算膜的导电性 sigma_mem，范围从 0.1 到 0.3
+tmem = 0.02 + x(4) * (0.05 - 0.02);   % 计算膜的厚度 tmem，范围从 0.02 到 0.05
+dp = 1.00E-07 + x(5) * (6.00E-07 - 1.00E-07); % 计算孔的平均半径 dp，范围从 1E-7 到 6E-7
+dm = 0.0001 + x(6) * (0.0005 - 0.0001); % 计算膜的厚度 dm，范围从 0.0001 到 0.0005
+eps = 0.5 + x(7) * (0.9 - 0.5); % 计算膜的孔隙率 eps，范围从 0.5 到 0.9
+da = 0.001 + x(8) * (0.006 - 0.001); % 计算气隙的厚度 da，范围从 0.001 到 0.006
+Tc = 300 + x(9) * (308 - 300); % 计算冷却液的温度 Tc，范围从 300 到 308
+c3 = 0.002; % 设定常数 c3
+j = 0.2 + x(10) * (2 - 0.2); % 计算电流密度 j，范围从 0.2 到 2
 
 % 以上变量的计算根据输入的决策变量 x，得到具体的模型参数
 ```
@@ -397,66 +399,78 @@ aj = 0.1 + x(10) * (2 - 0.1); % 电流密度
 ## `main.m` 文件的详细中文注释版本：
 
 ```matlab
-% main.m 文件
-% 本脚本用于使用遗传算法 (GA) 求解多目标优化问题并绘制帕累托前沿
-
 % 变量范围
-lb = zeros(1, 10); % 变量的下界，10个变量均为0
-ub = ones(1, 10); % 变量的上界，10个变量均为1
+lb = zeros(1, 10); % 下界：10个决策变量的下限均为0
+ub = ones(1, 10);  % 上界：10个决策变量的上限均为1
 
-% GA参数设置
-ga_options = optimoptions(@gamultiobj, 'PopulationSize', 500, 'MaxGenerations', 100);
-% 设置种群规模为500，最大代数为100
+% GA参数
+% 设置遗传算法的参数
+ga_options = optimoptions(@gamultiobj, ...
+    'MaxGenerations', 5000, ... % 最大代数
+    'PopulationSize', 2000, ...  % 种群规模
+    'CrossoverFraction', 0.9, ... % 交叉概率
+    'MutationFcn', {@mutationgaussian, 0.1}, ... % 变异函数和变异概率
+    'SelectionFcn', {@selectiontournament, 2}); % 选择函数及其参数
 
 % 求解最优参数
+% 使用多目标遗传算法求解最优决策变量 x 和对应的适应度值 fval
 [x, fval] = gamultiobj(@fitness, 10, [], [], [], [], lb, ub, ga_options);
-% 调用多目标遗传算法，优化目标是 fitness 函数，变量个数为10
 
 % 输出结果
-disp(['找到的Pareto前沿数量：' num2str(size(fval, 1))]);
-% 显示找到的帕累托前沿数量
+disp(['找到的Pareto前沿数量：' num2str(size(fval, 1))]); % 输出找到的帕累托前沿的数量
 
 % 绘制帕累托前沿
-plot(-fval(:, 1), -fval(:, 2), '.'); % 绘制第一和第二目标函数的负值
-xlabel('功率密度'); % X轴标签
-ylabel('火用效率'); % Y轴标签
-title('Pareto Front'); % 图表标题
-A1 = -fval(:, 1); % 保存功率密度
-B1 = -fval(:, 2); % 保存火用效率
-optpem = -fval; % 优化结果
+plot3(-fval(:, 1), -fval(:, 2), fval(:, 3), '.'); % 绘制三维帕累托前沿
+xlabel('功率'); % x轴标签
+ylabel('效率'); % y轴标签
+zlabel('成本'); % z轴标签
+title('Pareto Front'); % 图标题
+
+% 将适应度值转置以便后续处理
+A1 = -fval(:, 1); % 功率
+B1 = -fval(:, 2); % 效率
+C1 = fval(:, 3);   % 成本
+optpem = -fval;    % 存储优化的适应度值
 
 % 数据，根据设计的权重找到最佳解
-Y = -fval(:, 1)'; % 功率密度的负值
-B = -fval(:, 2)'; % 火用效率的负值
+Y = -fval(:, 1)'; % 功率的负值
+B = -fval(:, 2)'; % 效率的负值
+C = fval(:, 3)';   % 成本
 
 % 权重
-weights = [0.5, 0.5]; % 各目标的权重设置
+weights = [0.3165, 0.3670, 0.3165]; % 权重向量，权重之和应为1
 
 % 标准化
-normA = Y / norm(Y); % 功率密度的标准化
-normB = B / norm(B); % 火用效率的标准化
+normA = Y / norm(Y); % 对功率进行标准化
+normB = B / norm(B); % 对效率进行标准化
+normC = C / norm(C); % 对成本进行标准化
 
 % 加权标准化矩阵
-weighted_normA = weights(1) * normA; % 加权功率密度
-weighted_normB = weights(2) * normB; % 加权火用效率
+weighted_normA = weights(1) * normA; % 加权后的功率标准化
+weighted_normB = weights(2) * normB; % 加权后的效率标准化
+weighted_normC = weights(3) * normC; % 加权后的成本标准化
 
 % 正理想解和负理想解
-idealPositive = [max(weighted_normA), min(weighted_normB)]; % 正理想解
-idealNegative = [min(weighted_normA), max(weighted_normB)]; % 负理想解
+idealPositive = [max(weighted_normA), max(weighted_normB), min(weighted_normC)]; % 正理想解
+idealNegative = [min(weighted_normA), min(weighted_normB), max(weighted_normC)]; % 负理想解
 
 % 计算分离度
-distancePositive = sqrt((weighted_normA - idealPositive(1)).^2 + (weighted_normB - idealPositive(2)).^2);
-% 从正理想解的距离
-distanceNegative = sqrt((weighted_normA - idealNegative(1)).^2 + (weighted_normB - idealNegative(2)).^2);
-% 从负理想解的距离
+distancePositive = sqrt((weighted_normA - idealPositive(1)).^2 + ...
+    (weighted_normB - idealPositive(2)).^2 + ...
+    (weighted_normC - idealPositive(3)).^2); % 到正理想解的距离
+
+distanceNegative = sqrt((weighted_normA - idealNegative(1)).^2 + ...
+    (weighted_normB - idealNegative(2)).^2 + ...
+    (weighted_normC - idealNegative(3)).^2); % 到负理想解的距离
 
 % 计算相对接近度
-relativeCloseness = distanceNegative ./ (distancePositive + distanceNegative);
-% 计算相对接近度
+relativeCloseness = distanceNegative ./ (distancePositive + distanceNegative); % 相对接近度计算
 
-% 最佳点
+% 找到最佳点
 [bestValue, bestIndex] = max(relativeCloseness); % 找到相对接近度最大的点
 
 % 输出最佳点的信息
-fprintf('最佳点的索引是：%d, 相对接近度为：%.4f\n', bestIndex, bestValue);
+fprintf('最佳点的索引是：%d, 相对接近度为：%.4f\n', bestIndex, bestValue); % 输出最佳点的索引和接近度
+
+AAA = abs(fval); % 计算适应度值的绝对值
 ```
