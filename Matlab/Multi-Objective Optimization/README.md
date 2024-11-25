@@ -6,4 +6,4 @@
 # MOMVO 多目标多元宇宙优化算法
 # NSGA-II 非支配性排序遗传算法 II
 # NSGA-III 非支配性排序遗传算法 III
-
+# NSWOA 多目标鲸鱼优化算法
