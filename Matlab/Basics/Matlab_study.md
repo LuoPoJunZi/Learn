@@ -1,5 +1,5 @@
 # Matlab基础
-## [博客原文链接](https://blog.luopojunzi.com/p/matlab_study/)
+## [博客原文链接](https://blog.luopojunzi.com/p/matlab-study/)
 
 ## 1.1 **计算机使用**
 ```matlab
