@@ -1226,7 +1226,7 @@ function [pop, grid] = TruncatePopulation(pop, grid, E, beta)
         
         % 记录待删除的个体索引
         ToBeDeleted = [ToBeDeleted, i]; %#ok
-        %
+        
 % Copyright (c) 2015, Yarpiz (www.yarpiz.com)
 % All rights reserved. Please read the "license.txt" for license terms.
 %
