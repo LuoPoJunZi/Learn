@@ -37,18 +37,7 @@ function [pop, grid] = TruncatePopulation(pop, grid, E, beta)
         
         % 记录待删除的个体索引
         ToBeDeleted = [ToBeDeleted, i]; %#ok
-        %
-% Copyright (c) 2015, Yarpiz (www.yarpiz.com)
-% All rights reserved. Please read the "license.txt" for license terms.
-%
-% Project Code: YPEA123
-% Project Title: Pareto Envelope-based Selection Algorithm II (PESA-II)
-% Publisher: Yarpiz (www.yarpiz.com)
-% 
-% Developer: S. Mostapha Kalami Heris (Member of Yarpiz Team)
-% 
-% Contact Info: sm.kalami@gmail.com, info@yarpiz.com
-%
+
     end
     
     % 从存档中删除选定的个体
