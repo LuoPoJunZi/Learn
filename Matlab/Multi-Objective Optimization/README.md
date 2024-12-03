@@ -6,6 +6,7 @@
 ### [MOGWO 多目标灰狼优化算法](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/MOGWO)
 ### [MOMVO 多目标多元宇宙优化算法](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/MOMVO)
 ### [MSSA 多目标樽海鞘(Salp)群算法](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/MSSA)
+### [NSDBO 非支配排序的蜣螂算法](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/NSDBO)
 ### [NSGA-II 非支配性排序遗传算法 II](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/NSGA-II)
 ### [NSGA-III 非支配性排序遗传算法 III](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/NSGA-III)
 ### [NSWOA 多目标鲸鱼优化算法](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/NSWOA)
