@@ -15,6 +15,7 @@
 ## **Matlab**
 - **Basics**：关于基础的Matlab的基础命令，命令在B站上的郭彥甫老师MATLAB课程+AI整理的，[B站链接](https://www.youtube.com/watch?v=KHFZLkm9qs0&list=PLVHBjRDK0kALcQMwAFbR5q2driYZCHNIx)和[油管链接](https://www.bilibili.com/video/BV1GJ41137UH/?spm_id_from=333.337.search-card.all.click&vd_source=525cbd54f7471bc27a6dd5315d634b56)
 - **Multi-Objective Optimization**：多目标优化算法
+- **Neural Network**：神经网络
 ## **Python**
 - **Grab**：关于Python的爬图项目
 - **Love**：表白的网页代码选了几个（AI）加了注释，其他表白的代码请移步的到这个[项目](https://github.com/sun0225SUN/Awesome-Love-Code)
