@@ -17,5 +17,6 @@
 - **Multi-Objective Optimization**：多目标优化算法
 - **Neural Network**：神经网络
 ## **Python**
+- **Auto_scripts**：整理了一些可能日常使用的Python脚本
 - **Grab**：关于Python的爬图项目
 - **Love**：表白的网页代码选了几个（AI）加了注释，其他表白的代码请移步的到这个[项目](https://github.com/sun0225SUN/Awesome-Love-Code)
