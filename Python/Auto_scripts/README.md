@@ -14,5 +14,5 @@
 ### [extract_text_from_pdf](https://github.com/LuoPoJunZi/Learn/new/main/Python/Auto_scripts/extract_text_from_pdf):从PDF文件中提取文本
 ### [recognize_text](https://github.com/LuoPoJunZi/Learn/new/main/Python/Auto_scripts/recognize_text):从图像文件中提取文本
 ### [execute_query](https://github.com/LuoPoJunZi/Learn/new/main/Python/Auto_scripts/execute_query):连接到SQLite数据库并执行SQL查询
-### [post_tweet](https://github.com/LuoPoJunZi/Learn/new/main/Python/Auto_scripts/post_tweet):使用 Tweepy 库向 Twitter 发布推文
+### [post_tweet](https://github.com/LuoPoJunZi/Learn/tree/main/Python/Auto_scripts/post_tweet):使用 Tweepy 库向 Twitter 发布推文
 
