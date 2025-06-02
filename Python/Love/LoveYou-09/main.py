@@ -22,7 +22,7 @@ def heart_function(t, shrink_ratio: float = IMAGE_ENLARGE):
     """
     # 基础爱心函数
     x = 17 * (sin(t) ** 3)  # 计算X坐标
-    y = -(16 * cos(t) - 5 * cos(2 * t) - 2 * cos(3 * t) - cos(3 * t))  # 计算Y坐标
+    y = -(16 * cos(t) - 5 * cos(2 * t) - 2 * cos(3 * t) - cos(4 * t))  # 计算Y坐标
 
     # 放大坐标
     x *= IMAGE_ENLARGE  # 将X坐标按放大比例缩放
