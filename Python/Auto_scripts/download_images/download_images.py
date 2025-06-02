@@ -1,4 +1,5 @@
 import requests  # 导入requests库，用于发送HTTP请求
+import os  # 导入os库，用于文件和目录操作
 
 def download_images(url, save_directory):
     """
