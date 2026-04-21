@@ -1,0 +1,28 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+
+# 环境变量与密钥
+.env
+.env.*
+*.pem
+*.key
+
+# 常见依赖目录
+node_modules/
+vendor/
+
+# 构建产物
+dist/
+build/
+out/
+
