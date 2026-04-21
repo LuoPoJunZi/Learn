@@ -1,5 +1,7 @@
 # 神经网络 (Neural Network)
 
+如果你还不确定该使用哪个模型，建议先阅读 [MODEL_SELECTION.md](MODEL_SELECTION.md)。
+
 分类、回归和时间序列预测是神经网络的三种主要应用场景，每种场景都有不同的特点。以下是它们各自的特点：
 
 ### 1. [分类](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Neural%20Network/Classification)

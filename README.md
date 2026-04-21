@@ -1,22 +1,103 @@
-# 记录一下学习的过程！
-## 一些大佬的开源代码和AI整理的，随意取用！
-## **HTML**
-- **Birthday**：现有一个生日快乐的网页，是在GitHub的一个大佬找的
-- **Love**：表白的网页代码选了三个（AI）加了注释，其他表白的网页代码请移步的到这个[项目](https://github.com/sun0225SUN/Awesome-Love-Code)
-## **Linux**
-- **LinuxCMD_Basics**：关于基础的Linux的基础命令
-- **SSH**：在Linux运行后，可以查看爆破你SSH密码的风险IP
-- **VPSscript**：VPS脚本，论坛博客[原帖](https://www.nodeseek.com/post-143131-1)
-## **Markdown**
-- **CSDN**：来自CSDN的官方文档
-- **Markdown_Basics01**：关于基础的Markdown的基础命令，进阶玩法参考安知鱼大佬写的[文档](https://blog.anheyu.com/posts/d50a.html)
-## **Mathematica**
-- **Mathematica**：关于基础的Mathematica的基础命令，本人刚刚接触，所学的不多
-## **Matlab**
-- **Basics**：关于基础的Matlab的基础命令，命令在B站上的郭彥甫老师MATLAB课程+AI整理的，[B站链接](https://www.youtube.com/watch?v=KHFZLkm9qs0&list=PLVHBjRDK0kALcQMwAFbR5q2driYZCHNIx)和[油管链接](https://www.bilibili.com/video/BV1GJ41137UH/?spm_id_from=333.337.search-card.all.click&vd_source=525cbd54f7471bc27a6dd5315d634b56)
-- **Multi-Objective Optimization**：多目标优化算法
-- **Neural Network**：神经网络
-## **Python**
-- **Auto_scripts**：整理了一些可能日常使用的Python脚本
-- **Grab**：关于Python的爬图项目
-- **Love**：表白的网页代码选了几个（AI）加了注释，其他表白的代码请移步的到这个[项目](https://github.com/sun0225SUN/Awesome-Love-Code)
+# Learn
+
+记录学习过程、整理常用教程、收藏一些实用脚本和示例代码。
+
+这个仓库里的内容一部分来自开源项目和公开资料，一部分是我结合 AI 整理后的学习笔记。你可以把它当成一个个人知识库，也可以按目录直接查找需要的内容。
+
+## 推荐入口
+
+- [GitHub 新手入门教程](Github/README.md)
+- [Linux 新手入门与 VPS 实用手册](Linux/README.md)
+- [Markdown 用法教程](Markdown/README.md)
+
+## 目录导航
+
+### GitHub
+
+[Github](Github/README.md) 是一套面向新手的 GitHub 教程，包含：
+
+- Git 与 GitHub 的区别
+- Git 安装、账号配置、SSH 密钥
+- 工作区、暂存区、本地仓库、远程仓库
+- 常用 Git 命令
+- 本地项目上传到 GitHub
+- VS Code 图形化 Git 工作流
+- 分支、Pull Request、冲突解决
+- `.gitignore`、Commit 规范、Issue 写法
+- GitHub 脚本短链和 Cloudflare Workers 实用技巧
+
+### Linux
+
+[Linux](Linux/README.md) 已整理成“基础教程 + 系统管理 + SSH 安全 + VPS 工具”的结构，包含：
+
+- Linux 入门概念
+- 文件和目录操作
+- 文件查看、编辑、搜索
+- 权限与所有者
+- 进程、服务、系统资源
+- 软件包管理
+- 网络工具与 SSH 登录
+- SSH 安全加固和日志排查
+- VPS 常用脚本速查表
+- VPS 操作安全清单
+- 旧内容迁移索引和命令速查附录
+
+### Markdown
+
+[Markdown](Markdown/README.md) 是 Markdown 语法教程，包含：
+
+- 标题、段落、换行
+- 加粗、斜体、删除线
+- 引用、列表、任务列表
+- 链接、图片
+- 行内代码、代码块
+- 表格、分割线、脚注
+- 数学公式
+- Mermaid 图表
+- CSDN、Hexo/安知鱼主题扩展语法说明
+
+### HTML
+
+[HTML](HTML/) 目录保存一些网页示例：
+
+- `Birthday`：生日快乐网页
+- `Love`：表白网页示例，部分代码来自开源项目并经过整理注释
+
+更多表白网页示例可参考：[Awesome-Love-Code](https://github.com/sun0225SUN/Awesome-Love-Code)
+
+### Mathematica
+
+[Mathematica](Mathematica/Mathematica.md) 记录 Mathematica 基础命令和入门笔记。
+
+### Matlab
+
+[Matlab](Matlab/) 目录包含 Matlab 学习资料和算法代码：
+
+- `Basics`：Matlab 基础命令、并行计算等笔记
+- `Multi-Objective Optimization`：多目标优化算法示例
+- `Neural Network`：神经网络相关内容
+
+其中 Matlab 基础内容参考了郭彦甫老师的 MATLAB 课程，并结合 AI 整理。
+
+### Python
+
+[Python](Python/) 目录包含 Python 脚本和示例项目：
+
+- `Auto_scripts`：日常自动化脚本，例如磁盘检查、网站状态检查、批量重命名、PDF 文本提取等
+- `Grab`：图片抓取相关脚本
+- `Love`：Python 表白小程序示例
+
+## 使用建议
+
+如果你是新手，建议先读：
+
+1. [Markdown 用法教程](Markdown/README.md)：先学会写文档。
+2. [GitHub 新手入门教程](Github/README.md)：学会管理和上传项目。
+3. [Linux 新手入门与 VPS 实用手册](Linux/README.md)：再学习服务器和命令行。
+
+如果你只是想查命令，可以直接进入对应目录的 README 或 docs。
+
+## 说明
+
+本仓库内容主要用于学习和记录。涉及一键脚本、VPS 操作、远程安装命令时，请先确认来源、阅读脚本内容，并在重要环境中做好备份。
+

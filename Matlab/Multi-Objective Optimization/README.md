@@ -1,3 +1,5 @@
+多目标优化算法集合。建议先阅读 [ALGORITHM_INDEX.md](ALGORITHM_INDEX.md)，根据任务需求选择算法。
+
 | **Full Name**                                      | **Abbreviation** | **Chinese**                |
 |----------------------------------------------------|------------------|----------------------------|
 | **[Multi-Objective Dragonfly Algorithm](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Multi-Objective%20Optimization/MODA)** | **MODA**         | **多目标蜻蜓算法**         |
