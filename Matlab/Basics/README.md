@@ -1,66 +1,62 @@
-# Matlab 基础
+# Matlab 基础教程
 
-这个目录保存 Matlab 基础学习笔记。
+这个目录保存 Matlab 基础学习资料。现在包含一套面向新手的分章教程，也保留了原来的完整课堂笔记。
 
-## 文件说明
+## 推荐入口
 
-- [Matlab_study.md](Matlab_study.md)：Matlab 基础语法、变量、矩阵、数组运算等入门内容
-- [Matlab_parallel computing.md](Matlab_parallel%20computing.md)：Matlab 并行计算相关内容
+- [分章基础教程](docs/1.1-environment-and-command-window.md)
+- [Matlab_study.md](Matlab_study.md)：旧版完整基础笔记
+- [Matlab_parallel computing.md](Matlab_parallel%20computing.md)：并行计算笔记
 
-## 建议学习顺序
+## 新手推荐学习顺序
 
-1. 先看 `Matlab_study.md` 中的基础命令。
-2. 学习向量、矩阵和数组运算。
-3. 学习数据读写和绘图。
-4. 有性能需求时，再看并行计算。
+1. [1.1 Matlab 环境与命令窗口](docs/1.1-environment-and-command-window.md)
+2. [1.2 变量、显示格式与常用类型](docs/1.2-variables-format-and-types.md)
+3. [1.3 向量、矩阵与索引](docs/1.3-vectors-matrices-and-indexing.md)
+4. [1.4 矩阵运算与点运算](docs/1.4-array-operations.md)
+5. [1.5 脚本与函数](docs/1.5-scripts-functions.md)
+6. [1.6 基础绘图](docs/1.6-plotting.md)
+7. [1.7 数据读写](docs/1.7-data-io.md)
+8. [1.8 数值计算与符号计算入门](docs/1.8-numerical-symbolic-basics.md)
 
-## 基础知识地图
+## 这套教程解决什么问题
 
-### 命令窗口与工作区
+很多 Matlab 新手会卡在这些地方：
 
-常用命令：
+- 不知道 Command Window、Workspace、Current Folder 分别有什么用
+- 分不清矩阵乘法 `*` 和点乘 `.*`
+- 不知道为什么画函数时要用 `.^`
+- 脚本和函数混在一起
+- 读取 Excel 或 CSV 时路径经常出错
+- 不知道数值计算和符号计算有什么区别
 
-```matlab
-clc
-clear
-who
-whos
-format long
-```
+分章教程会用更小的步骤解释这些问题。
 
-### 向量和矩阵
+## 原始笔记内容地图
 
-Matlab 的核心是矩阵和数组。重点理解：
+原来的 [Matlab_study.md](Matlab_study.md) 覆盖面很广，包括：
 
-- 行向量和列向量
-- 矩阵索引
-- 冒号运算符
-- 矩阵拼接
-- 矩阵乘法和点乘
-- 转置
+- 计算机使用和基础命令
+- 向量和矩阵
+- 脚本撰写和函数
+- 字符串、结构体、单元格数组
+- 数据储存
+- 初阶和高阶绘图
+- GUI
+- 图像处理
+- 多项式、数值微积分、符号求解
+- 线性方程
+- 统计、回归和插值
 
-### 常用特殊矩阵
+如果你想快速查完整笔记，可以继续看 `Matlab_study.md`。
 
-```matlab
-eye(n)
-zeros(m, n)
-ones(m, n)
-rand(m, n)
-linspace(a, b, n)
-diag(v)
-```
+## 后续专题建议
 
-### 并行计算
+基础教程之后，可以继续把这些内容拆成专题：
 
-并行计算适合循环任务、批量实验和计算量较大的算法。使用前需要确认是否安装 Parallel Computing Toolbox。
-
-## 后续优化建议
-
-后续可以把 `Matlab_study.md` 拆成多篇：
-
-- 基础语法
-- 向量与矩阵
-- 绘图
-- 数据读写
-- 函数与脚本
+- 图像处理
+- GUI / App Designer
+- 统计与回归
+- 插值方法
 - 并行计算
+
