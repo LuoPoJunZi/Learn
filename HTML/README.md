@@ -4,6 +4,7 @@
 
 ## 目录说明
 
+- [Basics](Basics/README.md)：HTML、CSS、JavaScript 基础教程
 - [Birthday](Birthday/README.md)：生日快乐网页示例
 - [Love](Love/README.md)：表白网页示例
 
@@ -22,7 +23,8 @@
 3. `script` 或 JS：动画、点击、交互逻辑在哪里。
 4. 文案和图片：哪些内容可以替换成自己的。
 
+如果你还不熟悉网页基础，建议先看 [HTML 基础教程](Basics/README.md)，再改示例页面。
+
 ## 来源说明
 
 部分表白页面来自开源项目或公开示例，并经过整理。更多示例可参考 [Awesome-Love-Code](https://github.com/sun0225SUN/Awesome-Love-Code)。
-

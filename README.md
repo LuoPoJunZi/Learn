@@ -11,6 +11,7 @@
 - [Markdown 用法教程](Markdown/README.md)
 - [Python 学习与自动化脚本](Python/README.md)
 - [Matlab 学习与算法资料库](Matlab/README.md)
+- [HTML 基础教程](HTML/Basics/README.md)
 
 ## 目录导航
 
@@ -62,6 +63,7 @@
 
 [HTML](HTML/) 目录保存一些网页示例：
 
+- [Basics](HTML/Basics/README.md)：HTML、CSS、JavaScript 基础教程
 - [Birthday](HTML/Birthday/README.md)：生日快乐网页
 - [Love](HTML/Love/README.md)：表白网页示例，部分代码来自开源项目并经过整理注释
 
@@ -103,6 +105,7 @@
 2. [GitHub 新手入门教程](Github/README.md)：学会管理和上传项目。
 3. [Linux 新手入门与 VPS 实用手册](Linux/README.md)：再学习服务器和命令行。
 4. [Python 基础教程](Python/Basics/README.md)：开始写自己的自动化脚本。
+5. [HTML 基础教程](HTML/Basics/README.md)：开始改网页示例和写静态页面。
 
 如果你只是想查命令，可以直接进入对应目录的 README 或 docs。
 
