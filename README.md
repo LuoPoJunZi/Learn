@@ -9,6 +9,8 @@
 - [GitHub 新手入门教程](Github/README.md)
 - [Linux 新手入门与 VPS 实用手册](Linux/README.md)
 - [Markdown 用法教程](Markdown/README.md)
+- [Python 学习与自动化脚本](Python/README.md)
+- [Matlab 学习与算法资料库](Matlab/README.md)
 
 ## 目录导航
 
@@ -60,18 +62,18 @@
 
 [HTML](HTML/) 目录保存一些网页示例：
 
-- `Birthday`：生日快乐网页
-- `Love`：表白网页示例，部分代码来自开源项目并经过整理注释
+- [Birthday](HTML/Birthday/README.md)：生日快乐网页
+- [Love](HTML/Love/README.md)：表白网页示例，部分代码来自开源项目并经过整理注释
 
 更多表白网页示例可参考：[Awesome-Love-Code](https://github.com/sun0225SUN/Awesome-Love-Code)
 
 ### Mathematica
 
-[Mathematica](Mathematica/Mathematica.md) 记录 Mathematica 基础命令和入门笔记。
+[Mathematica](Mathematica/README.md) 记录 Mathematica 基础命令和入门笔记。
 
 ### Matlab
 
-[Matlab](Matlab/) 目录包含 Matlab 学习资料和算法代码：
+[Matlab](Matlab/README.md) 目录包含 Matlab 学习资料和算法代码：
 
 - `Basics`：Matlab 基础命令、并行计算等笔记
 - `Multi-Objective Optimization`：多目标优化算法示例
@@ -81,11 +83,17 @@
 
 ### Python
 
-[Python](Python/) 目录包含 Python 脚本和示例项目：
+[Python](Python/README.md) 目录包含 Python 脚本和示例项目：
 
-- `Auto_scripts`：日常自动化脚本，例如磁盘检查、网站状态检查、批量重命名、PDF 文本提取等
+- [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
+- [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本，例如磁盘检查、网站状态检查、批量重命名、PDF 文本提取等
 - `Grab`：图片抓取相关脚本
 - `Love`：Python 表白小程序示例
+
+### 文档维护
+
+- [文档整理规范](docs/STYLE_GUIDE.md)
+- [文档检查脚本](scripts/check-docs.ps1)
 
 ## 使用建议
 
@@ -94,10 +102,16 @@
 1. [Markdown 用法教程](Markdown/README.md)：先学会写文档。
 2. [GitHub 新手入门教程](Github/README.md)：学会管理和上传项目。
 3. [Linux 新手入门与 VPS 实用手册](Linux/README.md)：再学习服务器和命令行。
+4. [Python 基础教程](Python/Basics/README.md)：开始写自己的自动化脚本。
 
 如果你只是想查命令，可以直接进入对应目录的 README 或 docs。
+
+维护文档时，可以运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
+```
 
 ## 说明
 
 本仓库内容主要用于学习和记录。涉及一键脚本、VPS 操作、远程安装命令时，请先确认来源、阅读脚本内容，并在重要环境中做好备份。
-
