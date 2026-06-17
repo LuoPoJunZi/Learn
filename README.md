@@ -69,7 +69,7 @@
 
 ### Mathematica
 
-[Mathematica](Mathematica/README.md) 记录 Mathematica 基础命令和入门笔记。
+[Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程和命令速查笔记。
 
 ### Matlab
 
