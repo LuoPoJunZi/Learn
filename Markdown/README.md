@@ -450,6 +450,12 @@ CSDN 编辑器常见支持：
 - 不要把平台专属语法当作通用语法。
 - 重要命令和危险操作要写提醒。
 
+### README 模板
+
+如果你不知道项目首页该写什么，可以参考：
+
+- [README 模板](examples/readme-template.md)
+
 ## 19. 常用语法速查
 
 | 目标 | 写法 |
@@ -482,4 +488,3 @@ CSDN 编辑器常见支持：
 - `https://blog.anheyu.com/posts/d50a.html`
 
 其中，通用 Markdown 语法适合大多数平台；安知鱼 Tag Plugins 属于 Hexo 主题扩展，请按使用场景选择。
-
