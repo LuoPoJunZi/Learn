@@ -18,6 +18,7 @@
 如果你已经有明确任务，可以直接看：
 
 - [Matlab 示例运行指南](RUNNING_EXAMPLES.md)
+- [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)
 - [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [神经网络模型选择指南](<Neural Network/MODEL_SELECTION.md>)
 
@@ -76,6 +77,8 @@
 ## 运行代码前的建议
 
 如果你是第一次运行本目录中的案例，建议先阅读 [Matlab 示例运行指南](RUNNING_EXAMPLES.md)。
+
+如果你想快速判断每个案例从哪里开始看，可以参考 [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)。
 
 1. 先阅读当前算法目录下的 `README.md` 或 `*-USE.md`。
 2. 确认数据文件是否在代码期望的位置。

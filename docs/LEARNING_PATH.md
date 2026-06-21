@@ -33,6 +33,7 @@ Markdown 写文档
 1. [Markdown 用法教程](../Markdown/README.md)
 2. [README 模板](../Markdown/examples/readme-template.md)
 3. [文档整理规范](STYLE_GUIDE.md)
+4. [新手练习题与自查答案](PRACTICE_EXERCISES.md)
 
 你应该练会：
 
@@ -45,6 +46,8 @@ Markdown 写文档
 1. 新建一篇自己的学习笔记。
 2. 用 README 模板写一个小项目说明。
 3. 检查所有链接是否能点开。
+
+更多练习可以看 [新手练习题与自查答案](PRACTICE_EXERCISES.md)。
 
 ## 第二阶段：会用 GitHub 保存学习成果
 
@@ -72,6 +75,8 @@ Markdown 写文档
 2. 查看变更。
 3. 提交并推送。
 4. 在 GitHub 网页上确认文件已经更新。
+
+更多练习可以看 [新手练习题与自查答案](PRACTICE_EXERCISES.md)。
 
 ## 第三阶段：会用 Linux 和命令行
 
@@ -101,6 +106,8 @@ Markdown 写文档
 4. 复制、重命名、删除测试文件。
 
 删除或覆盖文件前，请先确认路径，尤其是在服务器环境中。
+
+更多练习可以看 [新手练习题与自查答案](PRACTICE_EXERCISES.md)。
 
 ## 第四阶段：用 Python 做自动化
 
@@ -201,4 +208,3 @@ Markdown 写文档
 5. 如果涉及 Git，先运行 `git status`。
 
 不要一上来就重装环境。很多新手问题只是路径不对、命令位置不对、文件没有保存，或者复制命令时少了一个符号。
-
