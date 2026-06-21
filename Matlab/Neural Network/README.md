@@ -2,6 +2,8 @@
 
 如果你还不确定该使用哪个模型，建议先阅读 [MODEL_SELECTION.md](MODEL_SELECTION.md)。
 
+如果你是第一次运行本仓库的 Matlab 示例，建议先看 [Matlab 示例运行指南](../RUNNING_EXAMPLES.md)，确认当前工作目录、数据文件和工具箱是否准备好。
+
 分类、回归和时间序列预测是神经网络的三种主要应用场景，每种场景都有不同的特点。以下是它们各自的特点：
 
 ### 1. [分类](https://github.com/LuoPoJunZi/Learn/tree/main/Matlab/Neural%20Network/Classification)

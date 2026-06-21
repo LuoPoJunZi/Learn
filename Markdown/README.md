@@ -454,6 +454,7 @@ CSDN 编辑器常见支持：
 
 如果你不知道项目首页该写什么，可以参考：
 
+- [Markdown 示例与模板](examples/README.md)
 - [README 模板](examples/readme-template.md)
 
 ## 19. 常用语法速查

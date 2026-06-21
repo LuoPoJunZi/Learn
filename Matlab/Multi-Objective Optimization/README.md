@@ -1,4 +1,8 @@
-多目标优化算法集合。建议先阅读 [ALGORITHM_INDEX.md](ALGORITHM_INDEX.md)，根据任务需求选择算法。
+# 多目标优化算法集合
+
+建议先阅读 [ALGORITHM_INDEX.md](ALGORITHM_INDEX.md)，根据任务需求选择算法。
+
+如果你是第一次运行本仓库的 Matlab 示例，建议先看 [Matlab 示例运行指南](../RUNNING_EXAMPLES.md)，确认当前工作目录、数据文件和工具箱是否准备好。
 
 | **Full Name**                                      | **Abbreviation** | **Chinese**                |
 |----------------------------------------------------|------------------|----------------------------|

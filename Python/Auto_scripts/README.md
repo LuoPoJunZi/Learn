@@ -62,6 +62,8 @@
 
 ## 运行方式
 
+第一次运行前，建议先看 [依赖总览](DEPENDENCIES.md)，确认需要安装哪些第三方库。
+
 进入脚本目录后运行：
 
 ```bash
@@ -83,4 +85,3 @@ pip install requests pandas openpyxl pillow tweepy
 - 输出目录是否会覆盖已有文件。
 - 网络请求是否符合目标网站规则。
 - 邮件、Twitter/X、数据库等凭证是否通过安全方式传入。
-

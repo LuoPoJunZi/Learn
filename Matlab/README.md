@@ -17,6 +17,7 @@
 
 如果你已经有明确任务，可以直接看：
 
+- [Matlab 示例运行指南](RUNNING_EXAMPLES.md)
 - [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [神经网络模型选择指南](<Neural Network/MODEL_SELECTION.md>)
 
@@ -73,6 +74,8 @@
 目录中包含 `.m`、`.mat`、`.xlsx`、图片和 `.mexw64` 文件。`.mexw64` 通常只适用于 Windows 64 位 Matlab 环境。
 
 ## 运行代码前的建议
+
+如果你是第一次运行本目录中的案例，建议先阅读 [Matlab 示例运行指南](RUNNING_EXAMPLES.md)。
 
 1. 先阅读当前算法目录下的 `README.md` 或 `*-USE.md`。
 2. 确认数据文件是否在代码期望的位置。
