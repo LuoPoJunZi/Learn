@@ -17,6 +17,8 @@
 | 5 | [Python 基础教程](Python/Basics/README.md) | 开始写自己的自动化脚本 |
 | 6 | [HTML 基础教程](HTML/Basics/README.md) | 学会修改静态网页示例 |
 | 7 | [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md) | 用练习确认自己真的掌握了 |
+| 8 | [新手常见问题排查手册](docs/TROUBLESHOOTING.md) | 遇到报错时知道先查哪里 |
+| 9 | [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md) | 把学习、报错和解决过程记录下来 |
 
 如果你只是想查资料，可以直接从下面的专题导航进入。
 
@@ -38,6 +40,8 @@
 
 - [Learn 新手学习路线](docs/LEARNING_PATH.md)
 - [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md)
+- [新手常见问题排查手册](docs/TROUBLESHOOTING.md)
+- [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md)
 - [文档整理规范](docs/STYLE_GUIDE.md)
 
 ### 常用教程

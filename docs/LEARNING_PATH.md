@@ -34,6 +34,8 @@ Markdown 写文档
 2. [README 模板](../Markdown/examples/readme-template.md)
 3. [文档整理规范](STYLE_GUIDE.md)
 4. [新手练习题与自查答案](PRACTICE_EXERCISES.md)
+5. [新手常见问题排查手册](TROUBLESHOOTING.md)
+6. [学习记录模板](STUDY_NOTES_TEMPLATE.md)
 
 你应该练会：
 
@@ -46,6 +48,7 @@ Markdown 写文档
 1. 新建一篇自己的学习笔记。
 2. 用 README 模板写一个小项目说明。
 3. 检查所有链接是否能点开。
+4. 用 [学习记录模板](STUDY_NOTES_TEMPLATE.md) 记录这次练习过程。
 
 更多练习可以看 [新手练习题与自查答案](PRACTICE_EXERCISES.md)。
 
@@ -206,5 +209,6 @@ Markdown 写文档
 3. 复制完整报错，重点看第一行和最后几行。
 4. 检查路径、文件名、大小写、依赖是否安装。
 5. 如果涉及 Git，先运行 `git status`。
+6. 如果还是不清楚，查看 [新手常见问题排查手册](TROUBLESHOOTING.md)。
 
 不要一上来就重装环境。很多新手问题只是路径不对、命令位置不对、文件没有保存，或者复制命令时少了一个符号。

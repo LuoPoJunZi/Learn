@@ -6,6 +6,8 @@
 
 ### 新增
 
+- 新增 [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md)，用于记录教程学习、脚本运行、报错排查和每周复盘。
+- 新增 [新手常见问题排查手册](docs/TROUBLESHOOTING.md)，覆盖 Git、Python、Linux、Markdown、Matlab 常见报错和排查顺序。
 - 新增 [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md)，覆盖 Python、Linux、Git/GitHub 的基础练习。
 - 新增 [Auto_scripts README 写作规范](Python/Auto_scripts/README_STYLE.md)，统一自动化脚本文档结构。
 - 新增 [Matlab 示例运行索引](Matlab/EXAMPLE_RUN_INDEX.md)，整理多目标优化和神经网络案例的阅读入口。
@@ -47,4 +49,3 @@
 
 - 整理 Linux、Markdown、Matlab 等目录的教程结构。
 - 增加文档检查脚本和文档整理规范。
-
