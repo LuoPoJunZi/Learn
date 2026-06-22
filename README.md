@@ -50,6 +50,7 @@
 - [Linux 新手入门与 VPS 实用手册](Linux/README.md)
 - [Markdown 用法教程](Markdown/README.md)
 - [Python 学习与自动化脚本](Python/README.md)
+- [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)
 - [HTML 基础教程](HTML/Basics/README.md)
 
 ### 计算与建模
@@ -136,6 +137,7 @@ Learn/
 
 [Python](Python/README.md) 目录包含 Python 基础教程和脚本示例：
 
+- [优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)：适合初学者继续学习的 Python 外部资源
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
 - [Neural Network](<Python/Neural Network/README.md>)：神经网络入门示例

@@ -4,6 +4,14 @@
 
 ## 目录说明
 
+### 外部资源导读
+
+[优秀开源仓库导读](EXTERNAL_REPOSITORIES.md) 介绍了几个适合初学者继续学习的 Python 仓库：
+
+- [walter201230/Python](https://github.com/walter201230/Python)：小白 Python 教程
+- [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)：算法和数据结构实现
+- [geekcomputers/Python](https://github.com/geekcomputers/Python)：实用脚本和自动化示例
+
 ### Basics
 
 [Basics](Basics/README.md) 是写给新手的 Python 基础教程，包含：

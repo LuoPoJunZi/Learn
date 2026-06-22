@@ -11,16 +11,30 @@
 | 回归 | 预测连续数值，例如价格、温度、评分 | [线性回归梯度下降](examples/linear_regression_gradient_descent.py) |
 | 二分类 | 判断是/否，例如是否合格、是否故障 | [感知机二分类](examples/perceptron_binary_classification.py)、[逻辑回归二分类](examples/logistic_regression_binary_classification.py) |
 | 非线性分类 | 简单直线分不开，例如 XOR | [简单 MLP 学 XOR](examples/simple_mlp_xor.py) |
-| 图像分类 | 识别图片类别 | 后续可扩展 CNN 示例 |
-| 时间序列 | 根据历史数据预测未来 | 后续可扩展 RNN / LSTM 示例 |
+| 多分类 | 从多个类别中选择一个 | [Softmax 多分类](examples/softmax_multiclass_classification.py) |
+| 非线性回归 | 拟合弯曲关系，例如 `sin(x)` | [RBF 网络回归](examples/rbf_network_regression.py) |
+| 时间序列 | 根据历史数据预测未来 | [滑动窗口时间序列预测](examples/simple_time_series_prediction.py) |
+| 图像特征 | 理解卷积如何提取局部模式 | [迷你卷积演示](examples/mini_cnn_convolution_demo.py) |
+| 表示学习 | 学习压缩和重建 | [简单自编码器](examples/simple_autoencoder.py) |
+| 泛化能力 | 理解训练集和验证集差异 | [过拟合与 L2 正则化](examples/overfitting_regularization_demo.py) |
+| 模型复用 | 保存训练好的参数 | [模型保存与加载](examples/model_save_load_json.py) |
+| 序列记忆 | 理解 RNN 隐藏状态 | [RNN 隐藏状态演示](examples/rnn_hidden_state_demo.py) |
+| 图像分类 | 识别图片类别 | 后续可扩展完整 CNN 训练示例 |
 
 ## 新手推荐路线
 
 1. 先学线性回归：理解损失、梯度、参数更新。
 2. 再学感知机：理解线性分类和激活函数。
 3. 再学逻辑回归：理解概率输出和二分类。
-4. 再学 MLP：理解隐藏层为什么有用。
-5. 最后再进入 NumPy、scikit-learn、PyTorch。
+4. 再学 Softmax：理解多分类概率输出。
+5. 再学 MLP：理解隐藏层为什么有用。
+6. 再学 RBF 和时间序列示例：理解不同数据形式如何建模。
+7. 再看卷积演示：理解 CNN 的局部特征提取。
+8. 再看自编码器：理解压缩表示和重建。
+9. 再看过拟合与正则化：理解泛化。
+10. 再看保存加载：理解模型如何复用。
+11. 再看 RNN 隐藏状态：理解序列模型。
+12. 最后再进入 NumPy、scikit-learn、PyTorch。
 
 ## 常见模型怎么选
 
@@ -73,6 +87,70 @@
 
 - 很大的图像、语音、文本任务。那些任务通常需要专门结构，比如 CNN、RNN、Transformer。
 
+### Softmax 多分类
+
+适合：
+
+- 多类别分类。
+- 需要每个类别概率式输出。
+- 作为深度学习分类输出层的基础理解。
+
+### RBF 网络
+
+适合：
+
+- 小规模非线性回归。
+- 理解基函数、中心点和距离特征。
+- 学习另一种不同于 MLP 的网络结构。
+
+### 滑动窗口时间序列
+
+适合：
+
+- 初步理解序列预测的数据构造方式。
+- 把一串连续数据变成监督学习样本。
+- 进入 RNN / LSTM 之前打基础。
+
+### 卷积演示
+
+适合：
+
+- 初步理解 CNN 的卷积核。
+- 学习图像局部特征提取。
+- 在学习完整 CNN 前建立直觉。
+
+### 自编码器
+
+适合：
+
+- 学习无监督表示学习。
+- 理解压缩表示。
+- 理解重建误差。
+
+### 过拟合与正则化
+
+适合：
+
+- 理解训练误差和验证误差的差别。
+- 学习为什么模型不是越复杂越好。
+- 进入真实训练流程前建立泛化意识。
+
+### 模型保存与加载
+
+适合：
+
+- 理解训练结果如何复用。
+- 学习参数文件的基本概念。
+- 进入 PyTorch / TensorFlow 的保存加载机制前打基础。
+
+### RNN 隐藏状态
+
+适合：
+
+- 理解序列模型为什么需要“记忆”。
+- 学习隐藏状态如何随时间步更新。
+- 进入 RNN / LSTM 前建立直觉。
+
 ## 什么时候使用第三方库
 
 当前目录的示例尽量使用标准库，是为了讲清楚原理。
@@ -85,4 +163,3 @@
 - `PyTorch`：深度学习模型训练。
 
 建议不要跳过手写示例。先知道模型内部大概发生了什么，再用框架会更稳。
-

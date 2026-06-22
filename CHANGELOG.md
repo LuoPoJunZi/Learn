@@ -6,7 +6,8 @@
 
 ### 新增
 
-- 新增 Python 神经网络和多目标优化入门示例，包含梯度下降、感知机、逻辑回归、MLP、Pareto 筛选、迷你 NSGA-II 和简化 MOEA/D，便于和 Matlab 算法目录对照学习。
+- 新增 [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)，介绍 walter201230/Python、TheAlgorithms/Python、geekcomputers/Python 的适合阶段和学习方式。
+- 新增 Python 神经网络和多目标优化入门示例，包含梯度下降、感知机、逻辑回归、Softmax、RBF、时间序列、迷你卷积、自编码器、过拟合与正则化、模型保存加载、RNN 隐藏状态、MLP、Pareto 筛选、迷你 NSGA-II 和简化 MOEA/D，便于和 Matlab 算法目录对照学习。
 - 新增 [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md)，用于记录教程学习、脚本运行、报错排查和每周复盘。
 - 新增 [新手常见问题排查手册](docs/TROUBLESHOOTING.md)，覆盖 Git、Python、Linux、Markdown、Matlab 常见报错和排查顺序。
 - 新增 [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md)，覆盖 Python、Linux、Git/GitHub 的基础练习。
