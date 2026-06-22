@@ -29,7 +29,7 @@
 | GitHub | [Github](Github/README.md) | 不熟悉 Git 和 GitHub 的新手 | Git 基础、提交推送、分支、PR、冲突处理 |
 | Linux | [Linux](Linux/README.md) | 想学习命令行、VPS、SSH 的用户 | 文件操作、权限、服务、网络、SSH 安全 |
 | Markdown | [Markdown](Markdown/README.md) | 想写文档、博客、README 的用户 | 标题、列表、表格、代码块、Mermaid、模板 |
-| Python | [Python](Python/README.md) | 想入门编程和自动化脚本的用户 | 基础语法、脚本集合、图片抓取、图形小程序 |
+| Python | [Python](Python/README.md) | 想入门编程、自动化脚本和算法示例的用户 | 基础语法、脚本集合、神经网络、多目标优化 |
 | HTML | [HTML](HTML/README.md) | 想修改网页示例的用户 | HTML、CSS、JavaScript、生日页和表白页示例 |
 | Matlab | [Matlab](Matlab/README.md) | 做工程计算、优化算法、神经网络的用户 | 基础教程、多目标优化、神经网络案例 |
 | Mathematica | [Mathematica](Mathematica/README.md) | 做符号计算和数学可视化的用户 | Wolfram Language 基础、绘图、矩阵、微积分 |
@@ -63,6 +63,10 @@
 
 - [Python 自动化脚本索引](Python/Auto_scripts/README.md)
 - [Python 自动化脚本依赖总览](Python/Auto_scripts/DEPENDENCIES.md)
+- [Python 神经网络示例](<Python/Neural Network/README.md>)
+- [Python 神经网络模型选择指南](<Python/Neural Network/MODEL_SELECTION.md>)
+- [Python 多目标优化示例](<Python/Multi-Objective Optimization/README.md>)
+- [Python 多目标优化算法索引](<Python/Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [Markdown 示例与模板](Markdown/examples/README.md)
 - [README 模板](Markdown/examples/readme-template.md)
 
@@ -134,6 +138,8 @@ Learn/
 
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
+- [Neural Network](<Python/Neural Network/README.md>)：神经网络入门示例
+- [Multi-Objective Optimization](<Python/Multi-Objective Optimization/README.md>)：多目标优化入门示例
 - [Grab](Python/Grab/README.md)：图片抓取示例
 - [Love](Python/Love/README.md)：Python 图形小程序示例
 

@@ -1,6 +1,6 @@
 # Python 学习与自动化脚本
 
-这个目录整理 Python 基础教程、自动化脚本、图片抓取示例和趣味小程序。
+这个目录整理 Python 基础教程、自动化脚本、算法示例、图片抓取示例和趣味小程序。
 
 ## 目录说明
 
@@ -24,6 +24,32 @@
 [Auto_scripts](Auto_scripts/README.md) 是日常自动化脚本集合，包含文件整理、网站检测、图片处理、PDF/Excel 处理、邮件发送等工具。
 
 推荐先看 [Auto_scripts 脚本索引](Auto_scripts/README.md)，按用途选择脚本。
+
+### Neural Network
+
+[Neural Network](<Neural Network/README.md>) 保存 Python 神经网络入门示例。
+
+当前示例：
+
+- 线性回归梯度下降
+- 感知机二分类
+- 逻辑回归二分类
+- 简单 MLP 学习 XOR
+
+这些示例优先使用 Python 标准库，适合先理解原理，再继续学习 NumPy、scikit-learn 或 PyTorch。
+
+### Multi-Objective Optimization
+
+[Multi-Objective Optimization](<Multi-Objective Optimization/README.md>) 保存 Python 多目标优化入门示例。
+
+当前示例：
+
+- 加权和网格搜索
+- 简化 Pareto 前沿筛选
+- 迷你 NSGA-II
+- 简化 MOEA/D
+
+这些示例适合和 Matlab 多目标优化目录对照学习。
 
 ### Grab
 
@@ -55,7 +81,7 @@
 - `PyPDF2` 或其他 PDF 处理库
 - `tweepy`
 
-具体依赖以每个脚本目录下的 README 和代码 import 为准。
+算法入门示例目前优先使用标准库。具体依赖以每个脚本目录下的 README 和代码 import 为准。
 
 ## 运行脚本前
 
