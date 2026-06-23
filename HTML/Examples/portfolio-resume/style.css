@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #202124;
+  background: #f6f7fb;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px min(7vw, 72px);
+  background: #ffffff;
+  border-bottom: 1px solid #e7e9f0;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.6fr);
+  gap: 32px;
+  align-items: center;
+  padding: 72px min(7vw, 72px);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #3867d6;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.05;
+  max-width: 760px;
+}
+
+.intro {
+  max-width: 620px;
+  color: #5f6675;
+  line-height: 1.8;
+  margin: 24px 0;
+}
+
+.button {
+  display: inline-block;
+  background: #202124;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 6px;
+}
+
+.profile-card,
+.project {
+  background: #ffffff;
+  border: 1px solid #e3e6ef;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(31, 35, 49, 0.08);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #3867d6;
+  color: #ffffff;
+  font-size: 32px;
+  margin-bottom: 18px;
+}
+
+.profile-card span {
+  display: block;
+  color: #5f6675;
+  margin-top: 8px;
+}
+
+.section {
+  padding: 32px min(7vw, 72px) 72px;
+}
+
+.section-title h2 {
+  margin: 0 0 24px;
+  font-size: 32px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project span {
+  color: #3867d6;
+  font-weight: 700;
+}
+
+.project p,
+.timeline span,
+footer p {
+  color: #5f6675;
+  line-height: 1.7;
+}
+
+.timeline ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e3e6ef;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+footer {
+  padding: 32px min(7vw, 72px);
+  background: #202124;
+  color: #ffffff;
+}
+
+@media (max-width: 760px) {
+  .site-header,
+  .hero,
+  .timeline li {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

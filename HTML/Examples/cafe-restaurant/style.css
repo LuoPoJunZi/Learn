@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #2b2118;
+  background: #fbf7ef;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero {
+  min-height: 520px;
+  padding: 24px min(6vw, 72px);
+  background:
+    linear-gradient(135deg, rgba(49, 33, 22, 0.72), rgba(86, 58, 35, 0.32)),
+    repeating-linear-gradient(45deg, #7a573a 0 14px, #8b6544 14px 28px);
+  color: #ffffff;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav strong {
+  margin-right: auto;
+}
+
+.hero-content {
+  max-width: 680px;
+  margin-top: 110px;
+}
+
+.eyebrow,
+.section-heading span,
+.story span {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #e8bd7a;
+}
+
+h1 {
+  margin: 12px 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.08;
+}
+
+.hero p,
+.story p,
+.visit p {
+  line-height: 1.8;
+}
+
+.section {
+  padding: 64px min(6vw, 72px);
+}
+
+.section-heading h2,
+.story h2,
+.visit h2 {
+  margin: 8px 0 24px;
+  font-size: 34px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.menu-grid article {
+  background: #ffffff;
+  border: 1px solid #eadfce;
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.cup {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6f4528, #d6a36a);
+  margin-bottom: 18px;
+}
+
+.cup.alt {
+  background: linear-gradient(135deg, #1f2a35, #85a8b6);
+}
+
+.cup.warm {
+  background: linear-gradient(135deg, #9b4d2a, #f2c578);
+}
+
+.menu-grid p {
+  color: #75685c;
+}
+
+.menu-grid strong {
+  font-size: 24px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  background: #efe4d3;
+}
+
+.visit {
+  margin: 48px min(6vw, 72px) 72px;
+  padding: 28px;
+  border-radius: 8px;
+  background: #2b2118;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.visit a {
+  background: #e8bd7a;
+  color: #2b2118;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .menu-grid,
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .visit,
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

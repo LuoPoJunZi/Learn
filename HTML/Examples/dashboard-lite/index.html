@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轻量数据面板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <strong>Learn Admin</strong>
+    <a href="#">概览</a>
+    <a href="#">课程</a>
+    <a href="#">练习</a>
+    <a href="#">设置</a>
+  </aside>
+
+  <main class="content">
+    <header>
+      <div>
+        <p>Dashboard</p>
+        <h1>学习数据概览</h1>
+      </div>
+      <button>导出</button>
+    </header>
+
+    <section class="stats">
+      <article><span>完成课程</span><strong>18</strong><small>本月 +4</small></article>
+      <article><span>练习次数</span><strong>126</strong><small>连续 9 天</small></article>
+      <article><span>笔记数量</span><strong>42</strong><small>已整理 31 篇</small></article>
+    </section>
+
+    <section class="panel">
+      <h2>最近任务</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>任务</th>
+            <th>类型</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>完成 HTML 表格练习</td>
+            <td>基础</td>
+            <td><span class="badge done">完成</span></td>
+          </tr>
+          <tr>
+            <td>整理作品集页面</td>
+            <td>项目</td>
+            <td><span class="badge doing">进行中</span></td>
+          </tr>
+          <tr>
+            <td>阅读外部模板源码</td>
+            <td>拓展</td>
+            <td><span class="badge todo">待开始</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
+

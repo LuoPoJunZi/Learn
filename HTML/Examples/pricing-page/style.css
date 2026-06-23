@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #1f2937;
+  background: linear-gradient(180deg, #eef2ff 0%, #ffffff 42%);
+}
+
+a {
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 70px 20px 36px;
+}
+
+.hero p {
+  margin: 0;
+  color: #4f46e5;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 12px auto;
+  max-width: 720px;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.1;
+}
+
+.hero span {
+  color: #667085;
+}
+
+.pricing-grid {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto 70px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.plan {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.plan.featured {
+  border-color: #4f46e5;
+  box-shadow: 0 22px 60px rgba(79, 70, 229, 0.18);
+}
+
+.label {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #4f46e5;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.plan h2 {
+  margin: 0;
+}
+
+.plan p {
+  color: #667085;
+  min-height: 48px;
+}
+
+.plan strong {
+  display: block;
+  font-size: 44px;
+  margin: 18px 0;
+}
+
+.plan strong::before {
+  content: "¥";
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: grid;
+  gap: 10px;
+}
+
+li::before {
+  content: "✓";
+  color: #16a34a;
+  margin-right: 8px;
+}
+
+.plan a {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  background: #1f2937;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.featured a {
+  background: #4f46e5;
+}
+
+@media (max-width: 860px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

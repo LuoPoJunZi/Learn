@@ -30,7 +30,7 @@
 | Linux | [Linux](Linux/README.md) | 想学习命令行、VPS、SSH 的用户 | 文件操作、权限、服务、网络、SSH 安全 |
 | Markdown | [Markdown](Markdown/README.md) | 想写文档、博客、README 的用户 | 标题、列表、表格、代码块、Mermaid、模板 |
 | Python | [Python](Python/README.md) | 想入门编程、自动化脚本和算法示例的用户 | 基础语法、脚本集合、神经网络、多目标优化 |
-| HTML | [HTML](HTML/README.md) | 想修改网页示例的用户 | HTML、CSS、JavaScript、生日页和表白页示例 |
+| HTML | [HTML](HTML/README.md) | 想修改网页示例的用户 | HTML、CSS、JavaScript、静态页面案例和网页模板导读 |
 | Matlab | [Matlab](Matlab/README.md) | 做工程计算、优化算法、神经网络的用户 | 基础教程、多目标优化、神经网络案例 |
 | Mathematica | [Mathematica](Mathematica/README.md) | 做符号计算和数学可视化的用户 | Wolfram Language 基础、绘图、矩阵、微积分 |
 
@@ -52,6 +52,8 @@
 - [Python 学习与自动化脚本](Python/README.md)
 - [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)
 - [HTML 基础教程](HTML/Basics/README.md)
+- [HTML 静态网页案例集合](HTML/Examples/README.md)
+- [HTML 优秀网页项目导读](HTML/EXTERNAL_REPOSITORIES.md)
 
 ### 计算与建模
 
@@ -152,6 +154,8 @@ Learn/
 [HTML](HTML/README.md) 目录保存网页基础教程和静态页面示例：
 
 - [Basics](HTML/Basics/README.md)：HTML、CSS、JavaScript 基础教程
+- [Examples](HTML/Examples/README.md)：作品集、产品落地页、餐厅展示页、数据面板、交互组件和价格页案例
+- [优秀外部项目导读](HTML/EXTERNAL_REPOSITORIES.md)：适合初学者继续练习的网页项目和模板资源
 - [Birthday](HTML/Birthday/README.md)：生日快乐网页
 - [Love](HTML/Love/README.md)：表白网页示例
 
