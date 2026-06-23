@@ -7,6 +7,13 @@
 ### 新增
 
 - 新增 [HTML 静态网页案例集合](HTML/Examples/README.md) 和 [HTML 优秀网页项目导读](HTML/EXTERNAL_REPOSITORIES.md)，包含作品集、产品落地页、餐厅展示页、轻量数据面板、交互组件和价格页等初学者可直接打开修改的案例。
+- 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 的学习导读，重点补充学习路线、概念解释、典型场景、常见误区和外部资源。
+- 新增 [30 天学习计划](docs/30_DAY_PLAN.md)、[知识地图总览](docs/KNOWLEDGE_MAP.md)、[新手术语表](docs/GLOSSARY.md) 和 [文档维护者指南](scripts/MAINTAINER_GUIDE.md)，增强仓库级学习入口和维护说明。
+- 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 常见问题文档，以及 [内容阅读指南](docs/READING_GUIDE.md)，方便新手按目标和报错快速定位内容。
+
+### 优化
+
+- 更新根目录 README、各主题 README、docs 索引和学习路线，让新增学习内容能从首页和目录入口直接找到。
 
 ## 2026-06-21
 

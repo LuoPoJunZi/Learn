@@ -10,15 +10,17 @@
 
 | 顺序 | 入口 | 你会学到什么 |
 | :--- | :--- | :--- |
-| 1 | [新手学习路线](docs/LEARNING_PATH.md) | 了解整个仓库的学习顺序 |
-| 2 | [Markdown 用法教程](Markdown/README.md) | 学会写 README、笔记和教程 |
-| 3 | [GitHub 新手入门教程](Github/README.md) | 学会提交、推送和管理仓库 |
-| 4 | [Linux 新手入门与 VPS 实用手册](Linux/README.md) | 学会命令行、服务器和 SSH 基础 |
-| 5 | [Python 基础教程](Python/Basics/README.md) | 开始写自己的自动化脚本 |
-| 6 | [HTML 基础教程](HTML/Basics/README.md) | 学会修改静态网页示例 |
-| 7 | [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md) | 用练习确认自己真的掌握了 |
-| 8 | [新手常见问题排查手册](docs/TROUBLESHOOTING.md) | 遇到报错时知道先查哪里 |
-| 9 | [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md) | 把学习、报错和解决过程记录下来 |
+| 1 | [知识地图总览](docs/KNOWLEDGE_MAP.md) | 了解各目录之间的关系 |
+| 2 | [30 天学习计划](docs/30_DAY_PLAN.md) | 按天安排学习主题和小产出 |
+| 3 | [内容阅读指南](docs/READING_GUIDE.md) | 按目标选择应该先读哪些目录 |
+| 4 | [新手学习路线](docs/LEARNING_PATH.md) | 了解整个仓库的学习顺序 |
+| 5 | [Markdown 学习导读](Markdown/LEARNING_GUIDE.md) | 学会写 README、笔记和教程 |
+| 6 | [GitHub 学习导读](Github/LEARNING_GUIDE.md) | 学会提交、推送和团队协作 |
+| 7 | [Linux 学习导读](Linux/LEARNING_GUIDE.md) | 学会命令行、服务器和 SSH 基础 |
+| 8 | [Python 学习导读](Python/LEARNING_GUIDE.md) | 开始写自己的自动化脚本 |
+| 9 | [HTML 基础教程](HTML/Basics/README.md) | 学会修改静态网页示例 |
+| 10 | [新手常见问题排查手册](docs/TROUBLESHOOTING.md) | 遇到报错时知道先查哪里 |
+| 11 | [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md) | 把学习、报错和解决过程记录下来 |
 
 如果你只是想查资料，可以直接从下面的专题导航进入。
 
@@ -38,7 +40,11 @@
 
 ### 学习路线
 
+- [知识地图总览](docs/KNOWLEDGE_MAP.md)
+- [30 天学习计划](docs/30_DAY_PLAN.md)
+- [内容阅读指南](docs/READING_GUIDE.md)
 - [Learn 新手学习路线](docs/LEARNING_PATH.md)
+- [新手术语表](docs/GLOSSARY.md)
 - [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md)
 - [新手常见问题排查手册](docs/TROUBLESHOOTING.md)
 - [学习记录模板](docs/STUDY_NOTES_TEMPLATE.md)
@@ -46,10 +52,15 @@
 
 ### 常用教程
 
-- [GitHub 新手入门教程](Github/README.md)
-- [Linux 新手入门与 VPS 实用手册](Linux/README.md)
-- [Markdown 用法教程](Markdown/README.md)
+- [GitHub 学习导读](Github/LEARNING_GUIDE.md)
+- [GitHub 常见问题](Github/FAQ.md)
+- [Linux 学习导读](Linux/LEARNING_GUIDE.md)
+- [Linux 常见问题](Linux/FAQ.md)
+- [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
+- [Markdown 常见问题](Markdown/FAQ.md)
 - [Python 学习与自动化脚本](Python/README.md)
+- [Python 学习导读](Python/LEARNING_GUIDE.md)
+- [Python 常见问题](Python/FAQ.md)
 - [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)
 - [HTML 基础教程](HTML/Basics/README.md)
 - [HTML 静态网页案例集合](HTML/Examples/README.md)
@@ -58,9 +69,13 @@
 ### 计算与建模
 
 - [Matlab 学习与算法资料库](Matlab/README.md)
+- [Matlab 学习导读](Matlab/LEARNING_GUIDE.md)
+- [Matlab 常见问题](Matlab/FAQ.md)
 - [Matlab 示例运行指南](Matlab/RUNNING_EXAMPLES.md)
 - [Matlab 示例运行索引](Matlab/EXAMPLE_RUN_INDEX.md)
 - [Mathematica 学习笔记](Mathematica/README.md)
+- [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md)
+- [Mathematica 常见问题](Mathematica/FAQ.md)
 
 ### 脚本与模板
 
@@ -72,6 +87,7 @@
 - [Python 多目标优化算法索引](<Python/Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [Markdown 示例与模板](Markdown/examples/README.md)
 - [README 模板](Markdown/examples/readme-template.md)
+- [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
 
 ## 目录概览
 
@@ -94,6 +110,8 @@ Learn/
 
 [Github](Github/README.md) 是一套面向新手的 GitHub 教程，覆盖：
 
+- [GitHub 学习导读](Github/LEARNING_GUIDE.md)
+- [GitHub 常见问题](Github/FAQ.md)
 - Git 与 GitHub 的区别
 - Git 安装、账号配置、SSH 密钥
 - 工作区、暂存区、本地仓库、远程仓库
@@ -110,6 +128,8 @@ Learn/
 
 重点内容：
 
+- [Linux 学习导读](Linux/LEARNING_GUIDE.md)
+- [Linux 常见问题](Linux/FAQ.md)
 - Linux 入门概念
 - 文件和目录操作
 - 文件查看、编辑、搜索
@@ -126,6 +146,8 @@ Learn/
 
 重点内容：
 
+- [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
+- [Markdown 常见问题](Markdown/FAQ.md)
 - 标题、段落、换行
 - 加粗、斜体、删除线
 - 引用、列表、任务列表
@@ -139,6 +161,8 @@ Learn/
 
 [Python](Python/README.md) 目录包含 Python 基础教程和脚本示例：
 
+- [学习导读](Python/LEARNING_GUIDE.md)：小项目路线、虚拟环境、命令行参数、文件处理、数据处理和爬虫安全边界
+- [常见问题](Python/FAQ.md)：解释器、依赖、虚拟环境、路径、爬虫和批量文件处理
 - [优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)：适合初学者继续学习的 Python 外部资源
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
@@ -165,6 +189,8 @@ Learn/
 
 [Matlab](Matlab/README.md) 目录包含 Matlab 学习资料和算法代码：
 
+- [学习导读](Matlab/LEARNING_GUIDE.md)：Matlab 学习路线、数据导入导出、绘图、案例阅读顺序和跨工具对照
+- [常见问题](Matlab/FAQ.md)：路径、矩阵维度、工具箱、随机结果和绘图解释
 - [Basics](Matlab/Basics/README.md)：Matlab 基础命令、矩阵、绘图、脚本、函数和并行计算
 - [Multi-Objective Optimization](<Matlab/Multi-Objective Optimization/README.md>)：多目标优化算法示例
 - [Neural Network](<Matlab/Neural Network/README.md>)：分类、回归、时间序列预测等神经网络案例
@@ -175,7 +201,7 @@ Learn/
 
 ### Mathematica
 
-[Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程和命令速查笔记，适合做符号计算、公式推导、矩阵运算和数学可视化。
+[Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程和命令速查笔记，适合做符号计算、公式推导、矩阵运算和数学可视化。建议先看 [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md) 和 [常见问题](Mathematica/FAQ.md)，再进入基础教程。
 
 ## 文档维护
 
@@ -188,6 +214,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
 相关维护文档：
 
 - [文档整理规范](docs/STYLE_GUIDE.md)
+- [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
 - [文档检查脚本说明](scripts/README.md)
 - [更新日志](CHANGELOG.md)
 

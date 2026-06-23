@@ -4,23 +4,26 @@
 
 ## 推荐阅读路线
 
-1. [Linux 完全新手地图](docs/part0-newbie-map.md)
-2. [Linux 是什么，先学什么](docs/part1-basics/1.1-linux-intro.md)
-3. [文件和目录操作](docs/part1-basics/1.2-files-and-directories.md)
-4. [文件查看、编辑与搜索](docs/part1-basics/1.3-file-view-edit.md)
-5. [权限与所有者](docs/part1-basics/1.4-permissions.md)
-6. [进程、服务与系统资源](docs/part2-system-admin/2.1-process-service.md)
-7. [磁盘、内存和系统信息](docs/part2-system-admin/2.2-disk-memory.md)
-8. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
-9. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
-10. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
-11. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
-12. [旧内容迁移索引](docs/appendix/original-content-map.md)
+1. [Linux 学习导读](LEARNING_GUIDE.md)
+2. [Linux 完全新手地图](docs/part0-newbie-map.md)
+3. [Linux 是什么，先学什么](docs/part1-basics/1.1-linux-intro.md)
+4. [文件和目录操作](docs/part1-basics/1.2-files-and-directories.md)
+5. [文件查看、编辑与搜索](docs/part1-basics/1.3-file-view-edit.md)
+6. [权限与所有者](docs/part1-basics/1.4-permissions.md)
+7. [进程、服务与系统资源](docs/part2-system-admin/2.1-process-service.md)
+8. [磁盘、内存和系统信息](docs/part2-system-admin/2.2-disk-memory.md)
+9. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
+10. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
+11. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
+12. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
+13. [旧内容迁移索引](docs/appendix/original-content-map.md)
 
 ## 内容地图
 
 ### 基础命令
 
+- [Linux 学习导读](LEARNING_GUIDE.md)
+- [Linux 常见问题](FAQ.md)
 - [Linux 完全新手地图](docs/part0-newbie-map.md)
 - [Linux 入门概念](docs/part1-basics/1.1-linux-intro.md)
 - [文件和目录操作](docs/part1-basics/1.2-files-and-directories.md)

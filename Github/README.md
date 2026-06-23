@@ -13,15 +13,21 @@
 
 如果你是纯新手，建议按顺序读：
 
-1. [第一部分：基础概念与准备工作](docs/part1-basics/1.1-what-is-git.md)
-2. [第二部分：Git 基础操作](docs/part2-git-cmds/2.1-core-concepts.md)
-3. [第三部分：团队协作核心工作流](docs/part3-teamwork/3.1-branching.md)
-4. [第四部分：团队规范与协作礼仪](docs/part4-conventions/4.1-gitignore-guide.md)
-5. [第五部分：扩展应用与效率技巧](docs/part5-advanced-tools/5.1-url-shortener.md)
+1. [GitHub 学习导读](LEARNING_GUIDE.md)
+2. [第一部分：基础概念与准备工作](docs/part1-basics/1.1-what-is-git.md)
+3. [第二部分：Git 基础操作](docs/part2-git-cmds/2.1-core-concepts.md)
+4. [第三部分：团队协作核心工作流](docs/part3-teamwork/3.1-branching.md)
+5. [第四部分：团队规范与协作礼仪](docs/part4-conventions/4.1-gitignore-guide.md)
+6. [第五部分：扩展应用与效率技巧](docs/part5-advanced-tools/5.1-url-shortener.md)
 
 如果你只想解决一个具体问题，可以直接跳到下面的章节。
 
 ## 教程目录
+
+### 学习导读
+
+- [GitHub 学习导读](LEARNING_GUIDE.md)：串起 GitHub Desktop、VS Code、Fork、PR、Review 和多人协作流程
+- [GitHub 常见问题](FAQ.md)：解释 commit/push、add、分支、PR、Fork、冲突和 VS Code 工作流常见疑问
 
 ### 第一部分：基础概念与准备工作
 

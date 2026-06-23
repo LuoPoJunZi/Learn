@@ -11,12 +11,14 @@
 
 ## 推荐阅读路线
 
-1. [Basics](Basics/README.md)：先学习 Matlab 基础语法、矩阵、绘图、脚本和并行计算。
-2. [Multi-Objective Optimization](<Multi-Objective Optimization/README.md>)：再学习多目标优化算法。
-3. [Neural Network](<Neural Network/README.md>)：最后按任务选择神经网络模型。
+1. [Matlab 学习导读](LEARNING_GUIDE.md)：先建立学习地图，理解矩阵、数据、绘图和案例阅读顺序。
+2. [Basics](Basics/README.md)：学习 Matlab 基础语法、矩阵、绘图、脚本和并行计算。
+3. [Multi-Objective Optimization](<Multi-Objective Optimization/README.md>)：再学习多目标优化算法。
+4. [Neural Network](<Neural Network/README.md>)：最后按任务选择神经网络模型。
 
 如果你已经有明确任务，可以直接看：
 
+- [Matlab 常见问题](FAQ.md)
 - [Matlab 示例运行指南](RUNNING_EXAMPLES.md)
 - [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)
 - [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)
@@ -25,6 +27,8 @@
 ## 目录说明
 
 ### Basics
+
+[Matlab 学习导读](LEARNING_GUIDE.md) 适合第一次进入本目录时先读，用来判断先学什么、怎么运行案例、如何和 Python / Mathematica 对照。
 
 [Basics](Basics/README.md) 保存 Matlab 基础学习笔记，包括：
 
