@@ -1,17 +1,23 @@
 import requests  # 导入requests库，用于发送HTTP请求
 import os  # 导入os库，用于文件和目录操作
 
-def download_images(url, save_directory):
+def _append_failure(log_path, message):
+    """将失败记录追加到日志文件，方便之后重试或排查。"""
+    with open(log_path, "a", encoding="utf-8") as log_file:
+        log_file.write(message + "\n")
+
+def download_images(url, save_directory, failure_log_path=None):
     """
     从指定的API获取图片URL列表并下载图片到本地目录。
     
     参数:
     url (str): API的URL地址，假设返回一个包含图片URL的JSON数组。
     save_directory (str): 图片保存的本地目录路径。
+    failure_log_path (str): 下载失败记录文件路径，默认保存在保存目录下。
     """
     try:
         # 发送HTTP GET请求到指定的API URL
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         # 检查请求是否成功（状态码200）
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
@@ -36,16 +42,20 @@ def download_images(url, save_directory):
             print(f"无法创建目录: {save_directory}. 错误: {e}")
             return
 
+    if failure_log_path is None:
+        failure_log_path = os.path.join(save_directory, "failed_downloads.txt")
+
     # 遍历每个图片URL并下载图片
     for index, image_url in enumerate(images):
         try:
             # 发送HTTP GET请求下载图片
-            image_response = requests.get(image_url)
+            image_response = requests.get(image_url, timeout=10)
             # 检查图片请求是否成功
             image_response.raise_for_status()
         except requests.exceptions.RequestException as e:
             # 如果下载图片失败，打印错误信息并跳过当前图片
             print(f"下载图片失败: {image_url}. 错误: {e}")
+            _append_failure(failure_log_path, f"DOWNLOAD_FAILED\t{image_url}\t{e}")
             continue
 
         # 构建图片的保存路径，格式为 image_索引.jpg
@@ -58,6 +68,7 @@ def download_images(url, save_directory):
         except OSError as e:
             # 如果保存图片失败，打印错误信息
             print(f"无法保存图片: {image_path}. 错误: {e}")
+            _append_failure(failure_log_path, f"SAVE_FAILED\t{image_url}\t{image_path}\t{e}")
 
 # 使用示例
 if __name__ == "__main__":

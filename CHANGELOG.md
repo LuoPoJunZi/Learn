@@ -14,6 +14,7 @@
 - 新增 PR Review、VPS 基础安全、README 审查、Python 环境依赖、Matlab 数据绘图、Mathematica Notebook 和 [新手检查清单合集](docs/CHECKLISTS.md)，补齐新手执行前后的检查流程。
 - 落实原文档中的悬空扩展建议：补齐 Matlab Basics 专题教程、Markdown 示例模板、Python 神经网络 CNN/框架学习入口，以及 Python 多目标优化 SPEA2/Pareto 可视化/完整算法扩展说明。
 - 补强 Matlab Basics 中原先主要保留在旧笔记里的字符串/结构体/cell 和高阶绘图内容，新增独立新手专题教程。
+- 落实练习和自动化脚本文档中的扩展建议：为 Python 练习补充异常处理版本，并为下载图片、删除空文件夹、批量重命名脚本补充失败记录或操作日志。
 
 ### 优化
 

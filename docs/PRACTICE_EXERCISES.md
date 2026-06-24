@@ -58,7 +58,19 @@ print("相加结果：", a + b)
 
 - `input()` 得到的是字符串，是否转换成了数字。
 - 输入小数时是否也能正常计算。
-- 如果输入文字，程序会报错，这是正常现象，后续可以用异常处理优化。
+- 如果输入文字，基础版本会报错；可以继续看下面的异常处理版本。
+
+进阶参考代码：
+
+```python
+try:
+    a = float(input("请输入第一个数字："))
+    b = float(input("请输入第二个数字："))
+except ValueError:
+    print("输入错误：请输入数字。")
+else:
+    print("相加结果：", a + b)
+```
 
 ### 练习 3：统计列表中的偶数
 
@@ -104,7 +116,19 @@ print(content)
 
 - `notes.txt` 是否和脚本在同一个目录。
 - 是否指定了 `encoding="utf-8"`。
-- 文件不存在时会报错，后续可以用 `try...except` 处理。
+- 文件不存在时，基础版本会报错；可以继续看下面的异常处理版本。
+
+进阶参考代码：
+
+```python
+try:
+    with open("notes.txt", "r", encoding="utf-8") as file:
+        content = file.read()
+except FileNotFoundError:
+    print("没有找到 notes.txt，请确认文件和脚本在同一个目录。")
+else:
+    print(content)
+```
 
 ## Linux 基础练习
 
@@ -280,4 +304,3 @@ git diff
 - 看懂最基础的错误提示，并知道先检查路径、文件名和依赖。
 
 如果上面任何一步还不熟，建议不要急着学更复杂内容。基础操作越稳，后面学脚本、服务器和算法时越轻松。
-
