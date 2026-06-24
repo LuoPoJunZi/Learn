@@ -5,6 +5,13 @@
 ## 推荐入口
 
 - [分章基础教程](docs/1.1-environment-and-command-window.md)
+- [专题教程：图像处理入门](docs/2.1-image-processing.md)
+- [专题教程：GUI / App Designer 入门](docs/2.2-gui-app-designer.md)
+- [专题教程：统计与回归入门](docs/2.3-statistics-regression.md)
+- [专题教程：插值方法入门](docs/2.4-interpolation.md)
+- [专题教程：并行计算入门](docs/2.5-parallel-computing.md)
+- [专题教程：字符串、结构体与单元格数组](docs/2.6-strings-structs-cells.md)
+- [专题教程：高阶绘图入门](docs/2.7-advanced-plotting.md)
 - [Matlab_study.md](Matlab_study.md)：旧版完整基础笔记
 - [Matlab_parallel computing.md](Matlab_parallel%20computing.md)：并行计算笔记
 
@@ -18,6 +25,13 @@
 6. [1.6 基础绘图](docs/1.6-plotting.md)
 7. [1.7 数据读写](docs/1.7-data-io.md)
 8. [1.8 数值计算与符号计算入门](docs/1.8-numerical-symbolic-basics.md)
+9. [2.1 图像处理入门](docs/2.1-image-processing.md)
+10. [2.2 GUI / App Designer 入门](docs/2.2-gui-app-designer.md)
+11. [2.3 统计与回归入门](docs/2.3-statistics-regression.md)
+12. [2.4 插值方法入门](docs/2.4-interpolation.md)
+13. [2.5 并行计算入门](docs/2.5-parallel-computing.md)
+14. [2.6 字符串、结构体与单元格数组](docs/2.6-strings-structs-cells.md)
+15. [2.7 高阶绘图入门](docs/2.7-advanced-plotting.md)
 
 ## 这套教程解决什么问题
 
@@ -50,13 +64,14 @@
 
 如果你想快速查完整笔记，可以继续看 `Matlab_study.md`。
 
-## 后续专题建议
+## 专题教程入口
 
-基础教程之后，可以继续把这些内容拆成专题：
+基础教程之后，原来建议拆分的内容已经整理成专题入口：
 
-- 图像处理
-- GUI / App Designer
-- 统计与回归
-- 插值方法
-- 并行计算
-
+- [图像处理入门](docs/2.1-image-processing.md)
+- [GUI / App Designer 入门](docs/2.2-gui-app-designer.md)
+- [统计与回归入门](docs/2.3-statistics-regression.md)
+- [插值方法入门](docs/2.4-interpolation.md)
+- [并行计算入门](docs/2.5-parallel-computing.md)
+- [字符串、结构体与单元格数组](docs/2.6-strings-structs-cells.md)
+- [高阶绘图入门](docs/2.7-advanced-plotting.md)

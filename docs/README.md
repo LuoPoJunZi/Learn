@@ -6,6 +6,8 @@
 
 - [LEARNING_PATH.md](LEARNING_PATH.md)：新手学习路线，按阶段说明 Markdown、GitHub、Linux、Python、HTML、Matlab、Mathematica 的推荐学习顺序
 - [READING_GUIDE.md](READING_GUIDE.md)：内容阅读指南，按目标说明应该先读哪些目录
+- [NEXT_STEP_ROUTES.md](NEXT_STEP_ROUTES.md)：后续深入路线，按文档、GitHub、Linux、Python、算法建模等目标选择下一步
+- [CHECKLISTS.md](CHECKLISTS.md)：新手检查清单合集，覆盖写文档、提交、Linux、Python、Matlab、Mathematica 和新增内容维护
 - [30_DAY_PLAN.md](30_DAY_PLAN.md)：30 天学习计划，按天安排阅读入口和小产出
 - [KNOWLEDGE_MAP.md](KNOWLEDGE_MAP.md)：知识地图总览，说明各目录之间的关系和按目标选择路线
 - [GLOSSARY.md](GLOSSARY.md)：新手术语表，解释 GitHub、Linux、Markdown、Python、Matlab、Mathematica 常见术语

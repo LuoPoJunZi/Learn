@@ -8,8 +8,10 @@
 | :--- | :--- | :--- | :--- |
 | 加权和网格搜索 | [examples/weighted_sum_grid_search.py](examples/weighted_sum_grid_search.py) | 权重偏好、目标合成 | 入门 |
 | 简化 Pareto 筛选 | [examples/simple_pareto_front.py](examples/simple_pareto_front.py) | 支配关系、非支配解 | 入门 |
+| Pareto 前沿 ASCII 可视化 | [examples/pareto_front_ascii_plot.py](examples/pareto_front_ascii_plot.py) | 前沿位置、可视化直觉 | 入门 |
 | 迷你 NSGA-II | [examples/mini_nsga2.py](examples/mini_nsga2.py) | 非支配排序、拥挤距离、交叉变异 | 进阶 |
 | 简化 MOEA/D | [examples/simple_moead_decomposition.py](examples/simple_moead_decomposition.py) | 权重向量、分解思想、邻域更新 | 进阶 |
+| SPEA2 strength 演示 | [examples/spea2_strength_demo.py](examples/spea2_strength_demo.py) | 强度值、原始适应度 | 进阶 |
 
 ## 怎么选示例
 
@@ -35,14 +37,11 @@ Matlab 目录保存的是更完整的算法资料和案例：
 
 Python 目录当前更偏“教学拆解版”，适合先理解算法骨架。理解后再看 Matlab 完整实现，会轻松很多。
 
-## 后续可扩展算法
+## 已补充的扩展入口
 
-- 完整 NSGA-II
-- 完整 MOEA/D
-- SPEA2
-- PESA-II
-- 多目标粒子群优化
-- 多目标灰狼优化
-- 多目标鲸鱼优化
-- 使用 Matplotlib 绘制 Pareto 前沿
+- 完整 NSGA-II / MOEA/D 扩展说明：[COMPLETE_ALGORITHM_NOTES.md](COMPLETE_ALGORITHM_NOTES.md)
+- SPEA2 基础直觉：[examples/spea2_strength_demo.py](examples/spea2_strength_demo.py)
+- Pareto 前沿可视化：[examples/pareto_front_ascii_plot.py](examples/pareto_front_ascii_plot.py)
+- Matlab 完整算法对照：[Matlab 多目标优化算法集合](<../../Matlab/Multi-Objective Optimization/README.md>)
 
+PESA-II、多目标粒子群、多目标灰狼、多目标鲸鱼等完整算法，当前优先通过 Matlab 目录对照学习；Python 目录保持教学拆解定位，避免把入门目录一次性变成大型算法库。

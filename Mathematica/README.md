@@ -6,6 +6,8 @@
 
 - [Mathematica 学习导读](LEARNING_GUIDE.md)
 - [Mathematica 常见问题](FAQ.md)
+- [Mathematica 专题学习指南](TOPIC_GUIDE.md)
+- [Mathematica Notebook 写作指南](NOTEBOOK_GUIDE.md)
 - [Mathematica 基础教程](Basics/README.md)
 - [Mathematica.md](Mathematica.md)：旧版命令速查笔记
 

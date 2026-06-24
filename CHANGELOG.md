@@ -10,6 +10,10 @@
 - 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 的学习导读，重点补充学习路线、概念解释、典型场景、常见误区和外部资源。
 - 新增 [30 天学习计划](docs/30_DAY_PLAN.md)、[知识地图总览](docs/KNOWLEDGE_MAP.md)、[新手术语表](docs/GLOSSARY.md) 和 [文档维护者指南](scripts/MAINTAINER_GUIDE.md)，增强仓库级学习入口和维护说明。
 - 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 常见问题文档，以及 [内容阅读指南](docs/READING_GUIDE.md)，方便新手按目标和报错快速定位内容。
+- 新增 GitHub 真实场景、Linux VPS 运维、Markdown 写作进阶、Python 小项目路线、Matlab 案例阅读、Mathematica 专题学习和 [后续深入路线](docs/NEXT_STEP_ROUTES.md)，继续增强场景型学习内容。
+- 新增 PR Review、VPS 基础安全、README 审查、Python 环境依赖、Matlab 数据绘图、Mathematica Notebook 和 [新手检查清单合集](docs/CHECKLISTS.md)，补齐新手执行前后的检查流程。
+- 落实原文档中的悬空扩展建议：补齐 Matlab Basics 专题教程、Markdown 示例模板、Python 神经网络 CNN/框架学习入口，以及 Python 多目标优化 SPEA2/Pareto 可视化/完整算法扩展说明。
+- 补强 Matlab Basics 中原先主要保留在旧笔记里的字符串/结构体/cell 和高阶绘图内容，新增独立新手专题教程。
 
 ### 优化
 

@@ -28,6 +28,8 @@
 
 - [GitHub 学习导读](LEARNING_GUIDE.md)：串起 GitHub Desktop、VS Code、Fork、PR、Review 和多人协作流程
 - [GitHub 常见问题](FAQ.md)：解释 commit/push、add、分支、PR、Fork、冲突和 VS Code 工作流常见疑问
+- [GitHub 真实场景指南](SCENARIOS.md)：按个人仓库、开源贡献、团队分支、Review、冲突等真实场景组织操作流程
+- [Pull Request Review 入门指南](REVIEW_GUIDE.md)：说明发 PR 前自查、PR 描述、Review 评论和处理反馈的方法
 
 ### 第一部分：基础概念与准备工作
 

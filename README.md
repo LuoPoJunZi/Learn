@@ -43,6 +43,8 @@
 - [知识地图总览](docs/KNOWLEDGE_MAP.md)
 - [30 天学习计划](docs/30_DAY_PLAN.md)
 - [内容阅读指南](docs/READING_GUIDE.md)
+- [后续深入路线](docs/NEXT_STEP_ROUTES.md)
+- [新手检查清单合集](docs/CHECKLISTS.md)
 - [Learn 新手学习路线](docs/LEARNING_PATH.md)
 - [新手术语表](docs/GLOSSARY.md)
 - [新手练习题与自查答案](docs/PRACTICE_EXERCISES.md)
@@ -54,13 +56,21 @@
 
 - [GitHub 学习导读](Github/LEARNING_GUIDE.md)
 - [GitHub 常见问题](Github/FAQ.md)
+- [GitHub 真实场景指南](Github/SCENARIOS.md)
+- [Pull Request Review 入门指南](Github/REVIEW_GUIDE.md)
 - [Linux 学习导读](Linux/LEARNING_GUIDE.md)
 - [Linux 常见问题](Linux/FAQ.md)
+- [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
+- [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
 - [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
 - [Markdown 常见问题](Markdown/FAQ.md)
+- [Markdown 写作进阶指南](Markdown/WRITING_GUIDE.md)
+- [README 审查清单](Markdown/README_REVIEW_CHECKLIST.md)
 - [Python 学习与自动化脚本](Python/README.md)
 - [Python 学习导读](Python/LEARNING_GUIDE.md)
 - [Python 常见问题](Python/FAQ.md)
+- [Python 小项目学习路线](Python/PROJECT_ROADMAP.md)
+- [Python 环境与依赖管理指南](Python/ENVIRONMENT_GUIDE.md)
 - [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)
 - [HTML 基础教程](HTML/Basics/README.md)
 - [HTML 静态网页案例集合](HTML/Examples/README.md)
@@ -71,11 +81,15 @@
 - [Matlab 学习与算法资料库](Matlab/README.md)
 - [Matlab 学习导读](Matlab/LEARNING_GUIDE.md)
 - [Matlab 常见问题](Matlab/FAQ.md)
+- [Matlab 案例阅读指南](Matlab/CASE_READING_GUIDE.md)
+- [Matlab 数据与绘图入门指南](Matlab/DATA_PLOT_GUIDE.md)
 - [Matlab 示例运行指南](Matlab/RUNNING_EXAMPLES.md)
 - [Matlab 示例运行索引](Matlab/EXAMPLE_RUN_INDEX.md)
 - [Mathematica 学习笔记](Mathematica/README.md)
 - [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md)
 - [Mathematica 常见问题](Mathematica/FAQ.md)
+- [Mathematica 专题学习指南](Mathematica/TOPIC_GUIDE.md)
+- [Mathematica Notebook 写作指南](Mathematica/NOTEBOOK_GUIDE.md)
 
 ### 脚本与模板
 
@@ -112,6 +126,8 @@ Learn/
 
 - [GitHub 学习导读](Github/LEARNING_GUIDE.md)
 - [GitHub 常见问题](Github/FAQ.md)
+- [GitHub 真实场景指南](Github/SCENARIOS.md)
+- [Pull Request Review 入门指南](Github/REVIEW_GUIDE.md)
 - Git 与 GitHub 的区别
 - Git 安装、账号配置、SSH 密钥
 - 工作区、暂存区、本地仓库、远程仓库
@@ -130,6 +146,8 @@ Learn/
 
 - [Linux 学习导读](Linux/LEARNING_GUIDE.md)
 - [Linux 常见问题](Linux/FAQ.md)
+- [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
+- [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
 - Linux 入门概念
 - 文件和目录操作
 - 文件查看、编辑、搜索
@@ -148,6 +166,8 @@ Learn/
 
 - [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
 - [Markdown 常见问题](Markdown/FAQ.md)
+- [Markdown 写作进阶指南](Markdown/WRITING_GUIDE.md)
+- [README 审查清单](Markdown/README_REVIEW_CHECKLIST.md)
 - 标题、段落、换行
 - 加粗、斜体、删除线
 - 引用、列表、任务列表
@@ -163,6 +183,8 @@ Learn/
 
 - [学习导读](Python/LEARNING_GUIDE.md)：小项目路线、虚拟环境、命令行参数、文件处理、数据处理和爬虫安全边界
 - [常见问题](Python/FAQ.md)：解释器、依赖、虚拟环境、路径、爬虫和批量文件处理
+- [小项目学习路线](Python/PROJECT_ROADMAP.md)：按脚本能力逐步学习输入输出、文件整理、数据处理、网络请求和命令行工具
+- [环境与依赖管理指南](Python/ENVIRONMENT_GUIDE.md)：解释 Python 版本、虚拟环境、pip、依赖列表和 VS Code 解释器
 - [优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)：适合初学者继续学习的 Python 外部资源
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
@@ -191,6 +213,8 @@ Learn/
 
 - [学习导读](Matlab/LEARNING_GUIDE.md)：Matlab 学习路线、数据导入导出、绘图、案例阅读顺序和跨工具对照
 - [常见问题](Matlab/FAQ.md)：路径、矩阵维度、工具箱、随机结果和绘图解释
+- [案例阅读指南](Matlab/CASE_READING_GUIDE.md)：如何拆解 Matlab 算法和模型案例的入口、数据、参数和输出
+- [数据与绘图入门指南](Matlab/DATA_PLOT_GUIDE.md)：数据导入、表格/矩阵选择、绘图结构和结果解释
 - [Basics](Matlab/Basics/README.md)：Matlab 基础命令、矩阵、绘图、脚本、函数和并行计算
 - [Multi-Objective Optimization](<Matlab/Multi-Objective Optimization/README.md>)：多目标优化算法示例
 - [Neural Network](<Matlab/Neural Network/README.md>)：分类、回归、时间序列预测等神经网络案例
@@ -201,7 +225,7 @@ Learn/
 
 ### Mathematica
 
-[Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程和命令速查笔记，适合做符号计算、公式推导、矩阵运算和数学可视化。建议先看 [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md) 和 [常见问题](Mathematica/FAQ.md)，再进入基础教程。
+[Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程和命令速查笔记，适合做符号计算、公式推导、矩阵运算和数学可视化。建议先看 [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md)、[常见问题](Mathematica/FAQ.md)、[专题学习指南](Mathematica/TOPIC_GUIDE.md) 和 [Notebook 写作指南](Mathematica/NOTEBOOK_GUIDE.md)，再进入基础教程。
 
 ## 文档维护
 

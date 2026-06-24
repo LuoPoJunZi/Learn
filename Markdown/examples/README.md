@@ -7,6 +7,12 @@
 | 文件 | 用途 |
 | :--- | :--- |
 | [readme-template.md](readme-template.md) | 通用项目 README 模板，适合脚本、教程、小项目首页 |
+| [tutorial-article-template.md](tutorial-article-template.md) | 教程文章模板，适合写步骤型教程 |
+| [script-readme-template.md](script-readme-template.md) | 脚本 README 模板，适合 Python、PowerShell、Bash 工具 |
+| [changelog-template.md](changelog-template.md) | 项目更新日志模板 |
+| [table-examples.md](table-examples.md) | 表格写法示例 |
+| [mermaid-flowchart-examples.md](mermaid-flowchart-examples.md) | Mermaid 流程图示例 |
+| [issue-template.md](issue-template.md) | GitHub Issue 模板示例 |
 
 ## 怎么使用模板
 
@@ -31,14 +37,13 @@
 - 仓库内链接是否使用相对路径。
 - 代码块是否标注语言。
 
-## 后续可以补充的示例
+## 已补充的示例类型
 
-以后可以继续往这里加入：
+原来计划补充的常用示例已经整理为独立文件：
 
-- 教程文章模板
-- 脚本 README 模板
-- 项目更新日志模板
-- 表格写法示例
-- Mermaid 流程图示例
-- GitHub Issue 模板示例
-
+- 教程文章模板：[tutorial-article-template.md](tutorial-article-template.md)
+- 脚本 README 模板：[script-readme-template.md](script-readme-template.md)
+- 项目更新日志模板：[changelog-template.md](changelog-template.md)
+- 表格写法示例：[table-examples.md](table-examples.md)
+- Mermaid 流程图示例：[mermaid-flowchart-examples.md](mermaid-flowchart-examples.md)
+- GitHub Issue 模板示例：[issue-template.md](issue-template.md)

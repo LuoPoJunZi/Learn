@@ -24,6 +24,8 @@
 
 - [Linux 学习导读](LEARNING_GUIDE.md)
 - [Linux 常见问题](FAQ.md)
+- [Linux VPS 日常运维导读](OPERATIONS_GUIDE.md)
+- [Linux VPS 基础安全清单](SECURITY_BASELINE.md)
 - [Linux 完全新手地图](docs/part0-newbie-map.md)
 - [Linux 入门概念](docs/part1-basics/1.1-linux-intro.md)
 - [文件和目录操作](docs/part1-basics/1.2-files-and-directories.md)

@@ -19,6 +19,8 @@
 如果你已经有明确任务，可以直接看：
 
 - [Matlab 常见问题](FAQ.md)
+- [Matlab 案例阅读指南](CASE_READING_GUIDE.md)
+- [Matlab 数据与绘图入门指南](DATA_PLOT_GUIDE.md)
 - [Matlab 示例运行指南](RUNNING_EXAMPLES.md)
 - [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)
 - [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)

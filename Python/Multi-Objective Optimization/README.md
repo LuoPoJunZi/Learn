@@ -16,8 +16,10 @@
 | :--- | :--- | :--- | :--- |
 | 加权和网格搜索 | [examples/weighted_sum_grid_search.py](examples/weighted_sum_grid_search.py) | 用不同权重把两个目标合成一个目标 | 标准库 |
 | 简化 Pareto 筛选 | [examples/simple_pareto_front.py](examples/simple_pareto_front.py) | 从一批候选解中找非支配解 | 标准库 |
+| Pareto 前沿 ASCII 可视化 | [examples/pareto_front_ascii_plot.py](examples/pareto_front_ascii_plot.py) | 不依赖第三方库，用字符图观察非支配解位置 | 标准库 |
 | 迷你 NSGA-II | [examples/mini_nsga2.py](examples/mini_nsga2.py) | 演示非支配排序、拥挤距离、选择、交叉和变异 | 标准库 |
 | 简化 MOEA/D | [examples/simple_moead_decomposition.py](examples/simple_moead_decomposition.py) | 演示权重向量、分解思想和邻域更新 | 标准库 |
+| SPEA2 strength 演示 | [examples/spea2_strength_demo.py](examples/spea2_strength_demo.py) | 演示 strength 和 raw fitness 的基本含义 | 标准库 |
 
 更完整的列表可以看 [算法索引](ALGORITHM_INDEX.md)。
 
@@ -28,8 +30,10 @@
 ```powershell
 python "Python\Multi-Objective Optimization\examples\weighted_sum_grid_search.py"
 python "Python\Multi-Objective Optimization\examples\simple_pareto_front.py"
+python "Python\Multi-Objective Optimization\examples\pareto_front_ascii_plot.py"
 python "Python\Multi-Objective Optimization\examples\mini_nsga2.py"
 python "Python\Multi-Objective Optimization\examples\simple_moead_decomposition.py"
+python "Python\Multi-Objective Optimization\examples\spea2_strength_demo.py"
 ```
 
 如果你的系统使用 `py` 命令：
@@ -95,12 +99,13 @@ py "Python\Multi-Objective Optimization\examples\simple_pareto_front.py"
 - 每个权重向量对应一个标量子问题。
 - 子问题之间共享邻域信息，逐步靠近 Pareto 前沿。
 
-## 后续扩展方向
+## 扩展学习入口
 
-可以继续补充：
+原来列出的扩展方向已经补成示例或说明入口：
 
-- Python 版 NSGA-II
-- Python 版 MOEA/D
-- 使用 NumPy 加速目标函数计算
-- 使用 Matplotlib 绘制 Pareto 前沿
-- 与 Matlab 算法结果对比
+- NSGA-II 教学版：[mini_nsga2.py](examples/mini_nsga2.py)
+- MOEA/D 教学版：[simple_moead_decomposition.py](examples/simple_moead_decomposition.py)
+- SPEA2 strength 演示：[spea2_strength_demo.py](examples/spea2_strength_demo.py)
+- Pareto 前沿可视化：[pareto_front_ascii_plot.py](examples/pareto_front_ascii_plot.py)
+- 完整算法扩展说明：[COMPLETE_ALGORITHM_NOTES.md](COMPLETE_ALGORITHM_NOTES.md)
+- 与 Matlab 算法结果对比：[Matlab 多目标优化算法集合](<../../Matlab/Multi-Objective Optimization/README.md>)

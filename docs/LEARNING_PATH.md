@@ -32,12 +32,17 @@ Markdown 写文档
 
 1. [知识地图总览](KNOWLEDGE_MAP.md)
 2. [30 天学习计划](30_DAY_PLAN.md)
-3. [Markdown 学习导读](../Markdown/LEARNING_GUIDE.md)
-4. [Markdown 用法教程](../Markdown/README.md)
-5. [README 模板](../Markdown/examples/readme-template.md)
-6. [文档整理规范](STYLE_GUIDE.md)
-7. [新手常见问题排查手册](TROUBLESHOOTING.md)
-8. [学习记录模板](STUDY_NOTES_TEMPLATE.md)
+3. [内容阅读指南](READING_GUIDE.md)
+4. [后续深入路线](NEXT_STEP_ROUTES.md)
+5. [新手检查清单合集](CHECKLISTS.md)
+6. [Markdown 学习导读](../Markdown/LEARNING_GUIDE.md)
+7. [Markdown 写作进阶指南](../Markdown/WRITING_GUIDE.md)
+8. [README 审查清单](../Markdown/README_REVIEW_CHECKLIST.md)
+9. [Markdown 用法教程](../Markdown/README.md)
+10. [README 模板](../Markdown/examples/readme-template.md)
+11. [文档整理规范](STYLE_GUIDE.md)
+12. [新手常见问题排查手册](TROUBLESHOOTING.md)
+13. [学习记录模板](STUDY_NOTES_TEMPLATE.md)
 
 你应该练会：
 
@@ -61,11 +66,13 @@ Markdown 写文档
 建议阅读：
 
 1. [GitHub 学习导读](../Github/LEARNING_GUIDE.md)
-2. [Git 与 GitHub 的区别](../Github/docs/part1-basics/1.1-what-is-git.md)
-3. [账号注册与安装 Git](../Github/docs/part1-basics/1.2-setup.md)
-4. [工作区、暂存区、本地仓库](../Github/docs/part2-git-cmds/2.1-core-concepts.md)
-5. [日常 Git 命令](../Github/docs/part2-git-cmds/2.2-daily-commands.md)
-6. [第一次提交练习](../Github/docs/part2-git-cmds/2.5-first-commit-practice.md)
+2. [GitHub 真实场景指南](../Github/SCENARIOS.md)
+3. [Pull Request Review 入门指南](../Github/REVIEW_GUIDE.md)
+4. [Git 与 GitHub 的区别](../Github/docs/part1-basics/1.1-what-is-git.md)
+5. [账号注册与安装 Git](../Github/docs/part1-basics/1.2-setup.md)
+6. [工作区、暂存区、本地仓库](../Github/docs/part2-git-cmds/2.1-core-concepts.md)
+7. [日常 Git 命令](../Github/docs/part2-git-cmds/2.2-daily-commands.md)
+8. [第一次提交练习](../Github/docs/part2-git-cmds/2.5-first-commit-practice.md)
 
 你应该练会：
 
@@ -91,11 +98,13 @@ Markdown 写文档
 建议阅读：
 
 1. [Linux 学习导读](../Linux/LEARNING_GUIDE.md)
-2. [Linux 新手地图](../Linux/docs/part0-newbie-map.md)
-3. [Linux 是什么](../Linux/docs/part1-basics/1.1-linux-intro.md)
-4. [文件和目录操作](../Linux/docs/part1-basics/1.2-files-and-directories.md)
-5. [文件查看、编辑、搜索](../Linux/docs/part1-basics/1.3-file-view-edit.md)
-6. [命令速查附录](../Linux/docs/appendix/command-reference.md)
+2. [Linux VPS 日常运维导读](../Linux/OPERATIONS_GUIDE.md)
+3. [Linux VPS 基础安全清单](../Linux/SECURITY_BASELINE.md)
+4. [Linux 新手地图](../Linux/docs/part0-newbie-map.md)
+5. [Linux 是什么](../Linux/docs/part1-basics/1.1-linux-intro.md)
+6. [文件和目录操作](../Linux/docs/part1-basics/1.2-files-and-directories.md)
+7. [文件查看、编辑、搜索](../Linux/docs/part1-basics/1.3-file-view-edit.md)
+8. [命令速查附录](../Linux/docs/appendix/command-reference.md)
 
 你应该练会：
 
@@ -123,12 +132,14 @@ Markdown 写文档
 建议阅读：
 
 1. [Python 学习导读](../Python/LEARNING_GUIDE.md)
-2. [Python 基础教程](../Python/Basics/README.md)
-3. [安装、运行与编辑器](../Python/Basics/1.1-setup-and-run.md)
-4. [变量、输入输出](../Python/Basics/1.2-variables-io.md)
-5. [文件读写与异常处理](../Python/Basics/1.6-files-exceptions.md)
-6. [虚拟环境与第三方库](../Python/Basics/1.7-venv-packages.md)
-7. [Auto_scripts 脚本索引](../Python/Auto_scripts/README.md)
+2. [Python 小项目学习路线](../Python/PROJECT_ROADMAP.md)
+3. [Python 环境与依赖管理指南](../Python/ENVIRONMENT_GUIDE.md)
+4. [Python 基础教程](../Python/Basics/README.md)
+5. [安装、运行与编辑器](../Python/Basics/1.1-setup-and-run.md)
+6. [变量、输入输出](../Python/Basics/1.2-variables-io.md)
+7. [文件读写与异常处理](../Python/Basics/1.6-files-exceptions.md)
+8. [虚拟环境与第三方库](../Python/Basics/1.7-venv-packages.md)
+9. [Auto_scripts 脚本索引](../Python/Auto_scripts/README.md)
 
 你应该练会：
 
@@ -177,6 +188,8 @@ Markdown 写文档
 
 - [Matlab 学习与算法资料库](../Matlab/README.md)
 - [Matlab 学习导读](../Matlab/LEARNING_GUIDE.md)
+- [Matlab 案例阅读指南](../Matlab/CASE_READING_GUIDE.md)
+- [Matlab 数据与绘图入门指南](../Matlab/DATA_PLOT_GUIDE.md)
 - [Matlab 基础教程](../Matlab/Basics/README.md)
 - [多目标优化算法索引](<../Matlab/Multi-Objective Optimization/README.md>)
 - [神经网络资料索引](<../Matlab/Neural Network/README.md>)
@@ -185,6 +198,8 @@ Markdown 写文档
 
 - [Mathematica 学习笔记](../Mathematica/README.md)
 - [Mathematica 学习导读](../Mathematica/LEARNING_GUIDE.md)
+- [Mathematica 专题学习指南](../Mathematica/TOPIC_GUIDE.md)
+- [Mathematica Notebook 写作指南](../Mathematica/NOTEBOOK_GUIDE.md)
 - [Mathematica 基础教程](../Mathematica/Basics/README.md)
 
 学习建议：
