@@ -15,11 +15,13 @@
 
 1. [GitHub 学习导读](LEARNING_GUIDE.md)
 2. [第一部分：基础概念与准备工作](docs/part1-basics/1.1-what-is-git.md)
-3. [第二部分：Git 基础操作](docs/part2-git-cmds/2.1-core-concepts.md)
-4. [第三部分：团队协作核心工作流](docs/part3-teamwork/3.1-branching.md)
-5. [第四部分：团队规范与协作礼仪](docs/part4-conventions/4.1-gitignore-guide.md)
-6. [第五部分：扩展应用与效率技巧](docs/part5-advanced-tools/5.1-url-shortener.md)
-7. [用 GitHub Actions 自动检查代码](docs/part5-advanced-tools/5.2-github-actions-ci.md)
+3. [GitHub 账号安全：2FA、Passkey 与恢复方案](docs/part1-basics/1.4-account-security.md)
+4. [第二部分：Git 基础操作](docs/part2-git-cmds/2.1-core-concepts.md)
+5. [第三部分：团队协作核心工作流](docs/part3-teamwork/3.1-branching.md)
+6. [第四部分：团队规范与协作礼仪](docs/part4-conventions/4.1-gitignore-guide.md)
+7. [第五部分：扩展应用与效率技巧](docs/part5-advanced-tools/5.1-url-shortener.md)
+8. [用 GitHub Actions 自动检查代码](docs/part5-advanced-tools/5.2-github-actions-ci.md)
+9. [构建证明、OIDC 与不可变发布](docs/part5-advanced-tools/5.3-secure-releases.md)
 
 如果你只想解决一个具体问题，可以直接跳到下面的章节。
 
@@ -37,6 +39,7 @@
 - [1.1 Git 与 GitHub 到底有什么区别？](docs/part1-basics/1.1-what-is-git.md)
 - [1.2 账号注册与安装 Git](docs/part1-basics/1.2-setup.md)
 - [1.3 配置 SSH 密钥](docs/part1-basics/1.3-ssh-keys.md)
+- [1.4 GitHub 账号安全：2FA、Passkey 与恢复方案](docs/part1-basics/1.4-account-security.md)
 
 ### 第二部分：Git 基础操作
 
@@ -62,7 +65,9 @@
 
 - [5.1 GitHub 脚本域名短链化与国内加速访问](docs/part5-advanced-tools/5.1-url-shortener.md)
 - [5.2 用 GitHub Actions 自动检查代码](docs/part5-advanced-tools/5.2-github-actions-ci.md)
+- [5.3 构建证明、OIDC 与不可变发布](docs/part5-advanced-tools/5.3-secure-releases.md)
 - [GitHub Actions Python 质量检查模板](examples/python-quality.yml)
+- [构建并生成证明的工作流模板](examples/attested-release.yml)
 
 ## 学习建议
 

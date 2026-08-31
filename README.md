@@ -59,11 +59,14 @@
 - [GitHub 常见问题](Github/FAQ.md)
 - [GitHub 真实场景指南](Github/SCENARIOS.md)
 - [Pull Request Review 入门指南](Github/REVIEW_GUIDE.md)
+- [GitHub 账号安全：2FA、Passkey 与恢复方案](Github/docs/part1-basics/1.4-account-security.md)
 - [GitHub Actions 自动检查教程](Github/docs/part5-advanced-tools/5.2-github-actions-ci.md)
+- [构建证明、OIDC 与不可变发布](Github/docs/part5-advanced-tools/5.3-secure-releases.md)
 - [Linux 学习导读](Linux/LEARNING_GUIDE.md)
 - [Linux 常见问题](Linux/FAQ.md)
 - [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
 - [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
+- [UFW 防火墙与自动安全更新](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)
 - [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
 - [Markdown 常见问题](Markdown/FAQ.md)
 - [Markdown 写作进阶指南](Markdown/WRITING_GUIDE.md)
@@ -73,10 +76,13 @@
 - [Python 常见问题](Python/FAQ.md)
 - [Python 小项目学习路线](Python/PROJECT_ROADMAP.md)
 - [Python 环境与依赖管理指南](Python/ENVIRONMENT_GUIDE.md)
+- [Python 现代项目结构与 `pyproject.toml` 入门](Python/MODERN_PROJECT_GUIDE.md)
 - [Python 优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)
 - [HTML 基础教程](HTML/Basics/README.md)
+- [网页无障碍基础](HTML/Basics/1.9-accessibility-basics.md)
 - [HTML 静态网页案例集合](HTML/Examples/README.md)
 - [现代 Web API 实验台](HTML/Examples/modern-web-apis/README.md)
+- [原生 UI 2026 实验台](HTML/Examples/native-ui-2026/README.md)
 - [HTML 优秀网页项目导读](HTML/EXTERNAL_REPOSITORIES.md)
 
 ### 计算与建模
@@ -86,6 +92,7 @@
 - [Matlab 常见问题](Matlab/FAQ.md)
 - [Matlab 案例阅读指南](Matlab/CASE_READING_GUIDE.md)
 - [Matlab 数据与绘图入门指南](Matlab/DATA_PLOT_GUIDE.md)
+- [Matlab 深度学习现代工作流与旧案例迁移](<Matlab/Neural Network/MODERN_WORKFLOW_GUIDE.md>)
 - [Matlab 现代计算案例](<Matlab/Modern Computing/README.md>)
 - [Matlab 示例运行指南](Matlab/RUNNING_EXAMPLES.md)
 - [Matlab 示例运行索引](Matlab/EXAMPLE_RUN_INDEX.md)
@@ -98,6 +105,7 @@
 
 ### 脚本与模板
 
+- [GitHub 构建证明工作流模板](Github/examples/attested-release.yml)
 - [Python 自动化脚本索引](Python/Auto_scripts/README.md)
 - [Python 自动化脚本依赖总览](Python/Auto_scripts/DEPENDENCIES.md)
 - [Python 自动化脚本统一运行与安全说明](Python/Auto_scripts/STANDARDIZED_USAGE.md)
@@ -136,6 +144,7 @@ Learn/
 - [GitHub 常见问题](Github/FAQ.md)
 - [GitHub 真实场景指南](Github/SCENARIOS.md)
 - [Pull Request Review 入门指南](Github/REVIEW_GUIDE.md)
+- [GitHub 账号安全](Github/docs/part1-basics/1.4-account-security.md)
 - Git 与 GitHub 的区别
 - Git 安装、账号配置、SSH 密钥
 - 工作区、暂存区、本地仓库、远程仓库
@@ -146,6 +155,8 @@ Learn/
 - `.gitignore`、Commit 规范、Issue 写法
 - GitHub 脚本短链和 Cloudflare Workers 实用技巧
 - GitHub Actions 自动代码检查与安全基础
+- 2FA、Passkey、恢复码与凭据安全
+- Artifact Attestations、OIDC 与不可变发布
 
 ### Linux
 
@@ -157,6 +168,7 @@ Learn/
 - [Linux 常见问题](Linux/FAQ.md)
 - [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
 - [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
+- [UFW 防火墙与自动安全更新](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)
 - Linux 入门概念
 - 文件和目录操作
 - 文件查看、编辑、搜索
@@ -166,6 +178,7 @@ Learn/
 - 网络工具与 SSH 登录
 - SSH 安全加固和日志排查
 - VPS 常用脚本速查表
+- UFW 规则、日志和自动安全更新检查
 
 ### Markdown
 
@@ -194,11 +207,12 @@ Learn/
 - [常见问题](Python/FAQ.md)：解释器、依赖、虚拟环境、路径、爬虫和批量文件处理
 - [小项目学习路线](Python/PROJECT_ROADMAP.md)：按脚本能力逐步学习输入输出、文件整理、数据处理、网络请求和命令行工具
 - [环境与依赖管理指南](Python/ENVIRONMENT_GUIDE.md)：解释 Python 版本、虚拟环境、pip、依赖列表和 VS Code 解释器
+- [现代项目结构与 `pyproject.toml`](Python/MODERN_PROJECT_GUIDE.md)：说明 `src` 布局、可编辑安装和依赖组
 - [优秀开源仓库导读](Python/EXTERNAL_REPOSITORIES.md)：适合初学者继续学习的 Python 外部资源
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
 - [Neural Network](<Python/Neural Network/README.md>)：神经网络入门示例
-- [Modern AI](<Python/Modern AI/README.md>)：注意力、BPE、迷你 RAG 和 LoRA 原理示例
+- [Modern AI](<Python/Modern AI/README.md>)：注意力、GQA、KV Cache、BPE、迷你 RAG、LoRA 和稀疏 MoE 原理示例
 - [Multi-Objective Optimization](<Python/Multi-Objective Optimization/README.md>)：多目标优化入门示例
 - [Grab](Python/Grab/README.md)：图片抓取示例
 - [Love](Python/Love/README.md)：Python 图形小程序示例
@@ -210,7 +224,9 @@ Learn/
 [HTML](HTML/README.md) 目录保存网页基础教程和静态页面示例：
 
 - [Basics](HTML/Basics/README.md)：HTML、CSS、JavaScript 基础教程
+- [网页无障碍基础](HTML/Basics/1.9-accessibility-basics.md)：语义 HTML、表单标签、键盘操作和焦点检查
 - [Examples](HTML/Examples/README.md)：静态页面、数据面板、交互组件和现代 Web API 案例
+- [原生 UI 2026](HTML/Examples/native-ui-2026/README.md)：声明式命令、锚点定位和滚动驱动动画
 - [优秀外部项目导读](HTML/EXTERNAL_REPOSITORIES.md)：适合初学者继续练习的网页项目和模板资源
 - [Birthday](HTML/Birthday/README.md)：生日快乐网页
 - [Love](HTML/Love/README.md)：表白网页示例
@@ -226,9 +242,10 @@ Learn/
 - [案例阅读指南](Matlab/CASE_READING_GUIDE.md)：如何拆解 Matlab 算法和模型案例的入口、数据、参数和输出
 - [数据与绘图入门指南](Matlab/DATA_PLOT_GUIDE.md)：数据导入、表格/矩阵选择、绘图结构和结果解释
 - [Basics](Matlab/Basics/README.md)：Matlab 基础命令、矩阵、绘图、脚本、函数和并行计算
-- [Modern Computing](<Matlab/Modern Computing/README.md>)：自注意力与物理约束损失原理案例
+- [Modern Computing](<Matlab/Modern Computing/README.md>)：自注意力、物理约束损失与 Fourier Neural Operator 原理案例
 - [Multi-Objective Optimization](<Matlab/Multi-Objective Optimization/README.md>)：多目标优化算法示例
 - [Neural Network](<Matlab/Neural Network/README.md>)：分类、回归、时间序列预测等神经网络案例
+- [深度学习现代工作流与旧案例迁移](<Matlab/Neural Network/MODERN_WORKFLOW_GUIDE.md>)：说明 `trainnet`、`dlnetwork` 与历史接口的版本边界
 - [示例运行指南](Matlab/RUNNING_EXAMPLES.md)：运行 Matlab 案例前的路径、数据、工具箱和报错排查
 - [示例运行索引](Matlab/EXAMPLE_RUN_INDEX.md)：快速查找算法和模型入口
 

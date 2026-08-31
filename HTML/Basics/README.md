@@ -19,6 +19,7 @@
 6. [1.6 盒模型与页面布局](1.6-layout-box-model.md)
 7. [1.7 JavaScript 基础交互](1.7-javascript-basics.md)
 8. [1.8 静态页面练习路线](1.8-practice-roadmap.md)
+9. [1.9 网页无障碍基础](1.9-accessibility-basics.md)
 
 ## 一个网页的三层
 
@@ -40,4 +41,6 @@
 
 - [Birthday](../Birthday/README.md)：生日祝福页面
 - [Love](../Love/README.md)：表白网页示例
+- [Examples](../Examples/README.md)：普通页面、组件和现代 Web API 案例
 
+修改案例时，可以使用 [网页无障碍基础](1.9-accessibility-basics.md) 的检查清单，确认语义、键盘操作、图片替代文本和焦点样式。

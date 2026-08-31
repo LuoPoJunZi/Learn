@@ -25,6 +25,7 @@
 | :--- | :--- | :--- |
 | 交互组件集合 | [interactive-components/index.html](interactive-components/index.html) | Tabs、FAQ、Toast、进度步骤 |
 | 现代 Web API 实验台 | [modern-web-apis/index.html](modern-web-apis/index.html) | Web Components、Container Queries、Popover、View Transitions |
+| 原生 UI 2026 实验台 | [native-ui-2026/index.html](native-ui-2026/index.html) | Invoker Commands、Anchor Positioning、Scroll-driven Animations |
 
 ### 布局类
 
@@ -40,6 +41,7 @@
 4. 如果有 `script.js`，最后看交互逻辑。
 5. 每次只改一小处，例如颜色、文案、卡片数量或按钮动作。
 6. 学完基础交互后，再看 [现代 Web API 实验台说明](modern-web-apis/README.md)，理解特性检测和渐进增强。
+7. 最后看 [原生 UI 2026 实验台](native-ui-2026/README.md)，比较新原生能力和旧浏览器回退。
 
 ## 修改练习
 

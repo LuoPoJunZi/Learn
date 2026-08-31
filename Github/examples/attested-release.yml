@@ -1,0 +1,50 @@
+name: Build and attest release artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Create a deterministic teaching artifact
+        shell: bash
+        run: |
+          mkdir -p dist
+          tar \
+            --sort=name \
+            --mtime='UTC 2020-01-01' \
+            --owner=0 \
+            --group=0 \
+            --numeric-owner \
+            -czf dist/learn-docs.tar.gz \
+            README.md docs
+
+      - name: Show artifact digest
+        shell: bash
+        run: sha256sum dist/learn-docs.tar.gz
+
+      - name: Generate build provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: dist/learn-docs.tar.gz
+
+      - name: Upload the exact attested file
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/learn-docs.tar.gz
+          archive: false
+          if-no-files-found: error

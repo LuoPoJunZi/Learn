@@ -54,6 +54,19 @@ ss -tulnp
 
 如果一个端口不知道是什么服务在用，不要随手放行到公网。
 
+第一次配置 UFW 时，请按 [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md) 的顺序操作：先确认并放行实际 SSH 端口，再启用防火墙，并用第二个终端验证新连接。
+
+## 安全更新
+
+Ubuntu Server 通常使用 `unattended-upgrades` 自动安装安全更新，但自动任务仍可能因软件源、磁盘或配置问题失败。应定期检查计时器和日志，而不是只确认“安装过这个包”。
+
+```bash
+systemctl list-timers --all apt-daily.timer apt-daily-upgrade.timer
+sudo tail -n 100 /var/log/unattended-upgrades/unattended-upgrades.log
+```
+
+完整检查步骤和重启判断见 [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)。
+
 ## 软件和脚本来源
 
 安装软件前先确认来源：

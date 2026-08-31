@@ -15,6 +15,7 @@ Linux 新手最容易被大量命令吓住。更有效的学习方式是先建�
 - 在终端中定位当前目录、查看文件、编辑配置。
 - 理解权限、用户、进程、服务、端口之间的关系。
 - 用 `systemctl` 和 `journalctl` 初步排查服务问题。
+- 安全启用主机防火墙，并检查自动安全更新状态。
 - 识别高风险命令，避免误删和误覆盖。
 
 ## 学习地图
@@ -41,6 +42,7 @@ Linux 新手最容易被大量命令吓住。更有效的学习方式是先建�
 8. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
 9. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
 10. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
+11. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
 
 ## 核心概念
 
@@ -92,6 +94,8 @@ journalctl -u nginx --since "1 hour ago"
 6. 记录系统版本、开放端口、安装服务。
 
 可以对照 [VPS 操作安全清单](docs/part4-vps-tools/4.2-vps-safety-checklist.md)。
+
+其中防火墙和系统补丁的具体操作顺序见 [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)。远程启用防火墙前，先放行实际 SSH 端口并保留当前会话。
 
 ### 场景二：服务启动失败
 

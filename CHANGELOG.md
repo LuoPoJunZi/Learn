@@ -2,6 +2,24 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-08-31
+
+### 新增
+
+- 新增 [GitHub 账号安全教程](Github/docs/part1-basics/1.4-account-security.md)，补充 2FA、Passkey、恢复码、SSH 密钥和访问令牌的区别与恢复检查。
+- 新增 [Python 现代项目结构指南](Python/MODERN_PROJECT_GUIDE.md)，补充 `pyproject.toml`、`src` 布局、可编辑安装、依赖组和测试入口。
+- 新增 [HTML 网页无障碍基础](HTML/Basics/1.9-accessibility-basics.md)，补充语义 HTML、图片替代文本、表单标签、键盘操作、焦点与 ARIA。
+- 新增 [Linux UFW 与自动安全更新教程](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)，说明远程启用防火墙的安全顺序、日志和 `unattended-upgrades` 检查。
+- 新增 [Matlab 深度学习现代工作流指南](<Matlab/Neural Network/MODERN_WORKFLOW_GUIDE.md>)，解释 `train`、`trainNetwork`、`trainnet` 和 `dlnetwork` 的定位与迁移方法。
+- 扩展 [Python 现代 AI 原理案例](<Python/Modern AI/README.md>)，新增 GQA、KV Cache 和稀疏 MoE Top-k 路由的标准库实现。
+- 新增 [GitHub 构建证明教程](Github/docs/part5-advanced-tools/5.3-secure-releases.md) 与 [工作流模板](Github/examples/attested-release.yml)，覆盖 OIDC、Artifact Attestations、验证和不可变发布。
+- 新增 [原生 UI 2026 实验台](HTML/Examples/native-ui-2026/README.md)，演示 Invoker Commands、CSS Anchor Positioning 和 Scroll-driven Animations。
+- 扩展 [Matlab 现代计算案例](<Matlab/Modern Computing/README.md>)，增加 Fourier Neural Operator 频域算子与模态截断示例。
+
+### 优化
+
+- 更新根目录和各专题导航，将新增教程接入推荐阅读顺序，并保留已有案例与历史接口的可追溯入口。
+
 ## 2026-08-03
 
 ### 新增

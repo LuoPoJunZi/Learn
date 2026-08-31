@@ -14,6 +14,8 @@
 
 [Python 环境与依赖管理指南](ENVIRONMENT_GUIDE.md) 专门说明当前 Python 解释器路径、虚拟环境、`pip`、`requirements.txt` 和 VS Code 解释器选择。
 
+[Python 现代项目结构与 `pyproject.toml` 入门](MODERN_PROJECT_GUIDE.md) 说明什么时候从单文件升级到项目、如何使用 `src` 布局、可编辑安装和依赖组。
+
 ### 外部资源导读
 
 [优秀开源仓库导读](EXTERNAL_REPOSITORIES.md) 介绍了几个适合初学者继续学习的 Python 仓库：
@@ -65,11 +67,14 @@
 当前示例：
 
 - 缩放点积注意力与因果遮罩
+- 分组查询注意力 GQA 与 KV 头共享
+- KV Cache 自回归解码与重复计算对比
 - 迷你 BPE Tokenizer
 - 基于 TF-IDF 的迷你 RAG 检索流程
 - LoRA 低秩权重更新
+- 稀疏 MoE Top-k 专家路由
 
-这些案例不会下载模型或调用在线 API，适合在进入 PyTorch、Transformers 和向量数据库之前建立计算直觉。
+这些案例不会下载模型或调用在线 API，适合在进入 PyTorch、Transformers、推理引擎和向量数据库之前建立计算直觉。
 
 ### Multi-Objective Optimization
 

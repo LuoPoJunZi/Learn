@@ -15,8 +15,9 @@
 9. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
 10. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
 11. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
-12. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
-13. [旧内容迁移索引](docs/appendix/original-content-map.md)
+12. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
+13. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
+14. [旧内容迁移索引](docs/appendix/original-content-map.md)
 
 ## 内容地图
 
@@ -42,6 +43,7 @@
 
 - [网络工具与远程传输](docs/part3-network-ssh/3.1-network-tools.md)
 - [SSH 安全加固与日志排查](docs/part3-network-ssh/3.2-ssh-security.md)
+- [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
 
 ### VPS 工具
 

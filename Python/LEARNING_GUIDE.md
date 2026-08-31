@@ -14,6 +14,7 @@ Python 入门不要只盯着语法。更好的路线是：先能运行脚本，�
 
 - 创建并运行 `.py` 文件。
 - 使用虚拟环境管理项目依赖。
+- 用 `pyproject.toml` 和 `src` 布局组织一个可安装的小项目。
 - 读懂函数、模块、文件读写和异常处理。
 - 写一个带命令行参数的小脚本。
 - 知道爬虫和自动化脚本的安全边界。
@@ -26,9 +27,10 @@ Python 入门不要只盯着语法。更好的路线是：先能运行脚本，�
 4. [函数与模块](Basics/1.5-functions-modules.md)
 5. [文件读写与异常处理](Basics/1.6-files-exceptions.md)
 6. [虚拟环境与第三方库](Basics/1.7-venv-packages.md)
-7. [Auto_scripts 脚本索引](Auto_scripts/README.md)
-8. [现代 AI 原理案例](<Modern AI/README.md>)
-9. [优秀开源仓库导读](EXTERNAL_REPOSITORIES.md)
+7. [现代项目结构与 `pyproject.toml`](MODERN_PROJECT_GUIDE.md)
+8. [Auto_scripts 脚本索引](Auto_scripts/README.md)
+9. [现代 AI 原理案例](<Modern AI/README.md>)
+10. [优秀开源仓库导读](EXTERNAL_REPOSITORIES.md)
 
 ## 小项目学习路线
 
@@ -118,6 +120,8 @@ python tool.py .\data
 
 当脚本稳定后，再考虑 `pyinstaller` 这类打包工具。
 
+如果脚本已经拆成多个模块，先按 [现代项目结构与 `pyproject.toml`](MODERN_PROJECT_GUIDE.md) 整理成可安装、可测试的项目。项目结构解决的是源码、依赖和测试如何协作，打包成 `.exe` 则是后续的分发方式，两者不要混为一谈。
+
 ## 少量自查
 
 - 你知道当前终端使用的是哪个 Python 吗？
@@ -135,4 +139,4 @@ python tool.py .\data
 
 ## 下一步
 
-先从 [Auto_scripts](Auto_scripts/README.md) 选一个风险低的脚本，例如文本统计或网站检测，读懂后改成自己的小工具。掌握函数和列表后，再进入 [现代 AI 原理案例](<Modern AI/README.md>)，把注意力、Tokenizer、RAG 和 LoRA 拆成小步骤理解。
+先从 [Auto_scripts](Auto_scripts/README.md) 选一个风险低的脚本，例如文本统计或网站检测，读懂后改成自己的小工具。掌握函数和列表后，再进入 [现代 AI 原理案例](<Modern AI/README.md>)，把注意力、GQA、KV Cache、Tokenizer、RAG、LoRA 和稀疏 MoE 拆成小步骤理解。

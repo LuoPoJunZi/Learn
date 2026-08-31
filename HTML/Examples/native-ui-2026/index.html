@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="使用 Invoker Commands、CSS Anchor Positioning 和 Scroll-driven Animations 的原生网页案例。"
+  >
+  <title>Native UI Lab 2026</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Native UI Lab 首页">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>Native UI Lab</span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#commands">命令</a>
+      <a href="#positioning">定位</a>
+      <a href="#support">支持状态</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="eyebrow">Browser primitives / 2026</p>
+        <h1>原生交互实验台</h1>
+        <p class="hero-copy">
+          用 HTML 和 CSS 承担更多交互，让 JavaScript 专注数据与业务逻辑。
+        </p>
+        <div class="hero-actions">
+          <button
+            class="primary-action"
+            type="button"
+            commandfor="release-dialog"
+            command="show-modal"
+          >
+            打开声明式对话框
+          </button>
+          <button
+            class="secondary-action anchor-trigger"
+            type="button"
+            popovertarget="anchor-note"
+          >
+            查看兼容提示
+          </button>
+        </div>
+
+        <div class="signal-map" aria-label="本案例的三层能力">
+          <div>
+            <strong>HTML</strong>
+            <span>command / commandfor</span>
+          </div>
+          <div>
+            <strong>CSS</strong>
+            <span>anchor / scroll timeline</span>
+          </div>
+          <div>
+            <strong>JS</strong>
+            <span>detection / fallback</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="anchor-note" class="anchor-note" popover>
+        <strong>渐进增强</strong>
+        <p>新浏览器使用锚点定位；旧浏览器仍可显示居中的原生浮层。</p>
+        <button type="button" popovertarget="anchor-note" popovertargetaction="hide">
+          关闭
+        </button>
+      </div>
+    </section>
+
+    <section class="command-band" id="commands">
+      <div class="section-heading">
+        <p class="section-index">01 / Commands</p>
+        <h2>声明式控制关系</h2>
+      </div>
+      <div class="command-flow">
+        <div class="code-sample" aria-label="Invoker Commands 代码示例">
+          <span>&lt;button</span>
+          <strong>commandfor="release-dialog"</strong>
+          <strong>command="show-modal"</strong>
+          <span>&gt;</span>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <output id="dialog-result" aria-live="polite">尚未提交对话框操作</output>
+      </div>
+    </section>
+
+    <section class="primitive-story" id="positioning">
+      <div class="section-heading">
+        <p class="section-index">02 / Native primitives</p>
+        <h2>三项浏览器原语</h2>
+      </div>
+
+      <article class="primitive-row">
+        <p class="primitive-number">A</p>
+        <div>
+          <h3>Invoker Commands</h3>
+          <p>按钮直接声明目标和动作，浏览器负责键盘激活与对话框调用。</p>
+        </div>
+        <code>command="show-modal"</code>
+      </article>
+
+      <article class="primitive-row">
+        <p class="primitive-number">B</p>
+        <div>
+          <h3>Anchor Positioning</h3>
+          <p>浮层跟随触发按钮定位，不再手工读取坐标并监听窗口变化。</p>
+        </div>
+        <code>position-area: block-end</code>
+      </article>
+
+      <article class="primitive-row">
+        <p class="primitive-number">C</p>
+        <div>
+          <h3>Scroll-driven Animations</h3>
+          <p>页面顶部进度条和本区块入场由滚动时间线驱动，不监听 scroll 事件。</p>
+        </div>
+        <code>animation-timeline: view()</code>
+      </article>
+    </section>
+
+    <section class="support-band" id="support">
+      <div class="section-heading">
+        <p class="section-index">03 / Runtime</p>
+        <h2>当前浏览器支持状态</h2>
+      </div>
+      <dl class="support-list" id="support-list">
+        <div>
+          <dt>正在检测</dt>
+          <dd>等待 JavaScript 初始化</dd>
+        </div>
+      </dl>
+      <p class="support-note">
+        不支持新特性时保留基础操作；布局动画和锚定位置可以退化。
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Native UI Lab</p>
+    <a href="../../README.md">返回案例索引</a>
+  </footer>
+
+  <dialog id="release-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-body">
+      <p class="section-index">Declarative dialog</p>
+      <h2 id="dialog-title">确认发布这个演示？</h2>
+      <p>对话框由按钮的 <code>commandfor</code> 和 <code>command</code> 打开。</p>
+      <div class="dialog-actions">
+        <button
+          type="button"
+          commandfor="release-dialog"
+          command="close"
+          value="cancel"
+        >
+          取消
+        </button>
+        <button
+          class="primary-action"
+          type="button"
+          commandfor="release-dialog"
+          command="close"
+          value="confirm"
+        >
+          确认发布
+        </button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

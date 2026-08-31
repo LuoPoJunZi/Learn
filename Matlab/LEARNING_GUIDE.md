@@ -17,6 +17,7 @@ Matlab 很适合矩阵计算、工程仿真、绘图、优化算法和神经网�
 - 导入 `.mat`、`.xlsx`、`.csv` 数据。
 - 绘制并美化常用图形。
 - 按任务选择优化算法或神经网络模型。
+- 识别神经网络旧接口，并为新项目选择当前推荐工作流。
 
 ## 推荐阅读顺序
 
@@ -26,6 +27,7 @@ Matlab 很适合矩阵计算、工程仿真、绘图、优化算法和神经网�
 4. [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)
 5. [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 6. [神经网络模型选择指南](<Neural Network/MODEL_SELECTION.md>)
+7. [深度学习现代工作流与旧案例迁移](<Neural Network/MODERN_WORKFLOW_GUIDE.md>)
 
 ## 学习地图
 

@@ -13,6 +13,7 @@
 学完后，你应该能说清楚：
 
 - Git 和 GitHub 分别解决什么问题。
+- 账号登录保护和 Git 仓库访问凭据有什么区别。
 - 工作区、暂存区、本地仓库、远程仓库之间如何流转。
 - 为什么团队协作通常不直接改 `main`。
 - Fork、Branch、Pull Request、Review 各自出现在哪一步。
@@ -22,12 +23,13 @@
 1. [Git 与 GitHub 的区别](docs/part1-basics/1.1-what-is-git.md)
 2. [账号注册与安装 Git](docs/part1-basics/1.2-setup.md)
 3. [配置 SSH 密钥](docs/part1-basics/1.3-ssh-keys.md)
-4. [工作区、暂存区、本地仓库](docs/part2-git-cmds/2.1-core-concepts.md)
-5. [日常指令备忘录](docs/part2-git-cmds/2.2-daily-commands.md)
-6. [用 VS Code 丝滑提交](docs/part2-git-cmds/2.4-vscode-workflow.md)
-7. [分支](docs/part3-teamwork/3.1-branching.md)
-8. [Pull Request](docs/part3-teamwork/3.2-pull-request.md)
-9. [冲突解决](docs/part3-teamwork/3.3-merge-conflict.md)
+4. [账号安全：2FA、Passkey 与恢复方案](docs/part1-basics/1.4-account-security.md)
+5. [工作区、暂存区、本地仓库](docs/part2-git-cmds/2.1-core-concepts.md)
+6. [日常指令备忘录](docs/part2-git-cmds/2.2-daily-commands.md)
+7. [用 VS Code 丝滑提交](docs/part2-git-cmds/2.4-vscode-workflow.md)
+8. [分支](docs/part3-teamwork/3.1-branching.md)
+9. [Pull Request](docs/part3-teamwork/3.2-pull-request.md)
+10. [冲突解决](docs/part3-teamwork/3.3-merge-conflict.md)
 
 ## 多人协作流程图
 

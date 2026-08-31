@@ -26,6 +26,7 @@
 - [Matlab 示例运行索引](EXAMPLE_RUN_INDEX.md)
 - [多目标优化算法索引](<Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [神经网络模型选择指南](<Neural Network/MODEL_SELECTION.md>)
+- [深度学习现代工作流与旧案例迁移](<Neural Network/MODERN_WORKFLOW_GUIDE.md>)
 
 ## 目录说明
 
@@ -66,8 +67,9 @@
 
 - 因果缩放点积自注意力
 - 数据损失与物理方程残差的组合
+- Fourier Neural Operator 的频域算子与模态截断直觉
 
-这些脚本适合在基础教程之后阅读，再过渡到完整 Transformer、Deep Learning Toolbox 或 PINN 工作流。
+这些脚本适合在基础教程之后阅读，再过渡到完整 Transformer、Deep Learning Toolbox、PINN 或神经算子工作流。
 
 ### Neural Network
 
@@ -78,6 +80,8 @@
 - Time Series Prediction：时间序列预测
 
 每个任务下包含 BP、CNN、ELM、GA-BP、LSTM、PSO-BP、RBF、RF、SVM 等模型案例。新手建议先看 [神经网络模型选择指南](<Neural Network/MODEL_SELECTION.md>)。
+
+目录中部分历史案例使用 `train` 或 `trainNetwork`。运行和复现实验时继续保留原代码；编写新项目或迁移到较新 Matlab 时，请先读 [深度学习现代工作流与旧案例迁移](<Neural Network/MODERN_WORKFLOW_GUIDE.md>)，了解 `trainnet`、`dlnetwork` 和版本边界。
 
 ## 运行环境建议
 
