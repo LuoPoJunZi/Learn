@@ -2,6 +2,17 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-09-01
+
+### 新增
+
+- 扩展 [Python 现代 AI 原理案例](<Python/Modern AI/README.md>)，新增贪心推测解码、分页 KV Cache 和 INT4 分组权重量化的标准库实现。
+- 新增 [systemd 服务沙箱与凭据管理](Linux/docs/part2-system-admin/2.4-systemd-hardening.md)，覆盖安全审计、动态用户、文件系统限制、capabilities、credentials、验证和回滚。
+
+### 优化
+
+- 更新 Python、Linux、仓库首页和知识地图导航，明确区分教学模拟与生产推理实现，并把服务加固接入 VPS 学习路线。
+
 ## 2026-08-31
 
 ### 新增

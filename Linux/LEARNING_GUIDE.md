@@ -15,6 +15,7 @@ Linux 新手最容易被大量命令吓住。更有效的学习方式是先建�
 - 在终端中定位当前目录、查看文件、编辑配置。
 - 理解权限、用户、进程、服务、端口之间的关系。
 - 用 `systemctl` 和 `journalctl` 初步排查服务问题。
+- 能审计并渐进限制普通 systemd 服务的权限范围。
 - 安全启用主机防火墙，并检查自动安全更新状态。
 - 识别高风险命令，避免误删和误覆盖。
 
@@ -40,9 +41,10 @@ Linux 新手最容易被大量命令吓住。更有效的学习方式是先建�
 6. [进程、服务与系统资源](docs/part2-system-admin/2.1-process-service.md)
 7. [磁盘、内存和系统信息](docs/part2-system-admin/2.2-disk-memory.md)
 8. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
-9. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
-10. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
-11. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
+9. [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)
+10. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
+11. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
+12. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
 
 ## 核心概念
 
@@ -79,6 +81,8 @@ journalctl -u nginx --since "1 hour ago"
 ```
 
 `systemctl` 看服务状态，`journalctl` 看服务日志。
+
+当服务已经稳定运行，可以继续阅读 [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)，学习如何限制服务可写目录、设备、内核接口和敏感凭据的暴露范围。
 
 ## 典型场景
 

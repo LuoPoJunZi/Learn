@@ -154,4 +154,4 @@ systemctl reload nginx
 
 ## 下一步
 
-继续看 [Linux 学习导读](LEARNING_GUIDE.md) 和 [Linux 常见问题](FAQ.md)。如果涉及 SSH，优先阅读 [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)。
+继续看 [Linux 学习导读](LEARNING_GUIDE.md) 和 [Linux 常见问题](FAQ.md)。服务已经能稳定启动后，可用 [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md) 缩小权限；如果涉及 SSH，优先阅读 [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)。

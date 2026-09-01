@@ -97,6 +97,17 @@ bash <(curl -sL example.com/install.sh)
 
 权限越大，风险越大。
 
+## systemd 服务权限
+
+普通后台服务不应默认以 root 身份访问整台机器。先确认服务运行用户、可写目录和网络需求，再逐步增加沙箱限制：
+
+```bash
+systemctl cat 服务名
+systemd-analyze security --no-pager 服务名
+```
+
+具体的 `DynamicUser=`、`ProtectSystem=`、`CapabilityBoundingSet=`、`LoadCredential=` 和验证回滚流程，见 [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)。不要为了降低审计分数一次启用全部限制，应逐项验证真实业务。
+
 ## 备份
 
 至少备份：

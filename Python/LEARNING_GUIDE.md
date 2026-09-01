@@ -18,6 +18,7 @@ Python 入门不要只盯着语法。更好的路线是：先能运行脚本，�
 - 读懂函数、模块、文件读写和异常处理。
 - 写一个带命令行参数的小脚本。
 - 知道爬虫和自动化脚本的安全边界。
+- 用标准库小案例解释常见的现代 AI 训练与推理优化概念。
 
 ## 推荐阅读顺序
 
@@ -139,4 +140,4 @@ python tool.py .\data
 
 ## 下一步
 
-先从 [Auto_scripts](Auto_scripts/README.md) 选一个风险低的脚本，例如文本统计或网站检测，读懂后改成自己的小工具。掌握函数和列表后，再进入 [现代 AI 原理案例](<Modern AI/README.md>)，把注意力、GQA、KV Cache、Tokenizer、RAG、LoRA 和稀疏 MoE 拆成小步骤理解。
+先从 [Auto_scripts](Auto_scripts/README.md) 选一个风险低的脚本，例如文本统计或网站检测，读懂后改成自己的小工具。掌握函数和列表后，再进入 [现代 AI 原理案例](<Modern AI/README.md>)，先理解注意力、Tokenizer、RAG 和 LoRA，再继续观察 GQA、KV Cache、推测解码、分页缓存、量化和稀疏 MoE 如何减少推理成本。

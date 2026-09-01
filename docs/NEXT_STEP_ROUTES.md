@@ -53,6 +53,7 @@
 3. [Linux 学习导读](../Linux/LEARNING_GUIDE.md)
 4. [VPS 操作安全清单](../Linux/docs/part4-vps-tools/4.2-vps-safety-checklist.md)
 5. [SSH 安全加固](../Linux/docs/part3-network-ssh/3.2-ssh-security.md)
+6. [systemd 服务沙箱与凭据管理](../Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
 
 阶段目标：能判断服务访问失败时应该先看状态、日志、端口还是防火墙。
 

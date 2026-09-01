@@ -13,11 +13,12 @@
 7. [进程、服务与系统资源](docs/part2-system-admin/2.1-process-service.md)
 8. [磁盘、内存和系统信息](docs/part2-system-admin/2.2-disk-memory.md)
 9. [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
-10. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
-11. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
-12. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
-13. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
-14. [旧内容迁移索引](docs/appendix/original-content-map.md)
+10. [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)
+11. [网络工具与 SSH 登录](docs/part3-network-ssh/3.1-network-tools.md)
+12. [SSH 安全加固](docs/part3-network-ssh/3.2-ssh-security.md)
+13. [UFW 防火墙与自动安全更新](docs/part3-network-ssh/3.3-firewall-updates.md)
+14. [VPS 常用脚本速查](docs/part4-vps-tools/4.1-vps-script-index.md)
+15. [旧内容迁移索引](docs/appendix/original-content-map.md)
 
 ## 内容地图
 
@@ -38,6 +39,7 @@
 - [进程、服务与后台任务](docs/part2-system-admin/2.1-process-service.md)
 - [磁盘、内存和系统信息](docs/part2-system-admin/2.2-disk-memory.md)
 - [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
+- [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)
 
 ### 网络与 SSH
 

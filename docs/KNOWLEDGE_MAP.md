@@ -20,7 +20,7 @@ flowchart TD
 | :--- | :--- | :--- |
 | `Markdown` | 如何写清楚文档 | 写 README、教程、学习笔记 |
 | `Github` | 如何保存、协作和自动检查修改 | 提交、推送、分支、PR、CI |
-| `Linux` | 如何使用命令行和服务器 | 文件操作、SSH、服务排查 |
+| `Linux` | 如何使用命令行和服务器 | 文件操作、SSH、服务排查与权限加固 |
 | `Python` | 如何写脚本并理解现代 AI 原理 | 文件处理、数据处理、小工具、AI 基础 |
 | `HTML` | 如何修改网页和使用现代浏览器 API | 页面结构、样式、交互、原生组件 |
 | `Matlab` | 如何做工程计算和算法实验 | 矩阵、绘图、现代计算、优化、神经网络 |
@@ -54,6 +54,7 @@ flowchart TD
 1. [Linux 学习导读](../Linux/LEARNING_GUIDE.md)
 2. [Linux 完全新手地图](../Linux/docs/part0-newbie-map.md)
 3. [VPS 操作安全清单](../Linux/docs/part4-vps-tools/4.2-vps-safety-checklist.md)
+4. [systemd 服务沙箱与凭据管理](../Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
 
 ### 我想写自动化脚本
 

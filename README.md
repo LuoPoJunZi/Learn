@@ -29,7 +29,7 @@
 | 专题 | 入口 | 适合人群 | 重点内容 |
 | :--- | :--- | :--- | :--- |
 | GitHub | [Github](Github/README.md) | 不熟悉 Git 和 GitHub 的新手 | Git 基础、提交推送、分支、PR、Actions 自动检查 |
-| Linux | [Linux](Linux/README.md) | 想学习命令行、VPS、SSH 的用户 | 文件操作、权限、服务、网络、SSH 安全 |
+| Linux | [Linux](Linux/README.md) | 想学习命令行、VPS、SSH 的用户 | 文件操作、权限、服务排查与加固、网络、SSH 安全 |
 | Markdown | [Markdown](Markdown/README.md) | 想写文档、博客、README 的用户 | 标题、列表、表格、代码块、Mermaid、模板 |
 | Python | [Python](Python/README.md) | 想入门编程、自动化脚本和算法示例的用户 | 基础语法、脚本、神经网络、现代 AI、多目标优化 |
 | HTML | [HTML](HTML/README.md) | 想修改网页示例的用户 | HTML、CSS、JavaScript、静态页面和现代 Web API |
@@ -67,6 +67,7 @@
 - [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
 - [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
 - [UFW 防火墙与自动安全更新](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)
+- [systemd 服务沙箱与凭据管理](Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
 - [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
 - [Markdown 常见问题](Markdown/FAQ.md)
 - [Markdown 写作进阶指南](Markdown/WRITING_GUIDE.md)
@@ -169,6 +170,7 @@ Learn/
 - [Linux VPS 日常运维导读](Linux/OPERATIONS_GUIDE.md)
 - [Linux VPS 基础安全清单](Linux/SECURITY_BASELINE.md)
 - [UFW 防火墙与自动安全更新](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)
+- [systemd 服务沙箱与凭据管理](Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
 - Linux 入门概念
 - 文件和目录操作
 - 文件查看、编辑、搜索
@@ -179,6 +181,7 @@ Learn/
 - SSH 安全加固和日志排查
 - VPS 常用脚本速查表
 - UFW 规则、日志和自动安全更新检查
+- systemd 服务沙箱、动态用户和凭据管理
 
 ### Markdown
 
@@ -212,7 +215,7 @@ Learn/
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
 - [Neural Network](<Python/Neural Network/README.md>)：神经网络入门示例
-- [Modern AI](<Python/Modern AI/README.md>)：注意力、GQA、KV Cache、BPE、迷你 RAG、LoRA 和稀疏 MoE 原理示例
+- [Modern AI](<Python/Modern AI/README.md>)：注意力、GQA、KV Cache、推测解码、分页缓存、INT4 量化、RAG、LoRA 和稀疏 MoE 原理示例
 - [Multi-Objective Optimization](<Python/Multi-Objective Optimization/README.md>)：多目标优化入门示例
 - [Grab](Python/Grab/README.md)：图片抓取示例
 - [Love](Python/Love/README.md)：Python 图形小程序示例
