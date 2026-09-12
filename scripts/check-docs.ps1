@@ -5,9 +5,10 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
+$ignoredPathPattern = '[\\/]\.(git|agents|codex|venv)([\\/]|$)|[\\/]node_modules([\\/]|$)'
 $markdownFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.md' |
     Where-Object {
-        $_.FullName -notmatch '\\.(git|agents|codex)\\' -and
+        $_.FullName -notmatch $ignoredPathPattern -and
         $_.Name -ne 'AGENTS.md'
     }
 
@@ -83,7 +84,7 @@ foreach ($file in $markdownFiles) {
 }
 
 $topDirs = Get-ChildItem -LiteralPath $rootPath -Directory |
-    Where-Object { $_.Name -notin @('.git', '.agents', '.codex') }
+    Where-Object { -not $_.Name.StartsWith('.') }
 
 foreach ($dir in $topDirs) {
     $readme = Join-Path $dir.FullName 'README.md'

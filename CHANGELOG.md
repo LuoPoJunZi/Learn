@@ -2,6 +2,22 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-09-12
+
+### 新增
+
+- 新增根目录 [参与贡献指南](CONTRIBUTING.md) 与 Pull Request 模板，统一内容保留、来源标注、验证和安全要求。
+- 新增 [仓库结构检查](scripts/check-repository.py) 和 [一键全检入口](scripts/check-all.ps1)，覆盖必要文件、跨平台路径冲突、生成文件、代码、文档与 Git 空白错误。
+- 新增实际运行的 [Repository quality 工作流](.github/workflows/quality.yml)，让推送、Pull Request 与本地使用同一套检查。
+
+### 优化
+
+- 将维护文档和 GitHub Actions 教程统一到 `check-all.ps1`，并改进 PowerShell 检查脚本在 Windows 与 Linux 上的路径过滤。
+- 扩充 `.gitignore`，覆盖常见 Python 测试、类型检查、覆盖率、Notebook 和前端构建缓存。
+- 将重复的神经网络源码压缩包和 NSDBO 运行结果移出 Git 跟踪；展开后的源码、数据集、参考前沿和算法资料继续保留。
+- 将生日页面入口从 `BirthdayIndex.html` 统一为 `index.html`，页面内容保持不变。
+- 将 MOGWO 的 `untitled.m` 整理为 `plot_tradeoff_front.m`，保留原目标函数意图并修复输入维度、公式和绘图流程不一致的问题。
+
 ## 2026-09-01
 
 ### 新增

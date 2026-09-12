@@ -119,11 +119,13 @@
 - [README 模板](Markdown/examples/readme-template.md)
 - [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
 - [代码与文档检查脚本](scripts/README.md)
+- [参与贡献](CONTRIBUTING.md)
 
 ## 目录概览
 
 ```text
 Learn/
+├── .github/         GitHub Actions 与 Pull Request 模板
 ├── Github/          GitHub 新手教程
 ├── Linux/           Linux 与 VPS 实用手册
 ├── Markdown/        Markdown 语法教程和写作模板
@@ -260,12 +262,13 @@ Learn/
 
 ## 文档维护
 
-提交前建议依次运行代码检查和文档检查：
+提交前运行统一检查入口：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
-powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 ```
+
+GitHub Actions 会在推送和 Pull Request 中运行同一套检查。
 
 相关维护文档：
 
@@ -273,6 +276,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
 - [示例代码规范](docs/CODE_STYLE.md)
 - [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
 - [代码与文档检查脚本说明](scripts/README.md)
+- [参与贡献](CONTRIBUTING.md)
 - [更新日志](CHANGELOG.md)
 
 ## 使用提醒

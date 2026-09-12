@@ -35,10 +35,6 @@ jobs:
       - name: Compile Python files
         run: python -m compileall -q Python scripts
 
-      - name: Run repository code checks
+      - name: Run all repository checks
         shell: pwsh
-        run: ./scripts/check-code.ps1
-
-      - name: Run documentation checks
-        shell: pwsh
-        run: ./scripts/check-docs.ps1
+        run: ./scripts/check-all.ps1

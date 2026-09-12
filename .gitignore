@@ -3,9 +3,21 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
 
 # JavaScript
 node_modules/
+coverage/
+.parcel-cache/
 
 # Local configuration and secrets
 .env
@@ -20,11 +32,19 @@ node_modules/
 .DS_Store
 Thumbs.db
 *~
+*.bak
+*.tmp
 
 # Matlab generated files
 *.asv
 slprj/
 codegen/
+Matlab/Multi-Objective Optimization/NSDBO/result/
+
+# Local source archives
+*.zip
+*.rar
+*.7z
 
 # Example-script runtime output
 *.log

@@ -94,9 +94,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
 ```powershell
 git status --short
 git diff --stat
-powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
-powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
-git diff --check
+powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 ```
 
 如果出现缓存、临时文件、下载包、系统生成文件，不要一起提交。
+
+统一检查也会验证必要根文件、一级目录 README、大小写或 Unicode 规范化后的路径冲突，以及已暂存和未暂存差异中的空白错误。GitHub Actions 会在推送和 Pull Request 中重复执行这套检查。

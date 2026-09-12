@@ -6,6 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
 $failures = New-Object System.Collections.Generic.List[string]
+$ignoredPathPattern = '[\\/]\.(git|agents|codex|venv)([\\/]|$)|[\\/]node_modules([\\/]|$)'
 
 $python = Get-Command python -ErrorAction SilentlyContinue
 if ($null -eq $python) {
@@ -23,7 +24,7 @@ if ($null -eq $python) {
 }
 
 $javascriptFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.js' |
-    Where-Object { $_.FullName -notmatch '\\.(git|agents|codex)\\' }
+    Where-Object { $_.FullName -notmatch $ignoredPathPattern }
 $node = Get-Command node -ErrorAction SilentlyContinue
 if ($javascriptFiles.Count -gt 0 -and $null -eq $node) {
     $failures.Add('Node.js was not found; JavaScript checks could not run.')
@@ -37,7 +38,7 @@ if ($javascriptFiles.Count -gt 0 -and $null -eq $node) {
 }
 
 $powershellFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.ps1' |
-    Where-Object { $_.FullName -notmatch '\\.(git|agents|codex)\\' }
+    Where-Object { $_.FullName -notmatch $ignoredPathPattern }
 foreach ($file in $powershellFiles) {
     $tokens = $null
     $parseErrors = $null
@@ -55,7 +56,7 @@ foreach ($file in $powershellFiles) {
 }
 
 $htmlFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.html' |
-    Where-Object { $_.FullName -notmatch '\\.(git|agents|codex)\\' }
+    Where-Object { $_.FullName -notmatch $ignoredPathPattern }
 foreach ($file in $htmlFiles) {
     $content = Get-Content -Raw -LiteralPath $file.FullName
     $requirements = @(
@@ -73,7 +74,7 @@ foreach ($file in $htmlFiles) {
 }
 
 $matlabFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.m' |
-    Where-Object { $_.FullName -notmatch '\\.(git|agents|codex)\\' }
+    Where-Object { $_.FullName -notmatch $ignoredPathPattern }
 foreach ($file in $matlabFiles) {
     $firstCodeLine = Get-Content -LiteralPath $file.FullName |
         Where-Object {

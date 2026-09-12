@@ -22,7 +22,7 @@ MOGWO算法的主要步骤可以概括如下：
 - 使用 `SelectLeader.m` 函数选择阿尔法、贝塔和德尔塔灰狼，确保选择的领导者来自不同的格子，以增加多样性。
 
 #### 2.4 更新位置
-- 通过公式计算新位置，如在 `MOGWo.m` 中使用的位置更新公式，这些公式基于阿尔法、贝塔和德尔塔的位置及当前狼的位置。
+- 通过公式计算新位置，如在 `MOGWO.m` 中使用的位置更新公式，这些公式基于阿尔法、贝塔和德尔塔的位置及当前狼的位置。
 
 #### 2.5 删除多余的解
 - 使用 `DeleteFromRep.m` 函数根据一定的标准（如拥挤程度）从归档中删除多余的解，以保持归档的多样性和有效性。
@@ -38,7 +38,7 @@ MOGWO算法的主要步骤可以概括如下：
 ### 4. **代码实现中的具体功能**
 在你的代码实现中，以下部分展示了MOGWO算法的关键特征：
 - **目标函数的定义**：如 `ZDT1.m`、`ZDT2.m`、`ZDT3.m` 和 `ZDT4.m` 这些函数定义了不同的多目标优化问题。
-- **可视化**：通过 `Plot_ZDT1.m` 和 `untitled.m` 进行可视化，帮助分析和展示算法的收敛性及效果。
+- **可视化**：通过 `Plot_ZDT1.m` 和 [`plot_tradeoff_front.m`](plot_tradeoff_front.m) 进行可视化，帮助分析和展示算法的收敛性及效果。
 - **归档机制**：使用归档来存储和管理非支配解，确保解的多样性和代表性。
 
 ### 5. **总结**
@@ -550,7 +550,7 @@ end
 
 此函数在处理网格相关的多目标优化算法时，能够帮助算法了解每个网格单元的占用状态，有助于算法的选择和更新。
 
-## `MOGWo.m` 文件的详细中文注释版本：
+## `MOGWO.m` 文件的详细中文注释版本：
 
 ```matlab
 % 清除工作区变量和命令窗口
@@ -922,98 +922,37 @@ end
    - 随机选择一个个体作为领导者，并返回该个体。
 
 
-## `untitled.m` 文件的详细中文注释版本：
+## `plot_tradeoff_front.m` 文件说明
+
+这个文件原名为 `untitled.m`。标准化后使用可表达用途的文件名，并修正了旧版中目标函数公式与输入维度不一致的问题。原来的两个目标函数、权衡区间、目标达成法和绘图思路都保留在新实现中。
 
 ```matlab
-% 生成一组从0到1的等间距点
-t = linspace(0, 1);
-% 计算简单多目标函数的值
-F = simple_mult(t');
-% 绘制目标函数的曲线
-plot(t, F', 'LineWidth', 2)
-hold on
+sample_points = linspace(0, 1, 100);
+sample_objectives = simple_multi_objective(sample_points');
 
-% 绘制绿色虚线，表示目标函数的约束区域
-plot([0, 0], [0, 8], 'g--');
-plot([1, 1], [0, 8], 'g--');
-% 在图中标记最小值位置
-plot([0, 1], [1, 6], 'k.', 'MarkerSize', 15);
-text(-0.25, 1.5, 'Minimum(f_1(x))')  % 标注 f1 的最小值位置
-text(.75, 5.5, 'Minimum(f_2(x))')    % 标注 f2 的最小值位置
-hold off
+plot(sample_points, sample_objectives(:, 1), 'LineWidth', 2);
+hold on;
+plot(sample_points, sample_objectives(:, 2), 'LineWidth', 2);
 
-% 添加图例和标签
-legend('f_1(x)', 'f_2(x)')
-xlabel({'x'; 'Tradeoff region between the green lines'})
+[~, minimum_f1] = fminbnd(@(x) pick_objective(x, 1), -1, 2);
+[~, minimum_f2] = fminbnd(@(x) pick_objective(x, 2), -1, 2);
+goal = [minimum_f1; minimum_f2];
 
-% 使用 fminbnd 找到第一个目标函数的最小值
-k = 1;
-[min1, minfn1] = fminbnd(@(x)pickindex(x, k), -1, 2);
-% 使用 fminbnd 找到第二个目标函数的最小值
-k = 2;
-[min2, minfn2] = fminbnd(@(x)pickindex(x, k), -1, 2);
-
-goal = [minfn1, minfn2];  % 目标值数组
-
-nf = 2; % 目标函数数量
-N = 500; % 用于绘图的点数量
-onen = 1/N;  % 每个点的增量
-x = zeros(N+1, 1);  % 初始化 x 值
-f = zeros(N+1, nf);  % 初始化 f 值
-fun = @simple_mult;  % 定义目标函数
-x0 = 0.5;  % 初始值
-options = optimoptions('fgoalattain', 'Display', 'off');  % 设定目标达成的优化选项
-
-% 对于每个目标函数权重，从 0 到 1 进行循环
-for r = 0:N
-    t = onen * r; % 当前权重
-    weight = [t, 1 - t];  % 权重数组
-    % 使用目标达成法求解问题
-    [x(r + 1, :), f(r + 1, :)] = fgoalattain(fun, x0, goal, weight, ...
+objective_function = @simple_multi_objective;
+initial_guess = 0.5;
+weight = [0.5; 0.5];
+options = optimoptions('fgoalattain', 'Display', 'off');
+[~, objective_at_solution] = fgoalattain( ...
+        objective_function, initial_guess, goal, weight, ...
         [], [], [], [], [], [], [], options);
-end
-
-% 绘制目标函数值的散点图
-figure
-plot(f(:, 1), f(:, 2), 'ko');
-
-% 绘制平滑的曲线图
-figure
-x1 = f(:, 1);  % 第一个目标函数值
-y1 = f(:, 2);  % 第二个目标函数值
-x2 = linspace(min(x1), max(x1));  % 创建用于插值的 x 值
-y2 = interp1(x1, y1, x2, 'spline');  % 使用样条插值平滑曲线
-xlabel('f_1')  % x 轴标签
-ylabel('f_2')  % y 轴标签
-plot(x2, y2);  % 绘制平滑曲线
-
-% 定义简单的多目标函数
-function f = simple_mult(x)
-    % f(:,1) = sqrt(1+x.^2);  % 第一个目标函数
-    % f(:,2) = 4 + 2*sqrt(1+(x-1).^2);  % 第二个目标函数
-
-    n = numel(x);  % 获取 x 的元素个数
-    f1 = x(1);  % 第一个目标值
-    g = 1 + 9/(n-1) * sum(x(2:end));  % 计算 g 值
-    h = 1 - sqrt(f1 / g);  % 计算 h 值
-    f2 = g * h;  % 计算第二个目标值
-    f = [f1; f2];  % 将目标值组合成列向量返回
-end
-
-% 定义索引选择函数
-function z = pickindex(x, k)
-    z = simple_mult(x);  % 计算目标函数值
-    z = z(k);  % 返回第 k 个目标函数值
-end
 ```
 
 ### 注释说明：
-1. **脚本开头**：设置绘图的初始参数和定义目标函数。
-2. **绘制目标函数**：绘制多目标函数的结果，添加标注以说明最小值的位置。
-3. **寻找最小值**：使用 `fminbnd` 方法对两个目标函数进行最小化，并记录目标值。
-4. **目标达成方法**：利用 `fgoalattain` 函数生成目标函数值的多组解。
-5. **绘图**：生成目标函数值的散点图和通过插值生成的平滑曲线图。
-6. **定义目标函数**：包含计算目标函数值的函数 `simple_mult` 和选择目标函数的辅助函数 `pickindex`。
+1. **目标函数**：保留旧版注释中的 `sqrt(1+x^2)` 和 `4+2*sqrt(1+(x-1)^2)` 两个冲突目标。
+2. **寻找最小值**：使用 `fminbnd` 分别计算两个目标的理想值。
+3. **目标达成方法**：使用不同权重重复调用 `fgoalattain`，生成目标空间中的权衡点。
+4. **绘图**：先展示两个目标随决策变量变化的曲线，再按第一个目标排序绘制权衡前沿。
+5. **运行要求**：`fgoalattain` 和 `optimoptions` 需要 Optimization Toolbox。
 
 ## `ZDT1.m` 文件的详细中文注释版本：
 

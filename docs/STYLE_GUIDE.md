@@ -13,6 +13,14 @@
 
 大型专题可以继续在子目录添加 README，例如 `Matlab/Neural Network/README.md`。
 
+## 目录与文件命名
+
+- 新增普通目录和文档优先使用小写短横线，例如 `system-admin` 和 `setup-guide.md`。
+- 保留生态中的约定入口名，例如 `README.md`、`index.html`、`main.py` 和 `main.m`。
+- 不使用 `new`、`final`、`untitled`、`副本` 等无法说明用途的名字。
+- 历史算法目录可能包含空格和既有入口，不为追求外观统一而批量改名。
+- 必须改名时，在最近的 README 中记录旧名称和新位置，确保旧内容仍可查找。
+
 ## 教程结构
 
 一篇教程建议包含：
