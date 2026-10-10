@@ -60,6 +60,8 @@
 
 这些示例优先使用 Python 标准库，适合先理解原理，再继续学习 NumPy、scikit-learn 或 PyTorch。
 
+[保形预测教程与代码](<Neural Network/UNCERTAINTY_GUIDE.md>) 补充回归结果的区间校准、有限样本分位数和分布漂移的影响。
+
 ### Modern AI
 
 [Modern AI](<Modern AI/README.md>) 用纯 Python 标准库拆解现代生成式 AI 的基础原理。
@@ -76,6 +78,10 @@
 - 基于 TF-IDF 的迷你 RAG 检索流程
 - LoRA 低秩权重更新
 - 稀疏 MoE Top-k 专家路由
+- RoPE 旋转位置编码与相对位置恒等式
+- 在线 Softmax 分块注意力与精确结果对照
+
+[RoPE 与分块注意力教程](<Modern AI/ATTENTION_MECHANICS_GUIDE.md>) 将两个新案例接入注意力、GQA 和 KV Cache 学习路线。
 
 这些案例不会下载模型或调用在线 API，适合在进入 PyTorch、Transformers、推理引擎和向量数据库之前建立计算直觉。
 

@@ -32,6 +32,7 @@
 - 图社区发现与可视化
 - 符号化物理约束损失
 - 高层神经网络分类流程
+- [神经网络梯度推导与中心差分校验](Examples/GRADIENT_CHECK_GUIDE.md)
 
 建议先在 Notebook 中逐段运行，再尝试使用配置好 Kernel 的 `wolframscript` 执行整个 `.wl` 文件。
 

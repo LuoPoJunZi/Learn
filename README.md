@@ -217,7 +217,9 @@ Learn/
 - [Basics](Python/Basics/README.md)：Python 基础教程，适合新手入门
 - [Auto_scripts](Python/Auto_scripts/README.md)：日常自动化脚本集合
 - [Neural Network](<Python/Neural Network/README.md>)：神经网络入门示例
-- [Modern AI](<Python/Modern AI/README.md>)：注意力、GQA、KV Cache、推测解码、分页缓存、INT4 量化、RAG、LoRA 和稀疏 MoE 原理示例
+- [Modern AI](<Python/Modern AI/README.md>)：注意力、RoPE、分块 Softmax、GQA、KV Cache、推测解码、分页缓存、INT4 量化、RAG、LoRA 和稀疏 MoE 原理示例
+- [RoPE 与分块注意力教程](<Python/Modern AI/ATTENTION_MECHANICS_GUIDE.md>)：位置旋转、在线累积与计算结果验证
+- [保形预测教程](<Python/Neural Network/UNCERTAINTY_GUIDE.md>)：回归预测区间、独立校准与覆盖条件
 - [Multi-Objective Optimization](<Python/Multi-Objective Optimization/README.md>)：多目标优化入门示例
 - [Grab](Python/Grab/README.md)：图片抓取示例
 - [Love](Python/Love/README.md)：Python 图形小程序示例
@@ -247,7 +249,8 @@ Learn/
 - [案例阅读指南](Matlab/CASE_READING_GUIDE.md)：如何拆解 Matlab 算法和模型案例的入口、数据、参数和输出
 - [数据与绘图入门指南](Matlab/DATA_PLOT_GUIDE.md)：数据导入、表格/矩阵选择、绘图结构和结果解释
 - [Basics](Matlab/Basics/README.md)：Matlab 基础命令、矩阵、绘图、脚本、函数和并行计算
-- [Modern Computing](<Matlab/Modern Computing/README.md>)：自注意力、物理约束损失与 Fourier Neural Operator 原理案例
+- [Modern Computing](<Matlab/Modern Computing/README.md>)：自注意力、物理约束损失、Fourier Neural Operator 与 Flow Matching 原理案例
+- [Flow Matching 教程](<Matlab/Modern Computing/FLOW_MATCHING_GUIDE.md>)：从条件路径和速度回归到 ODE 生成
 - [Multi-Objective Optimization](<Matlab/Multi-Objective Optimization/README.md>)：多目标优化算法示例
 - [Neural Network](<Matlab/Neural Network/README.md>)：分类、回归、时间序列预测等神经网络案例
 - [深度学习现代工作流与旧案例迁移](<Matlab/Neural Network/MODERN_WORKFLOW_GUIDE.md>)：说明 `trainnet`、`dlnetwork` 与历史接口的版本边界
@@ -259,6 +262,8 @@ Learn/
 ### Mathematica
 
 [Mathematica](Mathematica/README.md) 记录 Mathematica / Wolfram Language 基础教程、命令速查和可运行脚本，适合做符号计算、公式推导、矩阵运算和数学可视化。建议先看 [Mathematica 学习导读](Mathematica/LEARNING_GUIDE.md)，再进入 [基础教程](Mathematica/Basics/README.md) 和 [可运行案例](Mathematica/Examples/README.md)。
+
+[梯度推导与检查教程](Mathematica/Examples/GRADIENT_CHECK_GUIDE.md) 使用小网络连接符号计算、数值差分与梯度下降。
 
 ## 文档维护
 

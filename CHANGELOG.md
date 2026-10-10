@@ -2,6 +2,20 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-10-10
+
+### 新增
+
+- 新增 [RoPE 与分块注意力教程](<Python/Modern AI/ATTENTION_MECHANICS_GUIDE.md>) 和两个标准库案例，验证位置旋转恒等式、在线 Softmax 与完整注意力的一致性。
+- 新增 [保形预测教程与案例](<Python/Neural Network/UNCERTAINTY_GUIDE.md>)，说明独立校准、有限样本分位数、边际覆盖与分布漂移。
+- 新增 [Matlab Flow Matching 教程与案例](<Matlab/Modern Computing/FLOW_MATCHING_GUIDE.md>)，使用最小二乘学习速度场并以 ODE 和解析解对照采样。
+- 新增 [Mathematica 梯度检查教程与案例](Mathematica/Examples/GRADIENT_CHECK_GUIDE.md)，用符号导数、中心差分和单步更新核对小网络梯度。
+
+### 优化
+
+- 将新增代码和中文讲解接入各目录索引、主题 README、仓库首页与知识地图。
+- 补充官方资料用途、来源许可、运行环境和教学实现边界，不引入第三方源码包或模型权重。
+
 ## 2026-09-12
 
 ### 新增

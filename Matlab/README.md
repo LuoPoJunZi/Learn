@@ -13,7 +13,7 @@
 
 1. [Matlab 学习导读](LEARNING_GUIDE.md)：先建立学习地图，理解矩阵、数据、绘图和案例阅读顺序。
 2. [Basics](Basics/README.md)：学习 Matlab 基础语法、矩阵、绘图、脚本和并行计算。
-3. [Modern Computing](<Modern Computing/README.md>)：用基础矩阵理解自注意力和物理约束损失。
+3. [Modern Computing](<Modern Computing/README.md>)：用基础矩阵理解注意力、物理损失、频域算子与速度场生成。
 4. [Multi-Objective Optimization](<Multi-Objective Optimization/README.md>)：再学习多目标优化算法。
 5. [Neural Network](<Neural Network/README.md>)：最后按任务选择神经网络模型。
 
@@ -68,6 +68,7 @@
 - 因果缩放点积自注意力
 - 数据损失与物理方程残差的组合
 - Fourier Neural Operator 的频域算子与模态截断直觉
+- [Flow Matching 速度场学习与 ODE 采样](<Modern Computing/FLOW_MATCHING_GUIDE.md>)
 
 这些脚本适合在基础教程之后阅读，再过渡到完整 Transformer、Deep Learning Toolbox、PINN 或神经算子工作流。
 

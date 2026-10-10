@@ -1,6 +1,6 @@
 # Mathematica 可运行案例
 
-这个目录把基础教程中的表达式、规则、符号计算、图计算和机器学习组合成三个完整 `.wl` 案例。代码可以粘贴到 Notebook 分段运行，也可以使用配置好 Kernel 的 `wolframscript` 执行。
+这个目录把基础教程中的表达式、规则、符号计算、图计算和机器学习组合成四个完整 `.wl` 案例。代码可以粘贴到 Notebook 分段运行，也可以使用配置好 Kernel 的 `wolframscript` 执行。
 
 ## 适合人群
 
@@ -15,6 +15,9 @@
 | 1 | [图社区发现](graph_community_detection.wl) | `Graph`、模式函数、`FindGraphCommunities`、可视化 | 完全本地运行 |
 | 2 | [符号化物理约束损失](symbolic_physics_informed_loss.wl) | 导数、积分、损失函数、`NMinimize` | 完全本地运行 |
 | 3 | [轻量神经分类](tiny_neural_classifier.wl) | 数据规则、`Classify`、概率输出、特征空间 | 首次运行可能初始化机器学习组件 |
+| 4 | [符号梯度与数值检查](symbolic_gradient_check.wl) | `D`、参数规则、中心差分、`TestReport`、梯度更新 | 完全本地运行 |
+
+案例 4 配有 [梯度检查中文教程](GRADIENT_CHECK_GUIDE.md)，解释符号微分与自动微分的区别，以及如何阅读数值验证结果。
 
 ## 在 Notebook 中运行
 
@@ -45,6 +48,7 @@ Get["F:/GithubData/Learn/Mathematica/Examples/graph_community_detection.wl"]
 wolframscript -file "Mathematica\Examples\graph_community_detection.wl"
 wolframscript -file "Mathematica\Examples\symbolic_physics_informed_loss.wl"
 wolframscript -file "Mathematica\Examples\tiny_neural_classifier.wl"
+wolframscript -file "Mathematica\Examples\symbolic_gradient_check.wl"
 ```
 
 图形表达式在 Notebook 中显示最直观。命令行环境主要用于查看打印结果和检查脚本能否执行。
@@ -69,12 +73,17 @@ wolframscript -file "Mathematica\Examples\tiny_neural_classifier.wl"
 
 然后交给 `Classify[..., Method -> "NeuralNetwork"]`。这属于高层工作流，适合先理解数据输入、预测和概率；想研究网络层结构时再学习 `NetChain`、`NetGraph` 和 `NetTrain`。
 
+### 符号梯度与数值检查
+
+案例把一个隐藏神经元的回归网络写成表达式，对四个参数求导，用中心差分独立检查梯度，再观察一次更新前后的损失。它适合在推导新损失或阅读训练代码时建立梯度验证习惯，详见 [中文教程](GRADIENT_CHECK_GUIDE.md)。
+
 ## 推荐修改点
 
 - 减少图中的跨组边，观察社区划分是否更清晰。
 - 修改物理损失权重，比较数据拟合和方程约束的平衡。
 - 给分类数据增加噪声，观察预测概率如何变化。
 - 把分类方法改为 `"LogisticRegression"`，比较线性模型和神经网络。
+- 修改梯度检查案例的学习率与差分步长，观察损失和数值误差。
 
 ## 权威参考
 

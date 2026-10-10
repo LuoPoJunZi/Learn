@@ -82,6 +82,15 @@ flowchart TD
 3. [Mathematica 可运行案例](../Mathematica/Examples/README.md)
 4. [现代 Web API 实验台](../HTML/Examples/modern-web-apis/README.md)
 
+按具体问题深入：
+
+| 想理解的问题 | 学习入口 |
+| :--- | :--- |
+| 注意力如何知道位置，如何分块保持同一个结果 | [Python RoPE 与分块注意力](<../Python/Modern AI/ATTENTION_MECHANICS_GUIDE.md>) |
+| 回归结果如何增加预测区间 | [Python 保形预测](<../Python/Neural Network/UNCERTAINTY_GUIDE.md>) |
+| 速度场如何把噪声转成目标分布 | [Matlab Flow Matching](<../Matlab/Modern Computing/FLOW_MATCHING_GUIDE.md>) |
+| 如何确认手写梯度是否正确 | [Mathematica 梯度检查](../Mathematica/Examples/GRADIENT_CHECK_GUIDE.md) |
+
 ## 学习策略
 
 - 先读入口导读，再进细节教程。

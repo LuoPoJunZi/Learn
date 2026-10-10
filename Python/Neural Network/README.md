@@ -30,6 +30,9 @@
 | 模型保存与加载 | [examples/model_save_load_json.py](examples/model_save_load_json.py) | 用 JSON 保存和恢复模型参数 | 标准库 |
 | RNN 隐藏状态演示 | [examples/rnn_hidden_state_demo.py](examples/rnn_hidden_state_demo.py) | 理解序列模型如何携带历史信息 | 标准库 |
 | 迷你 CNN 图像分类 | [examples/tiny_cnn_image_classification.py](examples/tiny_cnn_image_classification.py) | 用 5x5 小图像、卷积特征和简单分类器理解 CNN 分类流程 | 标准库 |
+| 分割保形回归区间 | [examples/split_conformal_regression.py](examples/split_conformal_regression.py) | 独立校准、有限样本分位数、预测区间与分布漂移 | 标准库 |
+
+最后一个案例配有 [保形预测中文教程](UNCERTAINTY_GUIDE.md)。它用线性模型解释回归预测器的区间校准，适合在理解训练与泛化后阅读。
 
 ## 推荐学习顺序
 
@@ -44,9 +47,10 @@
 9. 再运行过拟合/正则化示例，理解泛化能力。
 10. 再运行模型保存加载示例，理解训练结果如何复用。
 11. 再运行 RNN 隐藏状态演示，理解序列模型的记忆机制。
-12. 尝试修改学习率、训练轮数、初始权重。
-13. 观察输出变化。
-14. 再去学习 NumPy、scikit-learn、PyTorch。
+12. 阅读 [保形预测教程](UNCERTAINTY_GUIDE.md)，区分点预测、校准集和边际覆盖保证。
+13. 尝试修改学习率、训练轮数、初始权重。
+14. 观察输出变化。
+15. 再去学习 NumPy、scikit-learn、PyTorch。
 
 ## 如何运行
 
@@ -66,6 +70,7 @@ python "Python\Neural Network\examples\overfitting_regularization_demo.py"
 python "Python\Neural Network\examples\model_save_load_json.py"
 python "Python\Neural Network\examples\rnn_hidden_state_demo.py"
 python "Python\Neural Network\examples\tiny_cnn_image_classification.py"
+python "Python\Neural Network\examples\split_conformal_regression.py"
 ```
 
 如果你的系统使用 `py` 命令：
@@ -160,6 +165,10 @@ RBF 网络用“离某些中心点有多近”来生成特征，适合帮助新�
 
 RNN 会一步一步处理序列，并用隐藏状态携带前面时间步的信息。这个示例只演示前向传播，不做训练。
 
+### 保形预测与不确定性
+
+回归模型输出一个数值，保形预测再利用独立校准集构造区间。本例同时展示有限样本修正和噪声改变后的覆盖下降；保证依赖可交换性，不能理解为每个输入都有相同的覆盖概率。详见 [保形预测教程](UNCERTAINTY_GUIDE.md)。
+
 ## 参考来源
 
 本目录案例参考了以下官方教程的主题方向，并改写为纯 Python 标准库教学示例：
@@ -191,3 +200,4 @@ RNN 会一步一步处理序列，并用隐藏状态携带前面时间步的信�
 - CNN 图像分类直觉：[tiny_cnn_image_classification.py](examples/tiny_cnn_image_classification.py)
 - RNN / LSTM 前置直觉：[rnn_hidden_state_demo.py](examples/rnn_hidden_state_demo.py)
 - 模型保存与加载：[model_save_load_json.py](examples/model_save_load_json.py)
+- 回归结果的不确定性：[保形预测教程与案例](UNCERTAINTY_GUIDE.md)

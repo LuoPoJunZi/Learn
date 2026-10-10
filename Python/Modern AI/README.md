@@ -13,6 +13,7 @@
 完成本目录后，你应该能够解释：
 
 - 注意力为什么要计算 Query、Key、Value 和 Softmax 权重。
+- RoPE 如何把位置写入向量旋转，分块注意力如何维护同一个 Softmax 结果。
 - GQA 如何让多个 Query 头共享更少的 Key/Value 头。
 - KV Cache 为什么能减少自回归生成中的重复计算。
 - 推测解码如何让小模型先提议，再由目标模型成批验证。
@@ -37,6 +38,10 @@
 | 8 | [迷你 RAG 检索流程](examples/mini_rag_retrieval.py) | 本地知识库、TF-IDF、余弦相似度、上下文拼装 | 标准库 |
 | 9 | [LoRA 低秩更新](examples/lora_low_rank_update.py) | 冻结原权重、低秩矩阵、参数量对比 | 标准库 |
 | 10 | [稀疏 MoE 路由](examples/sparse_moe_routing.py) | Router、Top-k 专家、加权输出、稀疏激活 | 标准库 |
+| 11 | [RoPE 旋转位置编码](examples/rotary_position_embedding.py) | 坐标对旋转、相对位置、长度与平移恒等式 | 标准库 |
+| 12 | [在线 Softmax 分块注意力](examples/online_softmax_attention.py) | 最大值修正、分块累积、精确结果对比 | 标准库 |
+
+案例 11、12 配有 [RoPE 与分块注意力中文讲解](ATTENTION_MECHANICS_GUIDE.md)，建议在案例 1 之后阅读，再与 GQA、KV Cache 对照。
 
 ## 如何运行
 
@@ -53,6 +58,8 @@ python "Python\Modern AI\examples\mini_bpe_tokenizer.py"
 python "Python\Modern AI\examples\mini_rag_retrieval.py"
 python "Python\Modern AI\examples\lora_low_rank_update.py"
 python "Python\Modern AI\examples\sparse_moe_routing.py"
+python "Python\Modern AI\examples\rotary_position_embedding.py"
+python "Python\Modern AI\examples\online_softmax_attention.py"
 ```
 
 这些脚本只使用标准库，不需要安装第三方依赖。
@@ -77,6 +84,8 @@ python "Python\Modern AI\examples\sparse_moe_routing.py"
 - RAG 案例使用 TF-IDF，不含向量数据库、Embedding 模型、重排序器或大语言模型调用。
 - LoRA 案例使用预先给定的低秩矩阵，只演示前向更新和参数量，不包含反向传播。
 - MoE 案例没有训练 Router、容量限制、负载均衡损失和跨设备专家并行。
+- RoPE 案例只检查向量旋转性质，不包含模型训练、长上下文缩放或完整 Transformer。
+- 分块注意力案例使用 CPU 循环展示在线 Softmax，不是 GPU FlashAttention 内核或性能基准。
 
 这些限制是刻意设计的。先理解最小闭环，再进入大型框架，会比直接面对数千行库代码更容易。
 
@@ -92,6 +101,8 @@ python "Python\Modern AI\examples\sparse_moe_routing.py"
 - 给 RAG 知识库增加一篇文档，再提出能命中它的问题。
 - 把 LoRA 的 `rank` 从 1 改为 2，并同步调整矩阵，比较参数量和输出。
 - 把 MoE 的 `top_k` 从 2 改成 1，比较激活专家和混合输出。
+- 给 RoPE 的两个位置同时加相同整数，检查相对点积是否保持一致。
+- 修改分块注意力的 `block_size`，比较输出误差和每块保存的得分数量。
 
 ## 权威参考
 
@@ -108,6 +119,8 @@ python "Python\Modern AI\examples\sparse_moe_routing.py"
 - [LoRA: Low-Rank Adaptation of Large Language Models](https://openreview.net/forum?id=nZeVKeeFYf9)
 - [Switch Transformers](https://www.jmlr.org/papers/v23/21-0998.html)
 - [Mixtral of Experts](https://arxiv.org/abs/2401.04088)
+- [RoFormer: Enhanced Transformer with Rotary Position Embedding](https://arxiv.org/abs/2104.09864)
+- [FlashAttention: Fast and Memory-Efficient Exact Attention](https://arxiv.org/abs/2205.14135)
 
 本目录代码是依据论文中的核心思想重新编写的原创教学实现，没有复制论文或外部仓库源码。
 
