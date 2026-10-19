@@ -19,6 +19,9 @@
 新增的 [Examples](Examples/README.md) 案例都使用纯 HTML/CSS/JavaScript 编写，不需要安装 npm、框架或构建工具。
 
 已经掌握基础 DOM 交互后，可以进入 [现代 Web API 实验台](Examples/modern-web-apis/README.md)，学习 Web Components、Container Queries、Popover 和 View Transitions 的原生实现与回退策略。
+想了解最新样式规范，可以查看 [现代 CSS 新特性实验台](Examples/modern-css-features/README.md)，掌握原生 CSS 嵌套与 `:has()` 父选择器。
+想更新 JavaScript 语言知识库，可以查看 [现代 JavaScript ES2024-2026 新特性](Examples/es2024-2026-features/README.md)，体验集合运算、迭代器辅助方法与新语法。
+想探索端侧 AI 与并行计算底座，可以查看 [WebGPU 初学导引](Examples/webgpu-basics/README.md)，学习 WGSL 着色器与 GPU 显存计算管线。
 
 想继续观察 2025-2026 年逐步落地的浏览器能力，可以进入 [原生 UI 2026 实验台](Examples/native-ui-2026/README.md)，学习 Invoker Commands、CSS Anchor Positioning 和 Scroll-driven Animations。
 

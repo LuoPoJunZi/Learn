@@ -66,6 +66,8 @@
 - [5.1 GitHub 脚本域名短链化与国内加速访问](docs/part5-advanced-tools/5.1-url-shortener.md)
 - [5.2 用 GitHub Actions 自动检查代码](docs/part5-advanced-tools/5.2-github-actions-ci.md)
 - [5.3 构建证明、OIDC 与不可变发布](docs/part5-advanced-tools/5.3-secure-releases.md)
+- [5.4 可复用工作流与 Dependabot 分组升级](docs/part5-advanced-tools/5.4-reusable-workflows.md)
+- [5.5 GitHub CLI 终端自动化](docs/part5-advanced-tools/5.5-github-cli.md)
 - [GitHub Actions Python 质量检查模板](examples/python-quality.yml)
 - [构建并生成证明的工作流模板](examples/attested-release.yml)
 

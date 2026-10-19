@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="现代 CSS 新特性实验台：原生嵌套与 :has() 父选择器实战">
+  <title>现代 CSS 新特性：原生嵌套与 :has() 实验台</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
+      --success: #16a34a;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+    }
+
+    /* 纯 CSS 驱动的全局暗黑主题：无需一行 JavaScript！ */
+    body:has(#dark-mode-toggle:checked) {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #38bdf8;
+      --primary-light: #0369a1;
+      --error-bg: #450a0a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .theme-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* --- 1. 原生 CSS 嵌套 (Native CSS Nesting) 演示 --- */
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+      /* 直接在纯 CSS 中嵌套子选择器，彻底告别 Sass / PostCSS 预处理 */
+      & .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        & h2 {
+          font-size: 1.25rem;
+          color: var(--primary);
+        }
+
+        & .badge {
+          font-size: 0.75rem;
+          background: var(--primary-light);
+          color: var(--primary);
+          padding: 0.25rem 0.6rem;
+          border-radius: 6px;
+          font-weight: 600;
+        }
+      }
+
+      & p {
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+
+      & .code-snippet {
+        background: #0f172a;
+        color: #38bdf8;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        margin-bottom: 1rem;
+      }
+
+      /* 嵌套媒体查询：直接在组件内定义响应式断点 */
+      @media (max-width: 600px) {
+        padding: 1rem;
+        & .card-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+      }
+    }
+
+    /* --- 2. :has() 父级与关系选择器实战 --- */
+
+    /* 场景 A: 表单状态联动 —— 当且仅当 input 校验失败时，父容器显示红色警示 */
+    .form-group {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, background-color 0.2s;
+
+      & label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      & input {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+
+        &:focus {
+          border-color: var(--primary);
+        }
+      }
+
+      & .error-hint {
+        display: none;
+        color: var(--error);
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      /* :has() 施展魔法：父容器根据子元素 input 是否 invalid 联动变红 */
+      &:has(input:invalid:not(:placeholder-shown)) {
+        border-color: var(--error);
+        background-color: var(--error-bg);
+
+        & .error-hint {
+          display: block;
+        }
+      }
+    }
+
+    /* 场景 B: 交互卡片条件布局 —— 当含有多选框被勾选时，卡片高亮展开额外操作 */
+    .interactive-card {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      & .action-panel {
+        display: none;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      /* 当卡片内部勾选了选项时，整张卡片边框高亮且展示操作面板 */
+      &:has(input[type="checkbox"]:checked) {
+        border-style: solid;
+        border-color: var(--success);
+        background: rgba(22, 163, 74, 0.05);
+
+        & .action-panel {
+          display: block;
+        }
+      }
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>现代 CSS 新特性实验台</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">原生 CSS 嵌套 (Nesting) 与父选择器 <code>:has()</code> 原理演练</p>
+      </div>
+      <label class="theme-switch" for="dark-mode-toggle">
+        <input type="checkbox" id="dark-mode-toggle" style="cursor: pointer;">
+        <span>切换深色模式 (纯 <code>body:has(...)</code> 驱动)</span>
+      </label>
+    </header>
+
+    <main>
+      <!-- 特性一：原生嵌套 -->
+      <section class="feature-card">
+        <div class="card-header">
+          <h2>1. 原生 CSS 嵌套 (Native Nesting)</h2>
+          <span class="badge">Baseline 2023+</span>
+        </div>
+        <p>在以往，前端工程必须引入 Sass、Less 或 PostCSS 才能书写 <code>&</code> 嵌套。现代浏览器原生支持在选择器内部嵌套子选择器与媒体查询，零编译依赖：</p>
+        <div class="code-snippet">
+.feature-card {<br>
+&nbsp;&nbsp;padding: 1.5rem;<br>
+&nbsp;&nbsp;&amp; .card-header { display: flex; }<br>
+&nbsp;&nbsp;@media (max-width: 600px) { padding: 1rem; }<br>
+}
+        </div>
+        <p>本页面的样式正是使用纯原生嵌套书写，无需任何前端打包构建工具即可直接在浏览器解析渲染。</p>
+      </section>
+
+      <!-- 特性二：:has() 关系与状态联动 -->
+      <section class="feature-card">
+        <div class="card-header">
+          <h2>2. :has() “父选择器”——状态与布局联动</h2>
+          <span class="badge">Baseline 2023+</span>
+        </div>
+        <p><code>:has()</code> 被誉为“CSS 的最后一块拼图”。它允许父元素根据其包含的子元素类型、状态（如 <code>:checked</code>、<code>:invalid</code>）来动态改变自身样式。</p>
+
+        <!-- 演示 1：表单实时错误高亮 -->
+        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">演示 A: 输入合法邮箱实时校验 (零 JS 表单高亮)</h3>
+        <div class="form-group">
+          <label for="demo-email">电子邮箱地址：</label>
+          <input type="email" id="demo-email" placeholder="name@example.com" required>
+          <div class="error-hint">⚠️ 请输入符合格式的有效邮箱地址（父容器由 <code>.form-group:has(input:invalid)</code> 触发警示背景）</div>
+        </div>
+
+        <!-- 演示 2：卡片选中展开 -->
+        <h3 style="font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">演示 B: 状态驱动展开 (零 JS 选项激活)</h3>
+        <div class="interactive-card">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="demo-check">
+            <span>勾选此项以激活该项目（观察外层边框与展开动作）</span>
+          </label>
+          <div class="action-panel">
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--success); font-weight: 500;">
+              ✓ 触发了 <code>.interactive-card:has(input:checked)</code>：展示操作面板
+            </p>
+            <button class="btn" type="button">确认批量处理</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

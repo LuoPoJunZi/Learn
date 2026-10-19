@@ -23,6 +23,11 @@
 - RAG 为什么要先检索资料，再组织模型输入。
 - LoRA 为什么能用两个低秩矩阵减少需要训练的参数。
 - 稀疏 MoE 如何按 Token 选择少量专家，而不是激活全部参数。
+- AI Agent 如何借助 ReAct 思考循环、工具 Schema 与结构化调度协同完成自主任务。
+- DPO 为什么能拿掉独立奖励模型，直接在偏好对上实现端到端策略概率对齐。
+- 测试时计算扩展（Scaling Law）如何通过长思考、多路采样投票与自我反思提升复杂推理上限。
+- Mamba 选择性状态空间模型如何以 O(L) 线性时间与 O(1) 状态打破传统注意力显存瓶颈。
+- 视觉多模态大模型 VLM 如何将图像切片为 Patch 向量并与文本 Token 进行统一跨模态注意力交互。
 
 ## 案例索引
 
@@ -40,6 +45,11 @@
 | 10 | [稀疏 MoE 路由](examples/sparse_moe_routing.py) | Router、Top-k 专家、加权输出、稀疏激活 | 标准库 |
 | 11 | [RoPE 旋转位置编码](examples/rotary_position_embedding.py) | 坐标对旋转、相对位置、长度与平移恒等式 | 标准库 |
 | 12 | [在线 Softmax 分块注意力](examples/online_softmax_attention.py) | 最大值修正、分块累积、精确结果对比 | 标准库 |
+| 13 | [AI Agent 与工具调用](examples/ai_agent_tool_calling.py) | ReAct 思考行动循环、JSON Schema 函数调用、MCP 协议思想 | 标准库 |
+| 14 | [RLHF 到 DPO 对齐原理](examples/rlhf_to_dpo_alignment.py) | 偏好对、隐式策略奖励、对比损失、策略演变 | 标准库 |
+| 15 | [测试时计算扩展与慢思考](examples/test_time_compute_scaling.py) | 推理算力 Scaling、Best-of-N、PRM 过程奖励、反思修正 | 标准库 |
+| 16 | [Mamba 选择性状态空间模型](examples/mamba_state_space_model.py) | 经典 LTI SSM 衰减、输入依赖选择性扫描、O(L) 线性推断 | 标准库 |
+| 17 | [视觉多模态大模型 VLM](examples/vlm_vision_language_model.py) | Patch 图像切片、模态投影器、统一注意力、动态分辨率 | 标准库 |
 
 案例 11、12 配有 [RoPE 与分块注意力中文讲解](ATTENTION_MECHANICS_GUIDE.md)，建议在案例 1 之后阅读，再与 GQA、KV Cache 对照。
 
@@ -60,6 +70,11 @@ python "Python\Modern AI\examples\lora_low_rank_update.py"
 python "Python\Modern AI\examples\sparse_moe_routing.py"
 python "Python\Modern AI\examples\rotary_position_embedding.py"
 python "Python\Modern AI\examples\online_softmax_attention.py"
+python "Python\Modern AI\examples\ai_agent_tool_calling.py"
+python "Python\Modern AI\examples\rlhf_to_dpo_alignment.py"
+python "Python\Modern AI\examples\test_time_compute_scaling.py"
+python "Python\Modern AI\examples\mamba_state_space_model.py"
+python "Python\Modern AI\examples\vlm_vision_language_model.py"
 ```
 
 这些脚本只使用标准库，不需要安装第三方依赖。

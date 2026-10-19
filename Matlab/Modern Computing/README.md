@@ -9,6 +9,9 @@
 - 听说过 Physics-Informed Neural Network（PINN），但不理解物理残差如何进入损失函数的人。
 - 想理解 Fourier Neural Operator（FNO）为什么在频域学习函数到函数映射的人。
 - 想理解 Flow Matching 如何通过速度场回归与 ODE 生成新样本的人。
+- 想学习 Simulink 框图建模与连续时间物理系统仿真的人。
+- 想掌握 MATLAB Coder 代码生成（MEX 加速与无依赖 C 源码）的人。
+- 想打通 MATLAB 与 Python / PyTorch / ONNX 模型互通双向流转的人。
 
 ## 案例索引
 
@@ -18,6 +21,9 @@
 | 物理约束损失 | [physics_informed_loss_demo.m](physics_informed_loss_demo.m) | 数据损失、ODE 残差、损失权重、参数搜索 | 基础 Matlab |
 | Fourier Neural Operator 直觉 | [fourier_neural_operator_demo.m](fourier_neural_operator_demo.m) | FFT、频域乘子、模态截断、函数空间映射 | 基础 Matlab |
 | Flow Matching 速度场学习 | [flow_matching_demo.m](flow_matching_demo.m) | 条件路径、最小二乘、边际速度、ODE 采样 | 基础 Matlab |
+| Simulink RC 滤波仿真 | [simulink_rc_circuit_guide.md](simulink_rc_circuit_guide.md) | 框图建模、积分器、闭环负反馈、Scope 示波器 | Simulink |
+| MATLAB Coder 源码生成 | [matlab_coder_intro.md](matlab_coder_intro.md) | `%#codegen`、静态类型、MEX 10x 加速、独立 C 源码 | MATLAB Coder |
+| PyTorch 与 ONNX 互通 | [matlab_onnx_interop.md](matlab_onnx_interop.md) | `importONNXNetwork`、张量维度 NCHW/SSCB 对齐、Simulink AI 闭环 | Deep Learning Toolbox |
 
 Flow Matching 配有 [完整中文讲解](FLOW_MATCHING_GUIDE.md)，包含训练与采样的区别、矩阵维度、解析对照和来源说明。
 

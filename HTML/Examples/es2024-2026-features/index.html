@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ES2024-2026 新特性交互演示</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --accent: #58a6ff;
+           --green: #3fb950; --red: #f85149; --text: #c9d1d9; --dim: #8b949e; }
+  body { font-family: -apple-system, "Segoe UI", sans-serif; background: var(--bg);
+         color: var(--text); line-height: 1.6; padding: 1rem; max-width: 900px; margin: 0 auto; }
+  h1 { color: var(--accent); text-align: center; margin: 1.5rem 0; font-size: 1.6rem; }
+  h1 small { display: block; font-size: 0.55em; color: var(--dim); font-weight: normal; }
+  section { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1.2rem; margin-bottom: 1.5rem; }
+  h2 { color: var(--green); font-size: 1.15rem; margin-bottom: 0.4rem; }
+  h2 .tag { font-size: 0.65em; background: var(--accent); color: var(--bg);
+            padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 6px; }
+  p.desc { color: var(--dim); font-size: 0.9rem; margin-bottom: 0.8rem; }
+  .controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: end; margin-bottom: 0.6rem; }
+  input[type="text"], input[type="number"] { background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px; padding: 6px 10px; font-size: 0.85rem; }
+  input[type="text"] { flex: 1; min-width: 120px; }
+  input[type="number"] { width: 70px; }
+  label { font-size: 0.8rem; color: var(--dim); }
+  button { background: #21262d; color: var(--text); border: 1px solid var(--border);
+           border-radius: 4px; padding: 6px 14px; cursor: pointer; font-size: 0.85rem;
+           transition: background 0.15s; white-space: nowrap; }
+  button:hover { background: #30363d; }
+  button.primary { background: #238636; border-color: #2ea043; }
+  button.primary:hover { background: #2ea043; }
+  button.danger { background: #b62324; border-color: #f85149; }
+  .output { background: #010409; border: 1px solid var(--border); border-radius: 4px;
+            padding: 10px 12px; font-family: "Cascadia Code", "Fira Code", monospace;
+            font-size: 0.82rem; min-height: 42px; white-space: pre-wrap; word-break: break-all;
+            color: var(--green); max-height: 200px; overflow-y: auto; }
+  .output .err { color: var(--red); }
+  .compat-warn { background: #2a1a0e; border: 1px solid #d29922; border-radius: 4px;
+                 padding: 8px 12px; font-size: 0.85rem; color: #d29922; margin-bottom: 0.6rem; }
+  code { background: #1c2128; padding: 2px 6px; border-radius: 3px; font-size: 0.85em; }
+  @media (max-width: 600px) {
+    body { padding: 0.5rem; }
+    .controls { flex-direction: column; }
+    input[type="text"] { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>ES2024-2026 新特性交互演示<small>在浏览器中体验最新 JavaScript 语言功能</small></h1>
+
+<!-- ── 1. Set Methods ── -->
+<section id="sec-set">
+  <h2>1. Set 集合方法 <span class="tag">ES2024</span></h2>
+  <p class="desc">集合终于拥有了数学集合运算：<code>union</code>（并集）、<code>intersection</code>（交集）、<code>difference</code>（差集）、<code>symmetricDifference</code>（对称差集）。</p>
+  <div id="compat-set" class="compat-warn" hidden>⚠ 你的浏览器不支持 Set 集合方法，请使用 Chrome 122+ / Firefox 127+ / Safari 17.4+。</div>
+  <div class="controls">
+    <div><label>集合 A</label><br><input id="setA" type="text" value="1,2,3,4,5" placeholder="用逗号分隔"></div>
+    <div><label>集合 B</label><br><input id="setB" type="text" value="3,4,5,6,7" placeholder="用逗号分隔"></div>
+  </div>
+  <div class="controls">
+    <button onclick="runSet('union')">并集 union</button>
+    <button onclick="runSet('intersection')">交集 intersection</button>
+    <button onclick="runSet('difference')">差集 difference</button>
+    <button onclick="runSet('symmetricDifference')">对称差集</button>
+  </div>
+  <div id="out-set" class="output">← 点击按钮查看结果</div>
+</section>
+
+<!-- ── 2. Promise.withResolvers ── -->
+<section id="sec-promise">
+  <h2>2. Promise.withResolvers() <span class="tag">ES2024</span></h2>
+  <p class="desc">过去创建可外部控制的 Promise 需要"Deferred"模式（在构造函数外保存 resolve/reject 引用）。新 API 一行搞定。</p>
+  <div id="compat-pwr" class="compat-warn" hidden>⚠ 你的浏览器不支持 Promise.withResolvers，请使用 Chrome 119+ / Firefox 121+。</div>
+  <div class="controls">
+    <button class="primary" onclick="createDeferred()">创建 Promise</button>
+    <button onclick="settleDeferred('resolve')">✔ Resolve（成功）</button>
+    <button class="danger" onclick="settleDeferred('reject')">✘ Reject（失败）</button>
+  </div>
+  <div id="out-pwr" class="output">← 先创建一个 Promise，再用按钮控制它的结果
+// 旧写法：
+let resolve, reject;
+const p = new Promise((res, rej) => { resolve = res; reject = rej; });
+
+// 新写法：
+const { promise, resolve, reject } = Promise.withResolvers();</div>
+</section>
+
+<!-- ── 3. Iterator Helpers ── -->
+<section id="sec-iter">
+  <h2>3. Iterator Helpers（迭代器辅助方法）<span class="tag">ES2025</span></h2>
+  <p class="desc">迭代器终于拥有了 <code>.map()</code>、<code>.filter()</code>、<code>.take()</code> 等方法——<strong>惰性求值</strong>，不会一次性生成整个数组。</p>
+  <div id="compat-iter" class="compat-warn" hidden>⚠ 你的浏览器不支持 Iterator Helpers，请使用 Chrome 122+ / Firefox 131+。</div>
+  <div class="controls">
+    <div><label>取前 N 项斐波那契数</label><br><input id="fibN" type="number" value="10" min="1" max="50"></div>
+    <button class="primary" onclick="runFib()">生成</button>
+    <button onclick="runFibFiltered()">仅偶数项</button>
+    <button onclick="runFibMapped()">每项 ×2</button>
+  </div>
+  <div id="out-iter" class="output">← 惰性生成斐波那契数列</div>
+</section>
+
+<!-- ── 4. Object.groupBy ── -->
+<section id="sec-group">
+  <h2>4. Object.groupBy() <span class="tag">ES2024</span></h2>
+  <p class="desc">按指定条件将数组元素分组，返回一个无原型对象。告别手写 <code>reduce</code> 分组逻辑。</p>
+  <div id="compat-group" class="compat-warn" hidden>⚠ 你的浏览器不支持 Object.groupBy，请使用 Chrome 117+ / Firefox 119+。</div>
+  <div class="controls">
+    <button class="primary" onclick="runGroup('category')">按类别分组</button>
+    <button onclick="runGroup('price')">按价格区间分组</button>
+    <button onclick="runGroup('stock')">按库存状态分组</button>
+  </div>
+  <div id="out-group" class="output">← 点击按钮查看分组结果
+
+// 示例数据：
+[
+  { name: "苹果", category: "水果", price: 5,  stock: 120 },
+  { name: "牛奶", category: "饮品", price: 12, stock: 45  },
+  { name: "香蕉", category: "水果", price: 3,  stock: 0   },
+  ...
+]</div>
+</section>
+
+<script>
+/* ── 公用工具 ── */
+const log = (id, ...msgs) => {
+  const el = document.getElementById(id);
+  el.textContent = msgs.map(m => typeof m === 'object' ? JSON.stringify(m, null, 2) : m).join('\n');
+};
+const logErr = (id, msg) => {
+  const el = document.getElementById(id);
+  el.innerHTML = `<span class="err">${msg}</span>`;
+};
+const parseList = v => v.split(',').map(s => s.trim()).filter(Boolean);
+
+/* ── 1. Set Methods ── */
+if (typeof Set.prototype.union !== 'function')
+  document.getElementById('compat-set').hidden = false;
+
+function runSet(method) {
+  if (typeof Set.prototype.union !== 'function') return logErr('out-set', '浏览器不支持此特性');
+  const a = new Set(parseList(document.getElementById('setA').value));
+  const b = new Set(parseList(document.getElementById('setB').value));
+  const result = a[method](b);
+  log('out-set',
+    `A = {${[...a].join(', ')}}`,
+    `B = {${[...b].join(', ')}}`,
+    `A.${method}(B) = {${[...result].join(', ')}}`
+  );
+}
+
+/* ── 2. Promise.withResolvers ── */
+if (typeof Promise.withResolvers !== 'function')
+  document.getElementById('compat-pwr').hidden = false;
+
+let deferred = null;
+function createDeferred() {
+  if (typeof Promise.withResolvers !== 'function')
+    return logErr('out-pwr', '浏览器不支持此特性');
+  deferred = Promise.withResolvers();
+  deferred.promise.then(
+    v => log('out-pwr', '✅ Promise 已 resolve！', `值: "${v}"`, `时间: ${new Date().toLocaleTimeString()}`),
+    e => log('out-pwr', '❌ Promise 已 reject！', `原因: "${e}"`, `时间: ${new Date().toLocaleTimeString()}`)
+  );
+  log('out-pwr', '⏳ Promise 已创建，正在等待结果...', '点击 Resolve 或 Reject 按钮来决定它的命运。');
+}
+function settleDeferred(action) {
+  if (!deferred) return logErr('out-pwr', '请先点击"创建 Promise"');
+  action === 'resolve' ? deferred.resolve('来自按钮的成功') : deferred.reject('来自按钮的失败');
+  deferred = null;
+}
+
+/* ── 3. Iterator Helpers ── */
+const hasIterHelpers = (function() {
+  try { return typeof Iterator.from === 'function'; } catch { return false; }
+})();
+if (!hasIterHelpers) document.getElementById('compat-iter').hidden = false;
+
+function* fibonacci() {
+  let a = 0, b = 1;
+  while (true) { yield a; [a, b] = [b, a + b]; }
+}
+
+function runFib() {
+  const n = parseInt(document.getElementById('fibN').value) || 10;
+  if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
+  const result = fibonacci().take(n).toArray();
+  log('out-iter', `前 ${n} 项斐波那契数（惰性求值 .take(${n}).toArray()）:`, result.join(', '));
+}
+function runFibFiltered() {
+  const n = parseInt(document.getElementById('fibN').value) || 10;
+  if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
+  const result = fibonacci().filter(x => x % 2 === 0).take(n).toArray();
+  log('out-iter', `前 ${n} 个偶数斐波那契数 .filter(x => x%2===0).take(${n}):`, result.join(', '));
+}
+function runFibMapped() {
+  const n = parseInt(document.getElementById('fibN').value) || 10;
+  if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
+  const result = fibonacci().take(n).map(x => x * 2).toArray();
+  log('out-iter', `前 ${n} 项 ×2  .take(${n}).map(x => x*2):`, result.join(', '));
+}
+
+/* ── 4. Object.groupBy ── */
+if (typeof Object.groupBy !== 'function')
+  document.getElementById('compat-group').hidden = false;
+
+const products = [
+  { name: '苹果', category: '水果', price: 5,  stock: 120 },
+  { name: '牛奶', category: '饮品', price: 12, stock: 45  },
+  { name: '香蕉', category: '水果', price: 3,  stock: 0   },
+  { name: '咖啡', category: '饮品', price: 28, stock: 10  },
+  { name: '面包', category: '主食', price: 8,  stock: 0   },
+  { name: '米饭', category: '主食', price: 6,  stock: 200 },
+  { name: '橙汁', category: '饮品', price: 9,  stock: 60  },
+  { name: '葡萄', category: '水果', price: 15, stock: 30  },
+];
+
+function runGroup(mode) {
+  if (typeof Object.groupBy !== 'function') return logErr('out-group', '浏览器不支持此特性');
+  let result, label;
+  if (mode === 'category') {
+    result = Object.groupBy(products, p => p.category);
+    label = 'Object.groupBy(products, p => p.category)';
+  } else if (mode === 'price') {
+    result = Object.groupBy(products, p => p.price < 10 ? '平价 (<10¥)' : '高价 (≥10¥)');
+    label = 'Object.groupBy(products, p => p.price < 10 ? "平价" : "高价")';
+  } else {
+    result = Object.groupBy(products, p => p.stock > 0 ? '有货' : '缺货');
+    label = 'Object.groupBy(products, p => p.stock > 0 ? "有货" : "缺货")';
+  }
+  const lines = [label, ''];
+  for (const [key, items] of Object.entries(result)) {
+    lines.push(`【${key}】 → ${items.map(i => i.name).join('、')}`);
+  }
+  log('out-group', ...lines);
+}
+</script>
+</body>
+</html>

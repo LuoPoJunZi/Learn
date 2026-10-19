@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WebGPU 通用计算初学实验台：从 WebGL 跃升至端侧浏览器 GPU 并行计算与 AI 底座">
+  <title>WebGPU 初学导引：GPU 通用计算与 WGSL 实验台</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --success: #4ade80;
+      --warning: #facc15;
+      --error: #f87171;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .status-banner {
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .status-supported {
+      background: rgba(74, 222, 128, 0.15);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+
+    .status-unsupported {
+      background: rgba(248, 113, 113, 0.15);
+      border: 1px solid var(--error);
+      color: var(--error);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.8rem; }
+    p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pipeline-step {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    .pipeline-step strong { display: block; color: var(--primary); margin-bottom: 0.3rem; font-size: 0.95rem; }
+
+    pre {
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      color: #7dd3fc;
+      font-family: monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #0f172a;
+      font-weight: 600;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .output-panel {
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      min-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WebGPU 通用计算初学实验台</h1>
+      <p>跨越 WebGL：探索下一代浏览器图形管线与端侧 AI（Transformers.js / WebLLM）加速底座</p>
+      <span class="badge">W3C Recommendation 2023–2026 Baseline</span>
+    </header>
+
+    <!-- 特性检测提示条 -->
+    <div id="support-status" class="status-banner status-supported">
+      正在检测当前浏览器 WebGPU 支持情况...
+    </div>
+
+    <!-- 概念架构图解 -->
+    <section class="card">
+      <h2>WebGPU 通用计算管线 (Compute Pipeline)</h2>
+      <p>与传统的 WebGL 依赖栅格化渲染循环不同，WebGPU 原生支持纯数学**计算管线**，硬件映射至 DirectX 12、Metal 与 Vulkan 底层，无需通过 Canvas 即可让 GPU 参与并行阵列计算：</p>
+      <div class="pipeline-grid">
+        <div class="pipeline-step">
+          <strong>1. Adapter</strong>
+          请求物理显卡实例
+        </div>
+        <div class="pipeline-step">
+          <strong>2. Device</strong>
+          建立逻辑设备会话
+        </div>
+        <div class="pipeline-step">
+          <strong>3. Buffers</strong>
+          显存分配数据缓冲区
+        </div>
+        <div class="pipeline-step">
+          <strong>4. WGSL</strong>
+          编译着色语言程序
+        </div>
+        <div class="pipeline-step">
+          <strong>5. Dispatch</strong>
+          多线程工作组并行派发
+        </div>
+      </div>
+    </section>
+
+    <!-- 实操演练：向量相加计算着色器 -->
+    <section class="card">
+      <h2>实战演练：GPU 向量并行相加</h2>
+      <p>我们将两组长度为 4 的一维浮点数组上传至 GPU 显存，执行 WGSL 计算着色器完成并行相加，再将显存计算结果映射回 CPU 内存：</p>
+
+      <pre><code>// WGSL (WebGPU Shading Language) 极简计算着色器
+@group(0) @binding(0) var&lt;storage, read&gt; inputA: array&lt;f32&gt;;
+@group(0) @binding(1) var&lt;storage, read&gt; inputB: array&lt;f32&gt;;
+@group(0) @binding(2) var&lt;storage, read_write&gt; outputResult: array&lt;f32&gt;;
+
+@compute @workgroup_size(64)
+fn main(@builtin(global_invocation_id) global_id: vec3&lt;u32&gt;) {
+    let index = global_id.x;
+    if (index &lt; arrayLength(&amp;inputA)) {
+        outputResult[index] = inputA[index] + inputB[index];
+    }
+}</code></pre>
+
+      <button id="run-btn" class="btn" type="button">在 GPU 上启动计算</button>
+
+      <div class="output-panel" id="console-output">
+        点击上方按钮，观察 GPU 执行过程与运算结果...
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById("support-status");
+    const runBtn = document.getElementById("run-btn");
+    const consoleEl = document.getElementById("console-output");
+
+    function log(msg) {
+      consoleEl.innerHTML += `<div>&gt; ${msg}</div>`;
+    }
+
+    // 1. 运行时特性检测
+    async function checkSupport() {
+      if (!navigator.gpu) {
+        statusEl.className = "status-banner status-unsupported";
+        statusEl.innerHTML = "❌ 当前浏览器暂未支持 WebGPU（建议升级至 Chrome 113+、Edge 113+ 或启用实验特性）。";
+        runBtn.disabled = true;
+        return null;
+      }
+      try {
+        const adapter = await navigator.gpu.requestAdapter();
+        if (!adapter) {
+          throw new Error("未能找到可用的物理 GPU 适配器");
+        }
+        statusEl.className = "status-banner status-supported";
+        statusEl.innerHTML = `✓ WebGPU 环境就绪！已检测到 GPU 设备：${adapter.info?.device || "通用图形适配器"}`;
+        return adapter;
+      } catch (err) {
+        statusEl.className = "status-banner status-unsupported";
+        statusEl.innerHTML = `❌ WebGPU 初始化失败: ${err.message}`;
+        runBtn.disabled = true;
+        return null;
+      }
+    }
+
+    // 2. 执行一次 GPU 计算
+    async function runCompute() {
+      consoleEl.innerHTML = "";
+      log("正在申请 GPU Device 句柄...");
+
+      const adapter = await navigator.gpu.requestAdapter();
+      const device = await adapter.requestDevice();
+
+      // 输入数据
+      const firstArray = new Float32Array([1.5, 3.2, 5.0, 8.4]);
+      const secondArray = new Float32Array([2.5, 4.8, 1.0, 1.6]);
+      log(`输入向量 A: [${firstArray.join(", ")}]`);
+      log(`输入向量 B: [${secondArray.join(", ")}]`);
+
+      // 创建 GPU Buffer
+      const bufferSize = firstArray.byteLength;
+      const gpuBufferA = device.createBuffer({
+        size: bufferSize,
+        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+      });
+      const gpuBufferB = device.createBuffer({
+        size: bufferSize,
+        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+      });
+      const gpuBufferOut = device.createBuffer({
+        size: bufferSize,
+        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
+      });
+      const readBuffer = device.createBuffer({
+        size: bufferSize,
+        usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
+      });
+
+      // 写入数据到 GPU
+      device.queue.writeBuffer(gpuBufferA, 0, firstArray);
+      device.queue.writeBuffer(gpuBufferB, 0, secondArray);
+      log("数据已写入 GPU 显存 (Storage Buffer)...");
+
+      // 编译 WGSL 着色器模块
+      const shaderModule = device.createShaderModule({
+        code: `
+          @group(0) @binding(0) var<storage, read> a: array<f32>;
+          @group(0) @binding(1) var<storage, read> b: array<f32>;
+          @group(0) @binding(2) var<storage, read_write> out: array<f32>;
+
+          @compute @workgroup_size(64)
+          fn main(@builtin(global_invocation_id) id: vec3<u32>) {
+            let i = id.x;
+            if (i < arrayLength(&a)) {
+              out[i] = a[i] + b[i];
+            }
+          }
+        `,
+      });
+
+      const computePipeline = device.createComputePipeline({
+        layout: "auto",
+        compute: { module: shaderModule, entryPoint: "main" },
+      });
+
+      const bindGroup = device.createBindGroup({
+        layout: computePipeline.getBindGroupLayout(0),
+        entries: [
+          { binding: 0, resource: { buffer: gpuBufferA } },
+          { binding: 1, resource: { buffer: gpuBufferB } },
+          { binding: 2, resource: { buffer: gpuBufferOut } },
+        ],
+      });
+
+      // 录制命令并提交到 GPU 队列
+      const commandEncoder = device.createCommandEncoder();
+      const passEncoder = commandEncoder.beginComputePass();
+      passEncoder.setPipeline(computePipeline);
+      passEncoder.setBindGroup(0, bindGroup);
+      passEncoder.dispatchWorkgroups(1);
+      passEncoder.end();
+
+      // 将计算结果从 GPU 专用显存复制到 CPU 可映射的缓冲中
+      commandEncoder.copyBufferToBuffer(gpuBufferOut, 0, readBuffer, 0, bufferSize);
+      device.queue.submit([commandEncoder.finish()]);
+      log("GPU 指令执行完毕，正在映射回读取内存...");
+
+      // 映射显存读取结果
+      await readBuffer.mapAsync(GPUMapMode.READ);
+      const copyArray = new Float32Array(readBuffer.getMappedRange());
+      log(`<span style="color: var(--success); font-weight: bold;">GPU 计算结果: [${Array.from(copyArray).map(v => v.toFixed(2)).join(", ")}]</span>`);
+      readBuffer.unmap();
+    }
+
+    checkSupport();
+    runBtn.addEventListener("click", () => {
+      runCompute().catch(err => log(`<span style="color: var(--error);">运行错误: ${err.message}</span>`));
+    });
+  </script>
+</body>
+</html>

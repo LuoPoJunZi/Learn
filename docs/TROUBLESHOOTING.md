@@ -234,17 +234,32 @@ with open("notes.txt", "r", encoding="utf-8") as file:
 - [Linux 新手地图](../Linux/docs/part0-newbie-map.md)
 - [命令速查附录](../Linux/docs/appendix/command-reference.md)
 
-### command not found
+### command not found（命令找不到）
 
-含义：系统找不到这个命令。
+含义：当前系统的 Shell 无法在可执行路径中定位到你输入的命令。
 
-可能原因：
+这是新手在 Linux、macOS 或 Git Bash 中最常遇到的报错。
 
-- 命令拼错。
-- 软件没有安装。
-- 当前用户环境变量没有配置。
+#### 为什么会发生？
+1. **该工具不是 Linux 系统自带的**：
+   - 系统自带：`ls`、`cat`、`grep`、`find`、`cd`、`mkdir` 等基础命令。
+   - 必须手动安装的第三方工具：`eza`、`bat`、`ripgrep` (`rg`)、`fd`、`zoxide`、`gh`（GitHub CLI）、`docker`、`bpftrace`、`ufw`。
+2. **命令拼写有误**：例如误将 `grep` 敲成 `gerp`。
+3. **软件虽然已安装，但没有加入 PATH 环境变量**：例如安装在 `~/.local/bin` 或 `/usr/local/bin` 但当前终端没有加载。
 
-先检查拼写，再确认是否安装。
+#### 排查与解决步骤：
+1. 用 `command -v 命令名` 检查是否存在：
+   ```bash
+   command -v eza
+   ```
+   若没有任何输出，说明系统内**尚未安装该软件**。
+2. 查看当前教程的**第一步（安装指南）**，使用对应包管理器安装：
+   - Ubuntu / Debian: `sudo apt update && sudo apt install -y 软件名`
+   - CentOS / RHEL / Fedora: `sudo dnf install -y 软件名`
+   - macOS: `brew install 软件名`
+3. 若刚配置了安装或别名，执行 `source ~/.bashrc` 或重新打开终端窗口刷新生效。
+
+*(注：在 MATLAB 中遇到类似报错 `未定义函数或变量 'xxx'` 时，原理完全一致——通常是因为当前 MATLAB 没有安装对应的工具箱，如 MATLAB Coder、Simulink 或 Deep Learning Toolbox)*
 
 ### Permission denied
 

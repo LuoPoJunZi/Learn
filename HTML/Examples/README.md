@@ -19,13 +19,16 @@
 | 咖啡馆 / 餐厅展示页 | [cafe-restaurant/index.html](cafe-restaurant/index.html) | 菜单卡片、营业信息、氛围区 |
 | 价格卡片页面 | [pricing-page/index.html](pricing-page/index.html) | 价格卡片、对比布局、推荐状态 |
 
-### 组件类
+### 组件与前沿实验台
 
 | 案例 | 入口 | 学习重点 |
 | :--- | :--- | :--- |
 | 交互组件集合 | [interactive-components/index.html](interactive-components/index.html) | Tabs、FAQ、Toast、进度步骤 |
 | 现代 Web API 实验台 | [modern-web-apis/index.html](modern-web-apis/index.html) | Web Components、Container Queries、Popover、View Transitions |
 | 原生 UI 2026 实验台 | [native-ui-2026/index.html](native-ui-2026/index.html) | Invoker Commands、Anchor Positioning、Scroll-driven Animations |
+| 现代 CSS 新特性实验台 | [modern-css-features/index.html](modern-css-features/index.html) | 原生 CSS 嵌套 (Nesting)、父级关系选择器 `:has()` |
+| 现代 JavaScript ES2024-2026 | [es2024-2026-features/index.html](es2024-2026-features/index.html) | 原生 Set 集合运算、Promise.withResolvers、Iterator Helpers 懒计算 |
+| WebGPU 初学导引 | [webgpu-basics/index.html](webgpu-basics/index.html) | WebGPU 计算管线、WGSL 着色语言、向量并行相加 |
 
 ### 布局类
 
