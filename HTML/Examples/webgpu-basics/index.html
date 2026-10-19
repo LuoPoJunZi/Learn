@@ -135,6 +135,7 @@
       font-family: monospace;
       font-size: 0.9rem;
       min-height: 80px;
+      overflow-wrap: anywhere;
     }
   </style>
 </head>
@@ -143,7 +144,7 @@
     <header>
       <h1>WebGPU 通用计算初学实验台</h1>
       <p>跨越 WebGL：探索下一代浏览器图形管线与端侧 AI（Transformers.js / WebLLM）加速底座</p>
-      <span class="badge">W3C Recommendation 2023–2026 Baseline</span>
+      <span class="badge">WebGPU Compute · WGSL</span>
     </header>
 
     <!-- 特性检测提示条 -->
@@ -154,7 +155,7 @@
     <!-- 概念架构图解 -->
     <section class="card">
       <h2>WebGPU 通用计算管线 (Compute Pipeline)</h2>
-      <p>与传统的 WebGL 依赖栅格化渲染循环不同，WebGPU 原生支持纯数学**计算管线**，硬件映射至 DirectX 12、Metal 与 Vulkan 底层，无需通过 Canvas 即可让 GPU 参与并行阵列计算：</p>
+      <p>WebGPU 原生支持数学计算管线，可映射至 DirectX 12、Metal 与 Vulkan 等后端，无需通过 Canvas 即可让 GPU 参与并行数组计算：</p>
       <div class="pipeline-grid">
         <div class="pipeline-step">
           <strong>1. Adapter</strong>
@@ -197,7 +198,7 @@ fn main(@builtin(global_invocation_id) global_id: vec3&lt;u32&gt;) {
     }
 }</code></pre>
 
-      <button id="run-btn" class="btn" type="button">在 GPU 上启动计算</button>
+      <button id="run-btn" class="btn" type="button" disabled>在 GPU 上启动计算</button>
 
       <div class="output-panel" id="console-output">
         点击上方按钮，观察 GPU 执行过程与运算结果...
@@ -211,14 +212,16 @@ fn main(@builtin(global_invocation_id) global_id: vec3&lt;u32&gt;) {
     const consoleEl = document.getElementById("console-output");
 
     function log(msg) {
-      consoleEl.innerHTML += `<div>&gt; ${msg}</div>`;
+      const line = document.createElement("div");
+      line.textContent = `> ${msg}`;
+      consoleEl.append(line);
     }
 
     // 1. 运行时特性检测
     async function checkSupport() {
       if (!navigator.gpu) {
         statusEl.className = "status-banner status-unsupported";
-        statusEl.innerHTML = "❌ 当前浏览器暂未支持 WebGPU（建议升级至 Chrome 113+、Edge 113+ 或启用实验特性）。";
+        statusEl.textContent = "当前环境没有 WebGPU；请检查浏览器、硬件加速和安全上下文（HTTPS 或 localhost）。";
         runBtn.disabled = true;
         return null;
       }
@@ -228,108 +231,127 @@ fn main(@builtin(global_invocation_id) global_id: vec3&lt;u32&gt;) {
           throw new Error("未能找到可用的物理 GPU 适配器");
         }
         statusEl.className = "status-banner status-supported";
-        statusEl.innerHTML = `✓ WebGPU 环境就绪！已检测到 GPU 设备：${adapter.info?.device || "通用图形适配器"}`;
+        statusEl.textContent = `已找到 GPU 适配器：${adapter.info?.device || "通用图形适配器"}`;
+        runBtn.disabled = false;
         return adapter;
       } catch (err) {
         statusEl.className = "status-banner status-unsupported";
-        statusEl.innerHTML = `❌ WebGPU 初始化失败: ${err.message}`;
+        statusEl.textContent = `WebGPU 初始化失败: ${err.message}`;
         runBtn.disabled = true;
         return null;
       }
     }
 
     // 2. 执行一次 GPU 计算
-    async function runCompute() {
-      consoleEl.innerHTML = "";
+    async function runCompute(
+      firstArray = new Float32Array([1.5, 3.2, 5.0, 8.4]),
+      secondArray = new Float32Array([2.5, 4.8, 1.0, 1.6]),
+    ) {
+      if (!(firstArray instanceof Float32Array) || !(secondArray instanceof Float32Array) ||
+          firstArray.length === 0 || firstArray.length !== secondArray.length ||
+          !firstArray.every(Number.isFinite) || !secondArray.every(Number.isFinite)) {
+        throw new Error("输入必须是长度相同、非空且数值有限的 Float32Array");
+      }
+      consoleEl.replaceChildren();
+      runBtn.disabled = true;
       log("正在申请 GPU Device 句柄...");
+      let device;
+      const buffers = [];
+      try {
+        const adapter = await navigator.gpu?.requestAdapter();
+        if (!adapter) throw new Error("当前没有可用的 GPU 适配器");
+        device = await adapter.requestDevice();
+        device.pushErrorScope("validation");
+        log(`输入向量 A: [${firstArray.join(", ")}]`);
+        log(`输入向量 B: [${secondArray.join(", ")}]`);
 
-      const adapter = await navigator.gpu.requestAdapter();
-      const device = await adapter.requestDevice();
+        // 创建 GPU Buffer
+        const bufferSize = firstArray.byteLength;
+        const gpuBufferA = device.createBuffer({
+          size: bufferSize,
+          usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+        });
+        const gpuBufferB = device.createBuffer({
+          size: bufferSize,
+          usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+        });
+        const gpuBufferOut = device.createBuffer({
+          size: bufferSize,
+          usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
+        });
+        const readBuffer = device.createBuffer({
+          size: bufferSize,
+          usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
+        });
+        buffers.push(gpuBufferA, gpuBufferB, gpuBufferOut, readBuffer);
 
-      // 输入数据
-      const firstArray = new Float32Array([1.5, 3.2, 5.0, 8.4]);
-      const secondArray = new Float32Array([2.5, 4.8, 1.0, 1.6]);
-      log(`输入向量 A: [${firstArray.join(", ")}]`);
-      log(`输入向量 B: [${secondArray.join(", ")}]`);
+        // 写入数据到 GPU
+        device.queue.writeBuffer(gpuBufferA, 0, firstArray);
+        device.queue.writeBuffer(gpuBufferB, 0, secondArray);
+        log("数据已写入 GPU 显存 (Storage Buffer)...");
 
-      // 创建 GPU Buffer
-      const bufferSize = firstArray.byteLength;
-      const gpuBufferA = device.createBuffer({
-        size: bufferSize,
-        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
-      });
-      const gpuBufferB = device.createBuffer({
-        size: bufferSize,
-        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
-      });
-      const gpuBufferOut = device.createBuffer({
-        size: bufferSize,
-        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
-      });
-      const readBuffer = device.createBuffer({
-        size: bufferSize,
-        usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
-      });
+        // 编译 WGSL 着色器模块
+        const shaderModule = device.createShaderModule({
+          code: `
+            @group(0) @binding(0) var<storage, read> a: array<f32>;
+            @group(0) @binding(1) var<storage, read> b: array<f32>;
+            @group(0) @binding(2) var<storage, read_write> out: array<f32>;
 
-      // 写入数据到 GPU
-      device.queue.writeBuffer(gpuBufferA, 0, firstArray);
-      device.queue.writeBuffer(gpuBufferB, 0, secondArray);
-      log("数据已写入 GPU 显存 (Storage Buffer)...");
-
-      // 编译 WGSL 着色器模块
-      const shaderModule = device.createShaderModule({
-        code: `
-          @group(0) @binding(0) var<storage, read> a: array<f32>;
-          @group(0) @binding(1) var<storage, read> b: array<f32>;
-          @group(0) @binding(2) var<storage, read_write> out: array<f32>;
-
-          @compute @workgroup_size(64)
-          fn main(@builtin(global_invocation_id) id: vec3<u32>) {
-            let i = id.x;
-            if (i < arrayLength(&a)) {
-              out[i] = a[i] + b[i];
+            @compute @workgroup_size(64)
+            fn main(@builtin(global_invocation_id) id: vec3<u32>) {
+              let i = id.x;
+              if (i < arrayLength(&a)) {
+                out[i] = a[i] + b[i];
+              }
             }
-          }
-        `,
-      });
+          `,
+        });
 
-      const computePipeline = device.createComputePipeline({
-        layout: "auto",
-        compute: { module: shaderModule, entryPoint: "main" },
-      });
+        const computePipeline = device.createComputePipeline({
+          layout: "auto",
+          compute: { module: shaderModule, entryPoint: "main" },
+        });
 
-      const bindGroup = device.createBindGroup({
-        layout: computePipeline.getBindGroupLayout(0),
-        entries: [
-          { binding: 0, resource: { buffer: gpuBufferA } },
-          { binding: 1, resource: { buffer: gpuBufferB } },
-          { binding: 2, resource: { buffer: gpuBufferOut } },
-        ],
-      });
+        const bindGroup = device.createBindGroup({
+          layout: computePipeline.getBindGroupLayout(0),
+          entries: [
+            { binding: 0, resource: { buffer: gpuBufferA } },
+            { binding: 1, resource: { buffer: gpuBufferB } },
+            { binding: 2, resource: { buffer: gpuBufferOut } },
+          ],
+        });
 
-      // 录制命令并提交到 GPU 队列
-      const commandEncoder = device.createCommandEncoder();
-      const passEncoder = commandEncoder.beginComputePass();
-      passEncoder.setPipeline(computePipeline);
-      passEncoder.setBindGroup(0, bindGroup);
-      passEncoder.dispatchWorkgroups(1);
-      passEncoder.end();
+        // 录制命令并提交到 GPU 队列
+        const commandEncoder = device.createCommandEncoder();
+        const passEncoder = commandEncoder.beginComputePass();
+        passEncoder.setPipeline(computePipeline);
+        passEncoder.setBindGroup(0, bindGroup);
+        passEncoder.dispatchWorkgroups(Math.ceil(firstArray.length / 64));
+        passEncoder.end();
 
-      // 将计算结果从 GPU 专用显存复制到 CPU 可映射的缓冲中
-      commandEncoder.copyBufferToBuffer(gpuBufferOut, 0, readBuffer, 0, bufferSize);
-      device.queue.submit([commandEncoder.finish()]);
-      log("GPU 指令执行完毕，正在映射回读取内存...");
+        // 将计算结果从 GPU 专用显存复制到 CPU 可映射的缓冲中
+        commandEncoder.copyBufferToBuffer(gpuBufferOut, 0, readBuffer, 0, bufferSize);
+        device.queue.submit([commandEncoder.finish()]);
+        const validationError = await device.popErrorScope();
+        if (validationError) throw new Error(validationError.message);
+        log("GPU 指令执行完毕，正在映射回读取内存...");
 
-      // 映射显存读取结果
-      await readBuffer.mapAsync(GPUMapMode.READ);
-      const copyArray = new Float32Array(readBuffer.getMappedRange());
-      log(`<span style="color: var(--success); font-weight: bold;">GPU 计算结果: [${Array.from(copyArray).map(v => v.toFixed(2)).join(", ")}]</span>`);
-      readBuffer.unmap();
+        // 映射显存读取结果
+        await readBuffer.mapAsync(GPUMapMode.READ);
+        const copyArray = new Float32Array(readBuffer.getMappedRange().slice(0));
+        log(`GPU 计算结果: [${Array.from(copyArray).map(v => v.toFixed(2)).join(", ")}]`);
+        readBuffer.unmap();
+        return Array.from(copyArray);
+      } finally {
+        for (const buffer of buffers) buffer.destroy();
+        device?.destroy();
+        runBtn.disabled = false;
+      }
     }
 
     checkSupport();
     runBtn.addEventListener("click", () => {
-      runCompute().catch(err => log(`<span style="color: var(--error);">运行错误: ${err.message}</span>`));
+      runCompute().catch(err => log(`运行错误: ${err.message}`));
     });
   </script>
 </body>

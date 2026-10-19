@@ -17,6 +17,14 @@ if ($null -eq $python) {
         $failures.Add('Python checks failed.')
     }
 
+    $regressionTests = Join-Path $rootPath 'scripts/tests/test_modern_ai_examples.py'
+    if (Test-Path -LiteralPath $regressionTests) {
+        & $python.Source -X utf8 -B $regressionTests
+        if ($LASTEXITCODE -ne 0) {
+            $failures.Add('Modern AI numerical regression checks failed.')
+        }
+    }
+
     & $python.Source (Join-Path $PSScriptRoot 'check-html-code.py') --root $rootPath
     if ($LASTEXITCODE -ne 0) {
         $failures.Add('HTML attribute checks failed.')

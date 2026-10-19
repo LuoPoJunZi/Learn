@@ -52,18 +52,18 @@
 
 <!-- ── 1. Set Methods ── -->
 <section id="sec-set">
-  <h2>1. Set 集合方法 <span class="tag">ES2024</span></h2>
+  <h2>1. Set 集合方法 <span class="tag">ES2025</span></h2>
   <p class="desc">集合终于拥有了数学集合运算：<code>union</code>（并集）、<code>intersection</code>（交集）、<code>difference</code>（差集）、<code>symmetricDifference</code>（对称差集）。</p>
-  <div id="compat-set" class="compat-warn" hidden>⚠ 你的浏览器不支持 Set 集合方法，请使用 Chrome 122+ / Firefox 127+ / Safari 17.4+。</div>
+  <div id="compat-set" class="compat-warn" hidden>当前浏览器缺少所需的 Set 集合方法，请升级后重试。</div>
   <div class="controls">
-    <div><label>集合 A</label><br><input id="setA" type="text" value="1,2,3,4,5" placeholder="用逗号分隔"></div>
-    <div><label>集合 B</label><br><input id="setB" type="text" value="3,4,5,6,7" placeholder="用逗号分隔"></div>
+    <div><label for="setA">集合 A</label><br><input id="setA" type="text" value="1,2,3,4,5" placeholder="用逗号分隔"></div>
+    <div><label for="setB">集合 B</label><br><input id="setB" type="text" value="3,4,5,6,7" placeholder="用逗号分隔"></div>
   </div>
   <div class="controls">
-    <button onclick="runSet('union')">并集 union</button>
-    <button onclick="runSet('intersection')">交集 intersection</button>
-    <button onclick="runSet('difference')">差集 difference</button>
-    <button onclick="runSet('symmetricDifference')">对称差集</button>
+    <button type="button" onclick="runSet('union')">并集 union</button>
+    <button type="button" onclick="runSet('intersection')">交集 intersection</button>
+    <button type="button" onclick="runSet('difference')">差集 difference</button>
+    <button type="button" onclick="runSet('symmetricDifference')">对称差集</button>
   </div>
   <div id="out-set" class="output">← 点击按钮查看结果</div>
 </section>
@@ -72,11 +72,11 @@
 <section id="sec-promise">
   <h2>2. Promise.withResolvers() <span class="tag">ES2024</span></h2>
   <p class="desc">过去创建可外部控制的 Promise 需要"Deferred"模式（在构造函数外保存 resolve/reject 引用）。新 API 一行搞定。</p>
-  <div id="compat-pwr" class="compat-warn" hidden>⚠ 你的浏览器不支持 Promise.withResolvers，请使用 Chrome 119+ / Firefox 121+。</div>
+  <div id="compat-pwr" class="compat-warn" hidden>当前浏览器不支持 Promise.withResolvers，请升级后重试。</div>
   <div class="controls">
-    <button class="primary" onclick="createDeferred()">创建 Promise</button>
-    <button onclick="settleDeferred('resolve')">✔ Resolve（成功）</button>
-    <button class="danger" onclick="settleDeferred('reject')">✘ Reject（失败）</button>
+    <button type="button" class="primary" onclick="createDeferred()">创建 Promise</button>
+    <button type="button" onclick="settleDeferred('resolve')">✔ Resolve（成功）</button>
+    <button type="button" class="danger" onclick="settleDeferred('reject')">✘ Reject（失败）</button>
   </div>
   <div id="out-pwr" class="output">← 先创建一个 Promise，再用按钮控制它的结果
 // 旧写法：
@@ -91,12 +91,12 @@ const { promise, resolve, reject } = Promise.withResolvers();</div>
 <section id="sec-iter">
   <h2>3. Iterator Helpers（迭代器辅助方法）<span class="tag">ES2025</span></h2>
   <p class="desc">迭代器终于拥有了 <code>.map()</code>、<code>.filter()</code>、<code>.take()</code> 等方法——<strong>惰性求值</strong>，不会一次性生成整个数组。</p>
-  <div id="compat-iter" class="compat-warn" hidden>⚠ 你的浏览器不支持 Iterator Helpers，请使用 Chrome 122+ / Firefox 131+。</div>
+  <div id="compat-iter" class="compat-warn" hidden>当前浏览器缺少所需的 Iterator Helpers，请升级后重试。</div>
   <div class="controls">
-    <div><label>取前 N 项斐波那契数</label><br><input id="fibN" type="number" value="10" min="1" max="50"></div>
-    <button class="primary" onclick="runFib()">生成</button>
-    <button onclick="runFibFiltered()">仅偶数项</button>
-    <button onclick="runFibMapped()">每项 ×2</button>
+    <div><label for="fibN">取前 N 项斐波那契数</label><br><input id="fibN" type="number" value="10" min="1" max="50" step="1"></div>
+    <button type="button" class="primary" onclick="runFib()">生成</button>
+    <button type="button" onclick="runFibFiltered()">仅偶数项</button>
+    <button type="button" onclick="runFibMapped()">每项 ×2</button>
   </div>
   <div id="out-iter" class="output">← 惰性生成斐波那契数列</div>
 </section>
@@ -105,11 +105,11 @@ const { promise, resolve, reject } = Promise.withResolvers();</div>
 <section id="sec-group">
   <h2>4. Object.groupBy() <span class="tag">ES2024</span></h2>
   <p class="desc">按指定条件将数组元素分组，返回一个无原型对象。告别手写 <code>reduce</code> 分组逻辑。</p>
-  <div id="compat-group" class="compat-warn" hidden>⚠ 你的浏览器不支持 Object.groupBy，请使用 Chrome 117+ / Firefox 119+。</div>
+  <div id="compat-group" class="compat-warn" hidden>当前浏览器不支持 Object.groupBy，请升级后重试。</div>
   <div class="controls">
-    <button class="primary" onclick="runGroup('category')">按类别分组</button>
-    <button onclick="runGroup('price')">按价格区间分组</button>
-    <button onclick="runGroup('stock')">按库存状态分组</button>
+    <button type="button" class="primary" onclick="runGroup('category')">按类别分组</button>
+    <button type="button" onclick="runGroup('price')">按价格区间分组</button>
+    <button type="button" onclick="runGroup('stock')">按库存状态分组</button>
   </div>
   <div id="out-group" class="output">← 点击按钮查看分组结果
 
@@ -130,7 +130,7 @@ const log = (id, ...msgs) => {
 };
 const logErr = (id, msg) => {
   const el = document.getElementById(id);
-  el.innerHTML = `<span class="err">${msg}</span>`;
+  el.textContent = msg;
 };
 const parseList = v => v.split(',').map(s => s.trim()).filter(Boolean);
 
@@ -139,7 +139,7 @@ if (typeof Set.prototype.union !== 'function')
   document.getElementById('compat-set').hidden = false;
 
 function runSet(method) {
-  if (typeof Set.prototype.union !== 'function') return logErr('out-set', '浏览器不支持此特性');
+  if (typeof Set.prototype[method] !== 'function') return logErr('out-set', '浏览器不支持此特性');
   const a = new Set(parseList(document.getElementById('setA').value));
   const b = new Set(parseList(document.getElementById('setB').value));
   const result = a[method](b);
@@ -172,32 +172,44 @@ function settleDeferred(action) {
 }
 
 /* ── 3. Iterator Helpers ── */
-const hasIterHelpers = (function() {
-  try { return typeof Iterator.from === 'function'; } catch { return false; }
-})();
+const hasIterHelpers = typeof Iterator !== 'undefined' &&
+  ['map', 'filter', 'take', 'toArray'].every(method =>
+    typeof Iterator.prototype[method] === 'function');
 if (!hasIterHelpers) document.getElementById('compat-iter').hidden = false;
 
 function* fibonacci() {
-  let a = 0, b = 1;
+  let a = 0n, b = 1n;
   while (true) { yield a; [a, b] = [b, a + b]; }
 }
 
+function readFibCount() {
+  const n = Number(document.getElementById('fibN').value);
+  if (!Number.isInteger(n) || n < 1 || n > 50) {
+    logErr('out-iter', '请输入 1 到 50 之间的整数');
+    return null;
+  }
+  return n;
+}
+
 function runFib() {
-  const n = parseInt(document.getElementById('fibN').value) || 10;
+  const n = readFibCount();
+  if (n === null) return;
   if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
   const result = fibonacci().take(n).toArray();
   log('out-iter', `前 ${n} 项斐波那契数（惰性求值 .take(${n}).toArray()）:`, result.join(', '));
 }
 function runFibFiltered() {
-  const n = parseInt(document.getElementById('fibN').value) || 10;
+  const n = readFibCount();
+  if (n === null) return;
   if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
-  const result = fibonacci().filter(x => x % 2 === 0).take(n).toArray();
-  log('out-iter', `前 ${n} 个偶数斐波那契数 .filter(x => x%2===0).take(${n}):`, result.join(', '));
+  const result = fibonacci().filter(x => x % 2n === 0n).take(n).toArray();
+  log('out-iter', `前 ${n} 个偶数斐波那契数 .filter(x => x%2n===0n).take(${n}):`, result.join(', '));
 }
 function runFibMapped() {
-  const n = parseInt(document.getElementById('fibN').value) || 10;
+  const n = readFibCount();
+  if (n === null) return;
   if (!hasIterHelpers) return logErr('out-iter', '浏览器不支持 Iterator Helpers');
-  const result = fibonacci().take(n).map(x => x * 2).toArray();
+  const result = fibonacci().take(n).map(x => x * 2n).toArray();
   log('out-iter', `前 ${n} 项 ×2  .take(${n}).map(x => x*2):`, result.join(', '));
 }
 

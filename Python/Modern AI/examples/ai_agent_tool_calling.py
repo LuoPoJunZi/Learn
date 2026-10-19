@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import ast
 import json
 import math
+import operator
 from dataclasses import dataclass, field
 
 # ---------------------------------------------------------------------------
@@ -47,16 +49,37 @@ class Tool:
 
 
 def _run_calculator(args: JsonDict) -> str:
-    """Evaluate a simple arithmetic expression."""
-    expression = str(args.get("expression", ""))
-    allowed = set("0123456789+-*/(). ")
-    if not expression or not all(ch in allowed for ch in expression):
-        return "错误：不安全的表达式"
+    """Evaluate bounded arithmetic without executing Python source."""
+    expression = args.get("expression", "")
+    if not isinstance(expression, str) or not expression.strip() or len(expression) > 200:
+        return "错误：请输入不超过 200 个字符的算术表达式"
+
+    operations = {
+        ast.Add: operator.add, ast.Sub: operator.sub,
+        ast.Mult: operator.mul, ast.Div: operator.truediv,
+    }
+
+    def calculate(node: ast.AST) -> float:
+        if isinstance(node, ast.Constant) and type(node.value) in (int, float):
+            result = float(node.value)
+        elif isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub)):
+            result = calculate(node.operand) * (-1 if isinstance(node.op, ast.USub) else 1)
+        elif isinstance(node, ast.BinOp) and type(node.op) in operations:
+            result = operations[type(node.op)](calculate(node.left), calculate(node.right))
+        else:
+            raise ValueError("只支持数字、括号与 + - * / 运算")
+        if not math.isfinite(result) or abs(result) > 1e100:
+            raise ValueError("数值超出教学计算器范围")
+        return result
+
     try:
-        result = eval(expression)  # noqa: S307 — 仅允许数字与运算符
-    except Exception as exc:
+        tree = ast.parse(expression.strip(), mode="eval")
+        if sum(1 for _ in ast.walk(tree)) > 64:
+            raise ValueError("表达式过于复杂")
+        result = calculate(tree.body)
+    except (SyntaxError, ValueError, ZeroDivisionError, OverflowError) as exc:
         return f"计算出错：{exc}"
-    return f"计算结果：{result}"
+    return f"计算结果：{result:g}"
 
 
 def _run_file_search(args: JsonDict) -> str:

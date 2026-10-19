@@ -29,8 +29,8 @@
 > Simulink 是 MathWorks 独立的产品组件。在安装 MATLAB 时，若未勾选 Simulink，在命令行输入 `simulink` 会报错 `未定义函数或变量 'simulink'`。
 > 可在 MATLAB 命令行执行：
 > ```matlab
-> hasSimulink = license('test', 'Simulink');
-> if ~hasSimulink, disp('⚠️ 当前环境未安装 Simulink，请重新运行 MATLAB 安装程序并勾选 Simulink 组件'); end
+> hasSimulink = ~isempty(ver('simulink')) && license('test', 'Simulink');
+> if ~hasSimulink, disp('需要安装 Simulink，并确认对应许可证可用'); end
 > ```
 > 确认环境就绪后再进行后续建模实战。
 
@@ -86,7 +86,7 @@ $$v_c(t) = \int \frac{1}{R C} \left[ u(t) - v_c(t) \right] dt$$
 
 1. **启动环境**：在 MATLAB 命令行窗口输入 `simulink` 打开向导，点击 **Blank Model** 创建新工程（或在命令行直接执行 `new_system('rc_filter_demo'); open_system('rc_filter_demo');`）。
 2. **放置输入与求和模块**：
-   - 从 Library Browser 的 `Simulink/Sources` 拖拽一个 **Step** 模块；
+   - 从 Library Browser 的 `Simulink/Sources` 拖拽一个 **Step** 模块，设置 `Step time = 0`、`Initial value = 0`、`Final value = 1`；默认阶跃时刻为 1 秒，晚于本例的结束时间，会导致全程零输出；
    - 从 `Simulink/Math Operations` 拖拽一个 **Sum** 模块，双击将参数 `List of signs` 修改为 `|+-`（代表一加一减）。
 3. **放置增益与积分模块**：
    - 拖拽 **Gain** 模块，双击将其参数 `Gain` 设置为 `1/(1000 * 1e-6)`（代表 $R=1\text{k}\Omega, C=1\mu\text{F}$）；
@@ -97,6 +97,7 @@ $$v_c(t) = \int \frac{1}{R C} \left[ u(t) - v_c(t) \right] dt$$
    - `Integrator` 输出连至 `Scope`；同时从积分器输出引出一根分支线回连至 `Sum` 的 `-` 端，形成完整的闭环负反馈。
 5. **设置求解器并运行**：
    - 在模型上方工具栏将 **Stop Time** 设为 `0.01` 秒（即 10 毫秒）；
+   - 在模型设置中选择变步长 `ode45`，将 `Max step size` 设为 `1e-5` 秒，以解析 1 毫秒时间常数；
    - 点击绿色运行按钮 **Run**；
    - 双击 **Scope** 查看示波器，观察电压从 0V 沿指数规律爬升至 1V 的充电响应曲线。
 
@@ -104,7 +105,7 @@ $$v_c(t) = \int \frac{1}{R C} \left[ u(t) - v_c(t) \right] dt$$
 
 ## 等效 MATLAB 脚本对照验证
 
-为了帮助习惯写脚本的学习者融会贯通，下面是用基础 MATLAB 向量与微分方程数值解法编写的 100% 等效代码：
+下面使用相同方程、零初值和从 `t=0` 开始的单位阶跃，比较解析解与欧拉近似。欧拉法与变步长 Simulink 求解器的数值轨迹不会逐点完全相同：
 
 ```matlab
 % RC_FILTER_SCRIPT 对照验证脚本

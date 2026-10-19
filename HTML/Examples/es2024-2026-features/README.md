@@ -21,21 +21,16 @@
 
 | # | 特性 | 规范版本 | 核心方法 |
 |---|------|----------|----------|
-| 1 | Set 集合方法 | ES2024 | `union`, `intersection`, `difference`, `symmetricDifference` |
+| 1 | Set 集合方法 | ES2025 | `union`, `intersection`, `difference`, `symmetricDifference` |
 | 2 | Promise.withResolvers | ES2024 | `Promise.withResolvers()` |
 | 3 | Iterator Helpers | ES2025 | `.map()`, `.filter()`, `.take()`, `.toArray()` |
 | 4 | Object.groupBy | ES2024 | `Object.groupBy()` |
 
 ## 浏览器兼容性
 
-| 浏览器 | Set Methods | Promise.withResolvers | Iterator Helpers | Object.groupBy |
-|--------|:-----------:|:---------------------:|:----------------:|:--------------:|
-| Chrome | 122+ | 119+ | 122+ | 117+ |
-| Firefox | 127+ | 121+ | 131+ | 119+ |
-| Safari | 17.4+ | 17.2+ | 18.2+ | 17.0+ |
-| Edge | 122+ | 119+ | 122+ | 117+ |
+语言规范年份与浏览器首次支持年份不同；`Set` 新方法进入 ES2025，不能因为浏览器在 2024 年实现就标成 ES2024。兼容性以页面特性检测和下方各官方参考页的兼容表为准，不凭版本号推断所有平台都可用。
 
-> **提示**：页面内置了特性检测，如果浏览器不支持某特性会显示黄色兼容性警告。
+页面检测实际使用的 Iterator 方法。不支持时显示提示。斐波那契使用 `BigInt` 保持大整数精确，输入限制为 1 到 50，避免错误输入导致超长计算。
 
 ## 如何运行
 
@@ -59,10 +54,12 @@ xdg-open index.html       # Linux
 
 ## 推荐修改点
 
-1. 为每个特性添加「展开源码」折叠区域，展示完整代码片段
-2. 增加 `Map.groupBy()` 演示，对比 `Object.groupBy()` 的差异
-3. 加入 `Temporal` API（Stage 3）的预览示例
-4. 添加性能对比：Iterator Helpers 惰性 vs `Array` 方法的内存差异
+1. 在开发者工具中给 `fibonacci()` 的 `yield` 加断点，观察 `.take()` 按需请求下一项。
+2. 在控制台运行 `Map.groupBy(products, p => p.category)`，与现有 `Object.groupBy()` 结果对照。
+3. 修改 `products` 中的库存和类别，再点击分组按钮观察变化。
+4. 将每个 Set 集合的输入改为重复字符串，观察集合去重和插入顺序。
+
+原扩展方向仍可从现有资料定位：源码展开可参考 [交互组件](../interactive-components/README.md) 的折叠面板；`Map.groupBy()` 见本例控制台对照；日期时间 API 可从 [TC39 提案列表](https://github.com/tc39/proposals) 查询当前状态。性能测量应单独设计基准，当前页面不宣称已做内存性能比较。
 
 ## 下一步
 

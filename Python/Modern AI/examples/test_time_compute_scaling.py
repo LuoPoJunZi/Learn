@@ -56,7 +56,7 @@ def simulate_model_inference(
 
     With probability `error_rate`, one intermediate step slips up.
     """
-    del question
+    del question, ground_truth  # The synthetic generator does not use the evaluation answer.
     steps: list[ReasoningStep] = []
 
     # Step 1: Base quantity setup
@@ -100,12 +100,14 @@ def simulate_model_inference(
     return CandidateSolution(
         candidate_id=candidate_id,
         steps=steps,
-        final_answer=final_val if steps[-1].is_valid else final_val + (1.0 if rng.random() > 0.5 else -2.0),
+        final_answer=final_val,
     )
 
 
 def self_consistency_voting(candidates: list[CandidateSolution]) -> tuple[float, float]:
-    """Perform majority voting over multiple candidate answers (Best-of-N)."""
+    """Return the majority answer and its vote share, not calibrated confidence."""
+    if not candidates:
+        raise ValueError("Voting requires at least one candidate.")
     answers = [cand.final_answer for cand in candidates]
     counts = Counter(answers)
     majority_answer, occurrences = counts.most_common(1)[0]
@@ -115,31 +117,16 @@ def self_consistency_voting(candidates: list[CandidateSolution]) -> tuple[float,
 
 def self_correction_loop(
     initial_solution: CandidateSolution,
-    ground_truth: float,
-    *,
-    rng: random.Random,
 ) -> CandidateSolution:
-    """Critique an initial answer, identify flawed steps, and revise."""
-    if initial_solution.is_fully_valid:
-        return initial_solution
-
-    # Critique identifies the flawed step and recalculates correctly
-    revised_steps: list[ReasoningStep] = []
-    for step in initial_solution.steps:
-        if not step.is_valid:
-            revised_steps.append(
-                ReasoningStep(
-                    step_index=step.step_index,
-                    thought=f"[反思修正] 重新校验步骤 {step.step_index} 的算术逻辑",
-                    intermediate_result=step.intermediate_result,
-                    is_valid=True,
-                )
-            )
-        else:
-            revised_steps.append(step)
-
-    # With high probability (e.g. 85%), reflection yields the correct answer
-    revised_answer = ground_truth if rng.random() > 0.15 else initial_solution.final_answer + 1.0
+    """Recompute this fixed arithmetic problem with a deterministic rule checker."""
+    base = 24.0
+    scaled = base * 1.5
+    revised_answer = scaled - 4.0
+    revised_steps = [
+        ReasoningStep(1, "[规则复算] 从题面读取基数 24", base, True),
+        ReasoningStep(2, "[规则复算] 乘以提效系数 1.5", scaled, True),
+        ReasoningStep(3, "[规则复算] 扣除损耗 4", revised_answer, True),
+    ]
     return CandidateSolution(
         candidate_id=initial_solution.candidate_id + 100,
         steps=revised_steps,
@@ -159,7 +146,7 @@ def main() -> int:
     print(f"标准真值 (Ground Truth): {ground_truth}\n")
 
     # 1. Direct Sampling (N = 1, minimal inference compute)
-    print("[1. 快速直觉采样 (Direct Greedy, N=1)]")
+    print("[1. 单次随机模拟采样 (N=1)]")
     single_cand = simulate_model_inference(question, ground_truth, candidate_id=1, rng=rng)
     print(f"  推断步骤数: {len(single_cand.steps)}")
     for s in single_cand.steps:
@@ -185,9 +172,11 @@ def main() -> int:
         )
 
     # 3. Majority Voting (Self-Consistency)
+    best_candidate = max(candidates, key=evaluate_process_reward)
+    print(f"  按模拟过程标签选出的 Best-of-N 候选: #{best_candidate.candidate_id}")
     voted_ans, confidence = self_consistency_voting(candidates)
     print(f"\n[3. 多数自洽投票 (Self-Consistency Voting)]")
-    print(f"  投票胜出答案: {voted_ans:.1f} (置信度: {confidence * 100:.1f}%)")
+    print(f"  投票胜出答案: {voted_ans:.1f} (票数占比: {confidence * 100:.1f}%)")
     print(f"  投票命中真值: {abs(voted_ans - ground_truth) < 1e-4}\n")
 
     # 4. Self-Correction / Reflection Loop
@@ -196,16 +185,16 @@ def main() -> int:
     if flawed_candidates:
         target_cand = flawed_candidates[0]
         print(f"  选取引发质疑的候选 #{target_cand.candidate_id} (原输出: {target_cand.final_answer:.1f})")
-        corrected = self_correction_loop(target_cand, ground_truth, rng=rng)
+        corrected = self_correction_loop(target_cand)
+        print("  本例由固定算术规则复算；未训练反思模型，也不把标准答案传给修正器。")
         print(f"  修正后输出: {corrected.final_answer:.1f}")
         print(f"  修正是否成功: {abs(corrected.final_answer - ground_truth) < 1e-4}\n")
 
     # 5. Compute vs Accuracy Trade-off Summary
     print("[5. 推理算力与准确率扩展定律 (Scaling Law Summary)]")
-    print("  - 模式 A (贪心直接回答): 消耗 1x Token，容易受单点思维偏差影响")
-    print("  - 模式 B (长链思考 + 自我批判): 消耗 3~5x Token，能定位局部逻辑破绽")
-    print("  - 模式 C (Best-of-N + 过程奖励模型 PRM): 消耗 Nx Token，大幅提高数学与代码解题上限")
-    print("  - 结论: 2024-2026 新一代推理模型的核心，正是将更多算力分配在测试时计算 (Test-Time Compute)")
+    print("  - 多次采样增加候选生成成本，是否提高准确率取决于候选质量和选择器。")
+    print("  - ORM 使用已知答案，PRM 使用模拟器提供的标签；它们是教学评分，不是已训练模型。")
+    print("  - 本例没有真实 LLM、Token 计费、耗时测量或准确率基准，不能用于证明扩展定律。")
 
     return 0
 

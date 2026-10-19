@@ -25,13 +25,16 @@
 
 ## 如何打开
 
-直接在现代浏览器中打开 [index.html](index.html)。
+可以先直接打开 [index.html](index.html)。如果浏览器的文件协议策略不可用，在仓库根目录启动一个仅监听本机的静态服务器：
+
+```powershell
+python -m http.server 8765 --bind 127.0.0.1 --directory HTML/Examples/webgpu-basics
+```
+
+浏览器访问 `http://127.0.0.1:8765/`；结束后在终端按 `Ctrl+C` 停止。该命令只提供静态文件。
 
 **浏览器环境支持要求**：
-- Google Chrome 113+ (Windows, macOS, ChromeOS)
-- Microsoft Edge 113+
-- Firefox 实验特性开启或 Nightly 版本
-- Safari 17+ (macOS / iOS 设置中启用 WebGPU)
+WebGPU 需要安全上下文（例如 HTTPS 或可信 localhost），并受浏览器、系统、显卡驱动和硬件加速设置共同影响。`navigator.gpu` 存在也不保证能申请到适配器或设备，应以实际请求结果为准；各浏览器版本范围见下方 API 参考的兼容表。
 
 若当前环境不支持硬件加速，页面顶部会呈现友好的降级警告提示。
 
@@ -43,8 +46,10 @@
 
 ## 推荐修改点
 
-- 尝试修改 JavaScript 中的输入向量数组长度（例如扩展至 1024 个浮点数），观察并行计算的一致性。
+- 尝试修改 JavaScript 中的两组输入向量为相同长度（例如 1024），观察结果。工作组数量按 `Math.ceil(length / 64)` 派发，并在着色器中检查末尾越界。
 - 尝试修改 WGSL 着色器中的运算逻辑（例如将加法改为乘法 `inputA[i] * inputB[i]`）。
+
+每次运行结束会释放 Buffer 与 Device，计算期间禁用按钮。输入必须是同长度、非空、数值有限的 `Float32Array`；本例不以四元素演示宣称 GPU 比 CPU 更快。
 
 ## 权威参考
 

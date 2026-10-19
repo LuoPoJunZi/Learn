@@ -252,7 +252,7 @@ with open("notes.txt", "r", encoding="utf-8") as file:
    ```bash
    command -v eza
    ```
-   若没有任何输出，说明系统内**尚未安装该软件**。
+   若没有任何输出，说明当前 Shell 找不到该命令；可能未安装，也可能只是安装路径不在 `PATH` 中。
 2. 查看当前教程的**第一步（安装指南）**，使用对应包管理器安装：
    - Ubuntu / Debian: `sudo apt update && sudo apt install -y 软件名`
    - CentOS / RHEL / Fedora: `sudo dnf install -y 软件名`

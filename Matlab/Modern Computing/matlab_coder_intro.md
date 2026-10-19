@@ -29,8 +29,8 @@
 > `codegen` 命令并不是 MATLAB 基础包自带的内置函数，它隶属于 **MATLAB Coder 工具箱**。
 > 在运行本教程前，请先在 MATLAB 命令窗口输入以下命令检测是否已安装授权：
 > ```matlab
-> hasCoder = license('test', 'Matlab_Coder');
-> if ~hasCoder, disp('⚠️ 当前环境未安装 MATLAB Coder 工具箱，请在 MATLAB 顶部【主页】->【附加功能】中搜索安装'); end
+> hasCoder = ~isempty(ver('coder')) && license('test', 'MATLAB_Coder');
+> if ~hasCoder, disp('需要安装 MATLAB Coder，并确认对应许可证可用'); end
 > ```
 > 若未安装该工具箱直接执行 `codegen` 会报 `未定义函数或变量 'codegen'`。此外，生成 MEX 加速库还需要机器已配置支持的 C 编译器（可在命令行运行 `mex -setup` 验证）。
 
@@ -65,7 +65,8 @@ function y = moving_average(x, window_size)
 assert(isa(x, 'double'));
 assert(isa(window_size, 'double'));
 assert(isscalar(window_size));
-assert(window_size >= 1);
+assert(isfinite(window_size) && window_size >= 1);
+assert(isrow(x) && all(isfinite(x)));
 
 N = length(x);
 % 2. 核心规范：预分配输出内存空间，避免动态增减内存碎片
@@ -106,13 +107,13 @@ sample_window = 10.0;
 codegen -config:mex moving_average -args {sample_input, sample_window}
 ```
 
-编译完成后，当前目录下会生成 `moving_average_mex.mexw64`（Windows）或 `.mexmaci64`（Mac）。
+编译完成后会生成本平台的 `moving_average_mex` 二进制模块。用 `mexext` 查询扩展名；不同系统和处理器架构并不通用。
 
 ### 性能加速对比实测：
 
 ```matlab
 % 构造测试数据
-raw_signal = randn(1, 100000);
+raw_signal = randn(size(sample_input)); % 固定尺寸 MEX 必须与编译模板一致
 win = 50.0;
 
 % 测试原生 M 代码耗时

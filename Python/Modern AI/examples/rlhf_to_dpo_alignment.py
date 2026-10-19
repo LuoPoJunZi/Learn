@@ -23,20 +23,25 @@ class PreferencePair:
 
 @dataclass
 class LogProbTable:
-    """Log-probability lookup for a toy language model.
+    """Normalized response probabilities derived from trainable log scores.
 
-    每个 (prompt, response) 对映射到一个对数概率值。
-    这替代了真实的神经网络前向传播。
+    表中保存可训练的未归一化分数；查询时对同一 prompt 的候选做 log-softmax。
+    概率只覆盖表中的候选，不代表完整语言模型的回答空间。
     """
 
     table: dict[tuple[str, str], float] = field(default_factory=dict)
 
     def log_prob(self, prompt: str, response: str) -> float:
         """Return log π(response | prompt)."""
-        return self.table.get((prompt, response), -10.0)
+        score = self.table[(prompt, response)]
+        scores = [value for (text, _), value in self.table.items() if text == prompt]
+        largest = max(scores)
+        return score - largest - math.log(sum(math.exp(value - largest) for value in scores))
 
     def set(self, prompt: str, response: str, value: float) -> None:
-        """Assign log π(response | prompt)."""
+        """Assign one finite, unnormalized response log score."""
+        if not math.isfinite(value):
+            raise ValueError("Response scores must be finite.")
         self.table[(prompt, response)] = value
 
 
@@ -87,6 +92,8 @@ def dpo_loss_single(
     L = -log σ( β * [ (log π_θ(y_w|x) - log π_ref(y_w|x))
                      - (log π_θ(y_l|x) - log π_ref(y_l|x)) ] )
     """
+    if not math.isfinite(beta) or beta <= 0:
+        raise ValueError("beta must be finite and positive.")
     log_ratio_win = (
         policy.log_prob(pair.prompt, pair.y_win)
         - reference.log_prob(pair.prompt, pair.y_win)
@@ -95,7 +102,8 @@ def dpo_loss_single(
         policy.log_prob(pair.prompt, pair.y_lose)
         - reference.log_prob(pair.prompt, pair.y_lose)
     )
-    return -math.log(sigmoid(beta * (log_ratio_win - log_ratio_lose)) + 1e-12)
+    margin = beta * (log_ratio_win - log_ratio_lose)
+    return max(0.0, -margin) + math.log1p(math.exp(-abs(margin)))
 
 
 def dpo_loss_batch(
@@ -106,6 +114,8 @@ def dpo_loss_batch(
     beta: float,
 ) -> float:
     """Average DPO loss over a batch of preference pairs."""
+    if not pairs:
+        raise ValueError("A preference batch must not be empty.")
     return sum(
         dpo_loss_single(policy, reference, pair, beta=beta) for pair in pairs
     ) / len(pairs)
@@ -206,13 +216,14 @@ def main() -> int:
     # ── 5. 训练结果 ───────────────────────────────────────────
     print("[结果] 策略模型概率变化（训练后 vs 参考模型）:")
     for pair in pairs:
-        ref_p_win = math.exp(reference.log_prob(pair.prompt, pair.y_win))
-        ref_p_lose = math.exp(reference.log_prob(pair.prompt, pair.y_lose))
-        pol_p_win = math.exp(policy.log_prob(pair.prompt, pair.y_win))
-        pol_p_lose = math.exp(policy.log_prob(pair.prompt, pair.y_lose))
-
-        ref_ratio = ref_p_win / (ref_p_win + ref_p_lose)
-        pol_ratio = pol_p_win / (pol_p_win + pol_p_lose)
+        ref_ratio = sigmoid(
+            reference.log_prob(pair.prompt, pair.y_win)
+            - reference.log_prob(pair.prompt, pair.y_lose)
+        )
+        pol_ratio = sigmoid(
+            policy.log_prob(pair.prompt, pair.y_win)
+            - policy.log_prob(pair.prompt, pair.y_lose)
+        )
 
         print(f"  prompt: \"{pair.prompt}\"")
         print(f"    参考模型偏好优选概率: {ref_ratio:.1%}")
@@ -230,7 +241,7 @@ def main() -> int:
   DPO 关键洞察:  最优策略的闭式解为
     π*(y|x) = π_ref(y|x) · exp( R(x,y) / β ) / Z(x)
     → 反推出隐式奖励: R(x,y) = β · log(π_θ(y|x) / π_ref(y|x)) + β·log Z
-    → 代入 Bradley-Terry 偏好模型，R 和 Z 相消
+    → 用概率比表示奖励，比较同一 prompt 的回答时，归一化项 log Z 相消
     → DPO 损失直接用策略概率比表达，无需单独的奖励模型
 """)
     return 0

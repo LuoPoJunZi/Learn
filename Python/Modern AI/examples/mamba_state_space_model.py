@@ -18,12 +18,24 @@ class ClassicalSSM:
     """
 
     state_dim: int
-    a_diag: Vector  # Diagonal transition factors (e.g. decay rate in (-1, 0))
+    a_diag: Vector  # Discrete transition factors; exp(negative rate) lies in (0, 1).
     b_weight: Vector  # Input projection
     c_weight: Vector  # Output projection
 
+    def __post_init__(self) -> None:
+        if self.state_dim <= 0 or any(
+            len(vector) != self.state_dim
+            for vector in (self.a_diag, self.b_weight, self.c_weight)
+        ):
+            raise ValueError("State and parameter dimensions must match and be positive.")
+        parameters = self.a_diag + self.b_weight + self.c_weight
+        if not all(math.isfinite(value) for value in parameters):
+            raise ValueError("SSM parameters must be finite.")
+
     def step(self, prev_state: Vector, input_val: float) -> tuple[Vector, float]:
         """Compute one step of linear recurrence in O(D) time."""
+        if len(prev_state) != self.state_dim:
+            raise ValueError("State dimension does not match the model.")
         new_state = [
             a * h + b * input_val
             for a, b, h in zip(self.a_diag, self.b_weight, prev_state)
@@ -51,6 +63,12 @@ class SelectiveSSM:
     state_dim: int
     base_a: Vector
 
+    def __post_init__(self) -> None:
+        if self.state_dim <= 0 or len(self.base_a) != self.state_dim:
+            raise ValueError("State and transition dimensions must match and be positive.")
+        if any(not math.isfinite(value) or value > 0 for value in self.base_a):
+            raise ValueError("This decay example requires finite, non-positive rates.")
+
     def compute_selective_parameters(self, x: float) -> tuple[float, Vector, Vector]:
         """Make Delta (step size), B (input gate), and C (readout) data-dependent."""
         # Delta gating: softplus-like activation ensures positive discretization step
@@ -68,11 +86,13 @@ class SelectiveSSM:
 
     def step(self, prev_state: Vector, input_val: float) -> tuple[Vector, float]:
         """Selective scan step: discretize A and B dynamically based on current x."""
+        if len(prev_state) != self.state_dim:
+            raise ValueError("State dimension does not match the model.")
         delta, b_t, c_t = self.compute_selective_parameters(input_val)
 
         new_state: list[float] = []
         for i in range(self.state_dim):
-            # Zero-order hold (ZOH) discretization approximation: A_bar = exp(delta * A)
+            # Exact exponential transition; delta * B is a first-order input approximation.
             a_bar = math.exp(delta * self.base_a[i])
             b_bar = delta * b_t[i]
             # State update
@@ -130,7 +150,7 @@ def main() -> int:
     # 2. Classical LTI SSM evaluation
     classical_model = ClassicalSSM(
         state_dim=state_dim,
-        a_diag=[-0.3, -0.5, -0.8, -1.0],  # Constant decay
+        a_diag=[math.exp(rate) for rate in (-0.3, -0.5, -0.8, -1.0)],
         b_weight=[0.5, 0.5, 0.5, 0.5],    # Constant input scale
         c_weight=[0.25, 0.25, 0.25, 0.25],
     )
@@ -153,7 +173,7 @@ def main() -> int:
     print("  特点: Delta/B/C 参数由输入动态生成，遇到干扰噪音主动关小门控 B，保留关键记忆")
     for t, (x, y) in enumerate(zip(test_sequence, selective_outputs)):
         print(f"    t={t}: 输入={x:5.2f} -> 输出={y:6.3f}")
-    print(f"  说明: 在面对中间干扰时有效抑制了状态污染，实现了基于内容的记忆过滤\n")
+    print("  说明: 手工门控改变输入对状态的贡献；本例未训练，不能据此证明复制任务性能。\n")
 
     # 4. Attention vs SSM Comparison Table
     print("[3. Transformer 注意力机制 vs Mamba 状态空间模型对比]")
@@ -161,8 +181,12 @@ def main() -> int:
     print("  " + "-" * 72)
     print(f"  {'时间复杂度':<16} | {'O(L^2) 平方增长':<26} | {'O(L) 严格线性':<24}")
     print(f"  {'自回归生成显存':<14} | {'O(L) KV Cache 持续膨胀':<23} | {'O(1) 恒定状态隐空间':<22}")
-    print(f"  {'长文本扩展':<16} | {'受限于显存上限':<26} | {'支持数十万 Token 无压力':<22}")
-    print(f"  {'硬件加速原理':<14} | {'FlashAttention (SRAM 分块)':<22} | {'Hardware-aware Parallel Scan':<20}")
+    print(f"  {'长文本扩展':<16} | {'受限于显存与训练设置':<26} | {'取决于状态容量与任务':<22}")
+    print(
+        f"  {'硬件加速原理':<14} | {'FlashAttention (SRAM 分块)':<22} | "
+        f"{'Hardware-aware Parallel Scan':<20}"
+    )
+    print("  复杂度比较固定模型维度，仅比较序列混合；不包含训练或 GPU 内核实测。")
 
     return 0
 

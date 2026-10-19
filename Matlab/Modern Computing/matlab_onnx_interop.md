@@ -28,7 +28,7 @@
 > **双端前置依赖自查：**
 > 1. **Python 端**：导出 ONNX 需在 Python 环境中安装 PyTorch 与 ONNX 库：
 >    ```bash
->    pip install torch torchvision onnx
+>    python -m pip install torch torchvision onnx onnxscript
 >    ```
 > 2. **MATLAB 端**：调用 `importONNXNetwork` 与 `exportONNXNetwork` 必须安装 **Deep Learning Toolbox** 以及官方免费扩展包 **Deep Learning Toolbox Converter for ONNX Model Format**（在 MATLAB 顶部【主页】->【附加功能】中搜索安装）。
 
@@ -64,6 +64,7 @@ import torchvision.models as models
 # 1. 实例化模型（此处以轻量 ResNet-18 为例）
 model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
 model.eval()
+# DEFAULT 首次使用会下载权重到 PyTorch 缓存；导出在单独的实验目录进行。
 
 # 2. 构造一个虚拟输入张量，声明 batch 大小与输入分辨率
 dummy_input = torch.randn(1, 3, 224, 224)
@@ -74,8 +75,9 @@ torch.onnx.export(
     dummy_input,
     "resnet18_model.onnx",
     input_names=["input_tensor"],
-    output_names=["class_probabilities"],
+    output_names=["class_logits"],
     opset_version=17,
+    dynamo=True,
 )
 print("ONNX 模型导出成功: resnet18_model.onnx")
 ```
@@ -89,8 +91,13 @@ print("ONNX 模型导出成功: resnet18_model.onnx")
 在 MATLAB 命令行执行：
 
 ```matlab
-% 1. 导入 ONNX 模型为现代深度学习网络 (dlnetwork)
-net = importONNXNetwork('resnet18_model.onnx', 'TargetNetwork', 'dlnetwork');
+% 1. 新版优先使用 importNetworkFromONNX；较旧版本保留原导入入口
+if exist('importNetworkFromONNX', 'file')
+    net = importNetworkFromONNX('resnet18_model.onnx', ...
+        'InputDataFormats', 'BCSS', 'OutputDataFormats', 'BC');
+else
+    net = importONNXNetwork('resnet18_model.onnx', 'TargetNetwork', 'dlnetwork');
+end
 
 % 2. 检查网络输入与输出层签名
 disp('网络输入层属性:');
@@ -103,10 +110,11 @@ deepNetworkDesigner(net);
 ```
 
 > [!TIP]
-> MATLAB 最新版本还支持直接导入 PyTorch 原始权重，无需提前转换为 ONNX：
+> 支持 `importNetworkFromPyTorch` 的版本还可导入符合该版本要求的已导出模型，但 `.pt` 后缀并不表示任意 `state_dict` 都能直接导入。针对支持 traced 模型的版本，可在 Python 使用 `torch.jit.trace(model, dummy_input).save('model.pt')` 后再导入：
 > ```matlab
 > net = importNetworkFromPyTorch('model.pt');
 > ```
+> 此路线另需 PyTorch 转换支持包。R2026a 起还有特定 PyTorch 版本的 `ExportedProgram` 支持；请按安装版本的官方兼容表选择格式，不能只复制文件后缀。
 
 ---
 
@@ -122,10 +130,20 @@ deepNetworkDesigner(net);
 ```matlab
 % 1. 读取一张本地测试图像
 img = imread('peppers.png');
-img_resized = imresize(img, [224, 224]);
+assert(size(img, 3) == 3, '本例需要 RGB 三通道图像');
+% 对应 ResNet18 DEFAULT 权重：短边缩放到 256，再中心裁剪 224
+resize_scale = 256 / min(size(img, 1), size(img, 2));
+resized_size = round([size(img, 1), size(img, 2)] * resize_scale);
+img_resized = imresize(img, resized_size, 'bilinear');
+top = floor((size(img_resized, 1) - 224) / 2) + 1;
+left = floor((size(img_resized, 2) - 224) / 2) + 1;
+img_resized = img_resized(top:top+223, left:left+223, :);
 
 % 2. 归一化并转为 single 浮点类型
 img_single = single(img_resized) / 255.0;
+channel_mean = reshape(single([0.485, 0.456, 0.406]), 1, 1, 3);
+channel_std = reshape(single([0.229, 0.224, 0.225]), 1, 1, 3);
+img_single = (img_single - channel_mean) ./ channel_std;
 
 % 3. 将 MATLAB 的 [224, 224, 3] 转换为符合 ONNX 规范的 dlarray
 % 使用 'SSCB' 格式标注（Spatial, Spatial, Channel, Batch）
@@ -134,10 +152,15 @@ dl_input = dlarray(img_single, 'SSCB');
 % 4. 高效批量推断
 scores = predict(net, dl_input);
 
-% 5. 取出概率最大值对应的类别索引
-[max_prob, class_idx] = max(extractdata(scores));
-fprintf('最高置信度类别索引: %d (概率值: %.4f)\n', class_idx, max_prob);
+% 5. ResNet 的原始输出是 logits；显式 Softmax 后才是一组归一化得分
+logits = extractdata(scores);
+probabilities = exp(logits - max(logits(:)));
+probabilities = probabilities / sum(probabilities(:));
+[max_prob, class_idx] = max(probabilities(:));
+fprintf('最高得分类别索引: %d (Softmax 值: %.4f)\n', class_idx, max_prob);
 ```
+
+这些索引需要与 Python 权重的类别列表对应；Softmax 数值也不等于已校准的置信度。两端图像插值实现可能有小差异；严谨比较时应保存同一份预处理张量，检查逐元素输入及输出误差。
 
 ---
 
@@ -186,6 +209,8 @@ disp('已成功导出 ONNX 模型包');
 ## 权威参考
 
 - [MathWorks 官方：导入 ONNX 模型文档](https://www.mathworks.com/help/deeplearning/ref/importonnxnetwork.html)
+- [MathWorks 官方：importNetworkFromONNX](https://www.mathworks.com/help/deeplearning/ref/importnetworkfromonnx.html)
+- [Torchvision ResNet18 权重与预处理](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnet18.html)
 - [MathWorks 官方：PyTorch 模型导入指南](https://www.mathworks.com/help/deeplearning/ref/importnetworkfrompytorch.html)
 - [ONNX 官方规范与 GitHub 仓库](https://github.com/onnx/onnx)
 
