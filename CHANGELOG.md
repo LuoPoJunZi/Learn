@@ -2,6 +2,20 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-10-29
+
+### 新增
+
+- 新增 [当前代码教程精选](docs/CURRENT_CODE_TUTORIALS.md)，记录官方来源、核验日期、阅读路线与 Python 3.14 特性边界。
+- 新增 [uv 项目工作流](Python/UV_WORKFLOW_GUIDE.md)，说明依赖声明、锁文件、环境同步、测试和安全练习范围。
+- 新增 [Python 结构化并发](Python/Modern%20Python/README.md) 与标准库离线案例，覆盖 TaskGroup、失败清理、超时与外部取消。
+- 新增 [可靠 Fetch 请求案例](HTML/Examples/reliable-fetch/README.md)，配本地数据、中文页面和离线测试，覆盖 HTTP/解析错误、超时、取消与旧响应竞态。
+
+### 优化
+
+- 将新教程接入首页、主题 README、docs 索引与知识地图，保留原有资料入口。
+- 将新增并发和 Fetch 离线测试接入统一代码检查，不引入第三方测试依赖。
+
 ## 2026-10-19
 
 ### 修复

@@ -25,6 +25,14 @@ if ($null -eq $python) {
         }
     }
 
+    $concurrencyTests = Join-Path $rootPath 'Python/Modern Python'
+    if (Test-Path -LiteralPath $concurrencyTests) {
+        & $python.Source -X utf8 -B -m unittest discover -s $concurrencyTests -p 'test_*.py' -v
+        if ($LASTEXITCODE -ne 0) {
+            $failures.Add('Structured concurrency regression checks failed (Python 3.11+ required).')
+        }
+    }
+
     & $python.Source (Join-Path $PSScriptRoot 'check-html-code.py') --root $rootPath
     if ($LASTEXITCODE -ne 0) {
         $failures.Add('HTML attribute checks failed.')
@@ -41,6 +49,14 @@ if ($javascriptFiles.Count -gt 0 -and $null -eq $node) {
         & $node.Source --check $file.FullName
         if ($LASTEXITCODE -ne 0) {
             $failures.Add('JavaScript syntax error: ' + $file.FullName)
+        }
+    }
+
+    $fetchTests = Join-Path $rootPath 'HTML/Examples/reliable-fetch/test-request.cjs'
+    if (Test-Path -LiteralPath $fetchTests) {
+        & $node.Source --test $fetchTests
+        if ($LASTEXITCODE -ne 0) {
+            $failures.Add('Reliable Fetch regression checks failed (Node.js 18+ required).')
         }
     }
 }

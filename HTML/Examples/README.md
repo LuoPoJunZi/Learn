@@ -8,6 +8,8 @@
 
 如果你使用 VS Code，可以安装 Live Server 扩展，但不是必须。
 
+例外：[可靠 Fetch 请求案例](reliable-fetch/README.md) 读取本地 JSON，必须通过本地 HTTP 服务打开；该目录 README 提供仅绑定本机、仅开放案例目录的命令。
+
 ## 案例索引
 
 ### 页面类
@@ -24,6 +26,7 @@
 | 案例 | 入口 | 学习重点 |
 | :--- | :--- | :--- |
 | 交互组件集合 | [interactive-components/index.html](interactive-components/index.html) | Tabs、FAQ、Toast、进度步骤 |
+| 可靠 Fetch 请求 | [reliable-fetch/README.md](reliable-fetch/README.md) | HTTP 错误、超时、取消、旧响应竞态与离线测试 |
 | 现代 Web API 实验台 | [modern-web-apis/index.html](modern-web-apis/index.html) | Web Components、Container Queries、Popover、View Transitions |
 | 原生 UI 2026 实验台 | [native-ui-2026/index.html](native-ui-2026/index.html) | Invoker Commands、Anchor Positioning、Scroll-driven Animations |
 | 现代 CSS 新特性实验台 | [modern-css-features/index.html](modern-css-features/index.html) | 原生 CSS 嵌套 (Nesting)、父级关系选择器 `:has()` |

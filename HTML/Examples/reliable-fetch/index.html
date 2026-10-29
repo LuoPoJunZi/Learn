@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>可靠 Fetch：超时、取消与竞态</title>
+  <style>
+    body { max-width: 52rem; margin: 3rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; line-height: 1.7; color: #172554; background: #eff6ff; }
+    main { padding: 1.5rem; background: white; border-radius: 1rem; }
+    button, select { font: inherit; padding: .5rem; margin: .3rem; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+    #status { min-height: 2rem; }
+    li { padding: .4rem; }
+  </style>
+  <script src="request.js" defer></script>
+  <script src="page.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>可靠 Fetch 请求实验台</h1>
+    <p>只读取同目录 JSON，不访问第三方服务。请按 README 启动本地 HTTP 服务，不要双击打开。</p>
+    <label for="source">请求场景</label>
+    <select id="source">
+      <option value="courses.json">正常 JSON</option>
+      <option value="missing.json">不存在的文件（404）</option>
+      <option value="invalid.txt">无效 JSON</option>
+    </select>
+    <div>
+      <button type="button" id="load">加载 / 重新加载</button>
+      <button type="button" id="cancel" disabled>取消</button>
+    </div>
+    <p id="status" role="status" aria-live="polite">等待加载</p>
+    <ul id="results" aria-label="课程列表" aria-busy="false"></ul>
+    <p>观察取消或超时：在开发者工具 Network 中限速后重试；默认超时为 3 秒。再次加载时，旧请求不能覆盖新结果。</p>
+    <noscript>本案例需要启用 JavaScript。</noscript>
+  </main>
+</body>
+</html>

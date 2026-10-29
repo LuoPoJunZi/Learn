@@ -16,6 +16,12 @@
 
 [Python 现代项目结构与 `pyproject.toml` 入门](MODERN_PROJECT_GUIDE.md) 说明什么时候从单文件升级到项目、如何使用 `src` 布局、可编辑安装和依赖组。
 
+### 现代开发实践
+
+- [uv 项目工作流](UV_WORKFLOW_GUIDE.md)：从依赖声明、锁文件到环境同步与测试，在独立练习目录操作。
+- [Modern Python：结构化并发](Modern%20Python/README.md)：Python 3.11+ 标准库演示 TaskGroup、超时和取消，附六项离线测试。
+- [当前代码教程精选](../docs/CURRENT_CODE_TUTORIALS.md)：官方来源、核验日期与 Python 3.14 特性导读；明确区分版本新增与成熟实践。
+
 ### 外部资源导读
 
 [优秀开源仓库导读](EXTERNAL_REPOSITORIES.md) 介绍了几个适合初学者继续学习的 Python 仓库：

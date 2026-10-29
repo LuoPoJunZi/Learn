@@ -4,6 +4,8 @@
 
 ## 文件
 
+- [CURRENT_CODE_TUTORIALS.md](CURRENT_CODE_TUTORIALS.md)：当前官方代码教程精选、Python 3.14 特性辨析、uv/并发/Fetch 阅读路线与可运行案例
+
 - [LEARNING_PATH.md](LEARNING_PATH.md)：新手学习路线，按阶段说明 Markdown、GitHub、Linux、Python、HTML、Matlab、Mathematica 的推荐学习顺序
 - [READING_GUIDE.md](READING_GUIDE.md)：内容阅读指南，按目标说明应该先读哪些目录
 - [NEXT_STEP_ROUTES.md](NEXT_STEP_ROUTES.md)：后续深入路线，按文档、GitHub、Linux、Python、算法建模等目标选择下一步

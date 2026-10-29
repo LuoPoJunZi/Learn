@@ -55,6 +55,11 @@
 
 ### 常用教程
 
+- [当前代码教程精选与阅读路线](docs/CURRENT_CODE_TUTORIALS.md)：官方来源、核验日期、版本边界与本地案例
+- [uv 项目工作流](Python/UV_WORKFLOW_GUIDE.md)：依赖锁定、同步环境与运行测试
+- [Python 结构化并发](Python/Modern%20Python/README.md)：TaskGroup、超时、取消与离线测试
+- [可靠 Fetch 请求案例](HTML/Examples/reliable-fetch/README.md)：HTTP 错误、取消和旧响应竞态
+
 - [GitHub 学习导读](Github/LEARNING_GUIDE.md)
 - [GitHub 常见问题](Github/FAQ.md)
 - [GitHub 真实场景指南](Github/SCENARIOS.md)

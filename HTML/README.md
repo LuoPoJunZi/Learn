@@ -25,6 +25,8 @@
 
 想继续观察 2025-2026 年逐步落地的浏览器能力，可以进入 [原生 UI 2026 实验台](Examples/native-ui-2026/README.md)，学习 Invoker Commands、CSS Anchor Positioning 和 Scroll-driven Animations。
 
+掌握 `async/await` 后，可以阅读 [可靠 Fetch 请求案例](Examples/reliable-fetch/README.md)，学习状态码检查、超时、取消与旧响应保护。该案例读取本地 JSON，需要按说明启动仅绑定本机的 HTTP 服务，不能直接双击页面。
+
 ## 学习建议
 
 阅读示例时可以按这个顺序看：

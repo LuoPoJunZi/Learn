@@ -64,6 +64,13 @@ flowchart TD
 2. [Python 基础教程](../Python/Basics/README.md)
 3. [Auto_scripts 脚本索引](../Python/Auto_scripts/README.md)
 
+### 我想更新日常代码开发方法
+
+1. [当前代码教程精选](CURRENT_CODE_TUTORIALS.md)：核对来源、目标版本和学习顺序。
+2. [uv 项目工作流](../Python/UV_WORKFLOW_GUIDE.md)：让环境与依赖可复现。
+3. [Python 结构化并发](../Python/Modern%20Python/README.md)：观察任务失败、取消与清理。
+4. [可靠 Fetch 请求](../HTML/Examples/reliable-fetch/README.md)：将错误处理与竞态保护落实到网页。
+
 ### 我想做算法和建模
 
 推荐路线：
