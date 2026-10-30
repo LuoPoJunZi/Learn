@@ -1,6 +1,6 @@
 # 当前代码教程精选与阅读路线
 
-本页用于把“找到新教程”变成“在仓库里真正学会并运行”。本次来源核验日期为 **2026-10-29**；日期表示本轮检查时间，不代表来源页面发布日期，也不保证外部链接永远不变。
+本页用于把“找到新教程”变成“在仓库里真正学会并运行”。初始来源核验日期为 **2026-10-29**，新增专题核验日期为 **2026-10-30**；日期表示对应批次检查时间，不代表来源页面发布日期，也不保证外部链接永远不变。
 
 优先选择官方维护的文档，配本仓库中文讲解和小示例，而不是按热度收集大量链接。下表区分了版本新增特性与持续适用的工程实践，**不是各语言最新稳定版本排行榜**。
 
@@ -11,7 +11,17 @@
 - 已经会按钮事件和 `async/await`：直接运行可靠 Fetch 案例。
 - 想了解语言变化：阅读下面的 Python 3.14 导读，按自己项目的目标版本选择，不必为了“追新”升级所有脚本。
 
-## 本轮补充
+## 2026-10-30 新增：协议、检索与组件样式
+
+| 技术方向 | 官方来源 | 本仓库教程与代码 | 状态与边界 |
+| :--- | :--- | :--- | :--- |
+| MCP 工具协议 | [2025-11-25 Tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)、[生命周期](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle) | [MCP 入门](../Python/Modern%20AI/MCP_TOOLS_GUIDE.md)，配离线工具消息与测试 | 固定版本，不混用 draft；不是完整服务器 |
+| RAG 混合检索与 RRF | [Hybrid search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview)、[RRF](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking) | [RRF 中文教程](../Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)，配融合与指标实现 | 成熟算法的当前工程应用，不宣称是今年新算法；手工排名不是实际语义模型 |
+| CSS @scope | [MDN @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@scope) | [组件样式边界案例](../HTML/Examples/scoped-css/README.md) | 检测实际解析与样式，保留回退；不声称所有旧浏览器可用 |
+
+建议在现有 Agent/RAG 案例后学习前两项，在 CSS 选择器与继承基础后学习第三项。搜索也出现了 MCP draft 与不同语言 MDN 标签差异，本轮不将草案和单一 Baseline 年份当作稳定承诺。
+
+## 2026-10-29 补充
 
 | 主题 | 官方教程 | 仓库落地 | 最低要求与边界 |
 | :--- | :--- | :--- | :--- |

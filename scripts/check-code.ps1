@@ -17,11 +17,17 @@ if ($null -eq $python) {
         $failures.Add('Python checks failed.')
     }
 
-    $regressionTests = Join-Path $rootPath 'scripts/tests/test_modern_ai_examples.py'
-    if (Test-Path -LiteralPath $regressionTests) {
-        & $python.Source -X utf8 -B $regressionTests
-        if ($LASTEXITCODE -ne 0) {
-            $failures.Add('Modern AI numerical regression checks failed.')
+    $regressionFiles = @(
+        'scripts/tests/test_modern_ai_examples.py',
+        'scripts/tests/test_retrieval_and_protocol.py'
+    )
+    foreach ($relativeTestPath in $regressionFiles) {
+        $regressionTests = Join-Path $rootPath $relativeTestPath
+        if (Test-Path -LiteralPath $regressionTests) {
+            & $python.Source -X utf8 -B $regressionTests
+            if ($LASTEXITCODE -ne 0) {
+                $failures.Add('Offline regression checks failed: ' + $relativeTestPath)
+            }
         }
     }
 

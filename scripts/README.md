@@ -10,6 +10,7 @@
 - [check-python-code.py](check-python-code.py)：使用 Python 标准库检查语法、行长、危险导入、网络超时、文本编码和旧 API
 - [check-html-code.py](check-html-code.py)：检查 HTML 重复 ID、图片替代文本和按钮类型
 - [现代 AI 回归测试](tests/test_modern_ai_examples.py)：检查受限算术、DPO 稳定损失、SSM 维度、VLM 切片与算术修正一致性，使用标准库 `unittest`
+- [检索与协议回归测试](tests/test_retrieval_and_protocol.py)：验证 RRF 公式、权重、重复 ID、Recall@K 和 MCP 消息的输入/输出与错误层次；纯标准库、无网络
 - [结构化并发测试](../Python/Modern%20Python/test_structured_concurrency.py)：验证结果顺序、异常清理、超时与外部取消，要求 Python 3.11+
 - [可靠 Fetch 测试](../HTML/Examples/reliable-fetch/test-request.cjs)：验证 HTTP/解析/网络错误、取消、超时与旧响应竞态，要求 Node.js 18+
 - [check-docs.ps1](check-docs.ps1)：检查 Markdown 本地链接、代码块闭合情况，以及一级目录是否包含 README

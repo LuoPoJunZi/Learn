@@ -29,6 +29,7 @@
 | 可靠 Fetch 请求 | [reliable-fetch/README.md](reliable-fetch/README.md) | HTTP 错误、超时、取消、旧响应竞态与离线测试 |
 | 现代 Web API 实验台 | [modern-web-apis/index.html](modern-web-apis/index.html) | Web Components、Container Queries、Popover、View Transitions |
 | 原生 UI 2026 实验台 | [native-ui-2026/index.html](native-ui-2026/index.html) | Invoker Commands、Anchor Positioning、Scroll-driven Animations |
+| CSS @scope 组件边界 | [scoped-css/README.md](scoped-css/README.md) | 作用域根、下界、继承区别、计算样式检查与回退 |
 | 现代 CSS 新特性实验台 | [modern-css-features/index.html](modern-css-features/index.html) | 原生 CSS 嵌套 (Nesting)、父级关系选择器 `:has()` |
 | 现代 JavaScript ES2024-2026 | [es2024-2026-features/index.html](es2024-2026-features/index.html) | 原生 Set 集合运算、Promise.withResolvers、Iterator Helpers 懒计算 |
 | WebGPU 初学导引 | [webgpu-basics/index.html](webgpu-basics/index.html) | WebGPU 计算管线、WGSL 着色语言、向量并行相加 |

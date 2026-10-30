@@ -87,6 +87,8 @@
 - RoPE 旋转位置编码与相对位置恒等式
 - 在线 Softmax 分块注意力与精确结果对照
 
+[MCP 工具协议教程](Modern%20AI/MCP_TOOLS_GUIDE.md) 补充工具消息与安全边界；[混合检索与 RRF](Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md) 补充多路排名融合与最小检索评估，均提供标准库离线案例。
+
 [RoPE 与分块注意力教程](<Modern AI/ATTENTION_MECHANICS_GUIDE.md>) 将两个新案例接入注意力、GQA 和 KV Cache 学习路线。
 
 这些案例不会下载模型或调用在线 API，适合在进入 PyTorch、Transformers、推理引擎和向量数据库之前建立计算直觉。

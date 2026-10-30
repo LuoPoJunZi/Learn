@@ -55,6 +55,10 @@
 
 ### 常用教程
 
+- [MCP 工具协议与安全边界](Python/Modern%20AI/MCP_TOOLS_GUIDE.md)：工具发现、调用消息与离线练习
+- [混合检索与 RRF 排名融合](Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)：多路排名、权重与检索评估
+- [CSS @scope 组件样式边界](HTML/Examples/scoped-css/README.md)：作用域、下界与基础回退
+
 - [当前代码教程精选与阅读路线](docs/CURRENT_CODE_TUTORIALS.md)：官方来源、核验日期、版本边界与本地案例
 - [uv 项目工作流](Python/UV_WORKFLOW_GUIDE.md)：依赖锁定、同步环境与运行测试
 - [Python 结构化并发](Python/Modern%20Python/README.md)：TaskGroup、超时、取消与离线测试

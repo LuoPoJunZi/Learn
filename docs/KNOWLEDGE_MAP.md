@@ -89,6 +89,8 @@ flowchart TD
 3. [Mathematica 可运行案例](../Mathematica/Examples/README.md)
 4. [现代 Web API 实验台](../HTML/Examples/modern-web-apis/README.md)
 
+工程实践延伸：[MCP 工具协议与安全边界](../Python/Modern%20AI/MCP_TOOLS_GUIDE.md)、[RRF 混合检索](../Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)、[CSS @scope 组件边界](../HTML/Examples/scoped-css/README.md)。
+
 按具体问题深入：
 
 | 想理解的问题 | 学习入口 |

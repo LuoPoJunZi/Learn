@@ -1,0 +1,43 @@
+body {
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 55rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.7;
+  color: #172554;
+  background: #f8fafc;
+}
+article, section {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 1px solid #94a3b8;
+  border-radius: .5rem;
+  background: white;
+}
+.embedded {
+  border: 2px dashed #64748b;
+  padding: 1rem;
+}
+a {
+  color: rgb(71, 85, 105);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+button {
+  padding: .6rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+/* Unsupported browsers ignore this block and retain readable base styles. */
+@scope (.scoped-panel) to (.embedded) {
+  :scope {
+    border: 3px solid #1d4ed8;
+  }
+  a {
+    color: rgb(29, 78, 216);
+  }
+}

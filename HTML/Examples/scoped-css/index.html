@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS @scope：组件样式边界</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>CSS @scope：给样式画边界</h1>
+    <p>灰色是基础回退，蓝色表示作用域样式生效。下界与外部链接不应变蓝。</p>
+    <button id="toggle" type="button" aria-pressed="true">作用域根：已启用</button>
+    <p id="support" role="status">正在检查 @scope 支持……</p>
+    <article id="panel" class="scoped-panel">
+      <h2>作用域根 .scoped-panel</h2>
+      <p><a id="inside" href="#explanation">内部链接：支持时应变蓝</a></p>
+      <div class="embedded">
+        <h3>作用域下界 .embedded</h3>
+        <p><a id="boundary" href="#explanation">下界内部链接：保持灰色</a></p>
+      </div>
+    </article>
+    <section>
+      <h2>组件外部</h2>
+      <p><a id="outside" href="#explanation">外部链接：保持灰色</a></p>
+    </section>
+    <section id="explanation">
+      <h2>如何观察</h2>
+      <p>点击按钮移除或恢复作用域根类名，比较三处链接。所有链接始终带下划线，不仅依靠颜色表示它们可点击。</p>
+      <p>@scope 限制规则的匹配范围，但不是安全沙箱，也不会阻止继承。详见同目录 README。</p>
+      <p id="checks" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+</body>
+</html>

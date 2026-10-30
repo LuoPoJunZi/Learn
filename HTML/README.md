@@ -27,6 +27,8 @@
 
 掌握 `async/await` 后，可以阅读 [可靠 Fetch 请求案例](Examples/reliable-fetch/README.md)，学习状态码检查、超时、取消与旧响应保护。该案例读取本地 JSON，需要按说明启动仅绑定本机的 HTTP 服务，不能直接双击页面。
 
+想控制组件样式的匹配范围，可以继续学习 [CSS @scope 组件边界](Examples/scoped-css/README.md)，对比根内部、嵌入子树和组件外部，并理解它与继承、Shadow DOM 的区别。
+
 ## 学习建议
 
 阅读示例时可以按这个顺序看：
