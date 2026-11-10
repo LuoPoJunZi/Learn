@@ -36,6 +36,29 @@ def evaluate(cases: list[Case], runs: list[Run]) -> dict[str, float | int]:
     """Score exactly one run per case; missing or duplicate runs are invalid input."""
     if not cases:
         raise ValueError("evaluation requires at least one case")
+    # Dataclass annotations do not validate values loaded from JSON or other callers.
+    for case in cases:
+        if not isinstance(case.case_id, str) or not case.case_id.strip():
+            raise ValueError("case_id must be a non-empty string")
+        if not isinstance(case.expected, str):
+            raise ValueError("expected answers must be strings")
+        if not isinstance(case.required_tools, (tuple, list)) or any(
+            not isinstance(tool, str) or not tool.strip() for tool in case.required_tools
+        ):
+            raise ValueError("required_tools must be a sequence of non-empty tool names")
+    for run in runs:
+        if not isinstance(run.case_id, str) or not run.case_id.strip():
+            raise ValueError("run case_id must be a non-empty string")
+        if not isinstance(run.answer, str):
+            raise ValueError("run answers must be strings")
+        if run.error is not None and (not isinstance(run.error, str) or not run.error.strip()):
+            raise ValueError("error must be None or a non-empty error category")
+        if not isinstance(run.events, (tuple, list)) or any(
+            not isinstance(event, ToolEvent) or type(event.ok) is not bool
+            or not isinstance(event.tool, str) or not event.tool.strip()
+            for event in run.events
+        ):
+            raise ValueError("events require non-empty tool names and boolean outcomes")
     case_map = {case.case_id: case for case in cases}
     run_map = {run.case_id: run for run in runs}
     if len(case_map) != len(cases) or len(run_map) != len(runs):
@@ -44,8 +67,10 @@ def evaluate(cases: list[Case], runs: list[Run]) -> dict[str, float | int]:
         raise ValueError("runs must match the evaluation cases exactly")
     if any(type(case.max_calls) is not int or case.max_calls < 0 for case in cases):
         raise ValueError("max_calls must be a non-negative integer")
-    if any(not math.isfinite(run.latency_ms) or run.latency_ms < 0 for run in runs):
-        raise ValueError("latencies must be finite and non-negative")
+    if any(type(run.latency_ms) not in (int, float)
+           or not 0 <= run.latency_ms <= 1e15
+           or not math.isfinite(run.latency_ms) for run in runs):
+        raise ValueError("latencies must be numeric, finite, and in [0, 1e15] milliseconds")
 
     exact_matches = 0
     task_successes = 0

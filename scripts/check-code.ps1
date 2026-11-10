@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
 $failures = New-Object System.Collections.Generic.List[string]
-$ignoredPathPattern = '[\\/]\.(git|agents|codex|venv)([\\/]|$)|[\\/]node_modules([\\/]|$)'
+$ignoredPathPattern = '[\\/](\.(git|agents|codex)|\.venv[^\\/]*|venv|node_modules)([\\/]|$)'
 
 $python = Get-Command python -ErrorAction SilentlyContinue
 if ($null -eq $python) {
@@ -20,7 +20,8 @@ if ($null -eq $python) {
     $regressionFiles = @(
         'scripts/tests/test_modern_ai_examples.py',
         'scripts/tests/test_retrieval_and_protocol.py',
-        'scripts/tests/test_learning_workflows.py'
+        'scripts/tests/test_learning_workflows.py',
+        'scripts/tests/test_repository_safety.py'
     )
     foreach ($relativeTestPath in $regressionFiles) {
         $regressionTests = Join-Path $rootPath $relativeTestPath
@@ -40,6 +41,11 @@ if ($null -eq $python) {
         }
     }
 
+    & $python.Source (Join-Path $PSScriptRoot 'check-javascript.py') --root $rootPath
+    if ($LASTEXITCODE -ne 0) {
+        $failures.Add('Standalone or inline JavaScript syntax checks failed.')
+    }
+
     & $python.Source (Join-Path $PSScriptRoot 'check-html-code.py') --root $rootPath
     if ($LASTEXITCODE -ne 0) {
         $failures.Add('HTML attribute checks failed.')
@@ -52,13 +58,6 @@ $node = Get-Command node -ErrorAction SilentlyContinue
 if ($javascriptFiles.Count -gt 0 -and $null -eq $node) {
     $failures.Add('Node.js was not found; JavaScript checks could not run.')
 } elseif ($null -ne $node) {
-    foreach ($file in $javascriptFiles) {
-        & $node.Source --check $file.FullName
-        if ($LASTEXITCODE -ne 0) {
-            $failures.Add('JavaScript syntax error: ' + $file.FullName)
-        }
-    }
-
     $fetchTests = Join-Path $rootPath 'HTML/Examples/reliable-fetch/test-request.cjs'
     if (Test-Path -LiteralPath $fetchTests) {
         & $node.Source --test $fetchTests
@@ -89,7 +88,7 @@ foreach ($file in $powershellFiles) {
 $htmlFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.html' |
     Where-Object { $_.FullName -notmatch $ignoredPathPattern }
 foreach ($file in $htmlFiles) {
-    $content = Get-Content -Raw -LiteralPath $file.FullName
+    $content = Get-Content -Raw -LiteralPath $file.FullName -Encoding UTF8
     $requirements = @(
         @('doctype', '(?is)<!doctype\s+html>'),
         @('html lang', '(?is)<html[^>]*\blang='),

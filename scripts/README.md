@@ -8,10 +8,13 @@
 - [check-repository.py](check-repository.py)：检查必要根文件、一级 README、跨平台路径冲突，以及误提交的缓存、运行结果和源码压缩包
 - [check-code.ps1](check-code.ps1)：统一运行 Python、JavaScript、PowerShell、HTML 和 Matlab 文件名检查
 - [check-python-code.py](check-python-code.py)：使用 Python 标准库检查语法、行长、危险导入、网络超时、文本编码和旧 API
-- [check-html-code.py](check-html-code.py)：检查 HTML 重复 ID、图片替代文本和按钮类型
+- [check-html-code.py](check-html-code.py)：检查 HTML 重复 ID、图片替代文本、按钮类型及相对路径脚本/样式/媒体资源是否存在
+- [check-javascript.py](check-javascript.py)：以 Node 只解析、不执行的方式检查 `.js/.cjs/.mjs` 和 HTML 内嵌脚本，跳过 JSON 数据块
+- [仓库安全回归测试](tests/test_repository_safety.py)：路径穿越、预演/执行一致性、链接目标保护、评测输入类型与检查器自身回归；文件变更只在临时目录内
 - [现代 AI 回归测试](tests/test_modern_ai_examples.py)：检查受限算术、DPO 稳定损失、SSM 维度、VLM 切片与算术修正一致性，使用标准库 `unittest`
 - [检索与协议回归测试](tests/test_retrieval_and_protocol.py)：验证 RRF 公式、权重、重复 ID、Recall@K 和 MCP 消息的输入/输出与错误层次；纯标准库、无网络
 - [学习工作流回归测试](tests/test_learning_workflows.py)：迁移哨兵语义与 Agent 指标使用标准库验证；三项 DuckDB 集成测试仅在已安装依赖时运行，缺依赖明确跳过，不自动安装
+- [NSGA-II 拥挤距离测试](tests/test_nsga2_crowding.m)：空前沿、常量目标、单/双个体边界；需在 MATLAB 单独运行，不加入默认 CI；本轮批处理超时，未获得通过结果
 - [结构化并发测试](../Python/Modern%20Python/test_structured_concurrency.py)：验证结果顺序、异常清理、超时与外部取消，要求 Python 3.11+
 - [可靠 Fetch 测试](../HTML/Examples/reliable-fetch/test-request.cjs)：验证 HTTP/解析/网络错误、取消、超时与旧响应竞态，要求 Node.js 18+
 - [check-docs.ps1](check-docs.ps1)：检查 Markdown 本地链接、代码块闭合情况，以及一级目录是否包含 README
@@ -32,4 +35,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 
 `check-all.ps1` 需要系统能够找到 `git`、Python 3.11+ 和 Node.js 18+（CI 分别使用 Python 3.12 与 Node.js 22）。它运行静态检查、离线数值回归、学习工作流、结构化并发和 Fetch 单元测试；若已安装 DuckDB，还会读取仓库固定 CSV，并在新建临时目录内验证 Parquet 往返，不调用网络、删除、邮件或真实账号脚本。需要定位单项问题时，仍可单独运行 `check-code.ps1` 或 `check-docs.ps1`。
 
-GitHub Actions 的 [quality 工作流](../.github/workflows/quality.yml) 使用同一个总入口，避免本地规则和 CI 规则不一致。
+GitHub Actions 的 [quality 工作流](../.github/workflows/quality.yml) 配置 Ubuntu/Windows 矩阵并使用同一个总入口，避免本地规则和 CI 规则不一致；配置更改不等于远程已经运行通过。
+
+检查器跳过 `.venv*`、`venv` 和 `node_modules`，`.gitignore` 同步忽略这些本地环境。结构检查仍会拒绝被强制加入 Git 的虚拟环境文件。
+
+检查范围与残余限制见 [仓库审查报告](../docs/REPOSITORY_AUDIT.md)。

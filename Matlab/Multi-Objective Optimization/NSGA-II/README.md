@@ -56,6 +56,12 @@ NSGA-II广泛应用于多个领域，包括但不限于：
 ### 总结
 NSGA-II是一种强大的多目标优化算法，通过非支配排序和拥挤距离机制在保证解质量的同时维护解的多样性，适合于解决复杂的优化问题。
 
+## 拥挤距离的边界约定
+
+空前沿跳过，只有一两个个体的前沿设为无穷大。目标跨度为零时该目标不贡献间距，避免除零；若三个及以上个体的全部目标都相同，距离均为 0。相同目标值不携带排序信息，不人为挑选边界优胜者。
+
+[边界回归测试](../../../scripts/tests/test_nsga2_crowding.m) 不训练模型、不绘图、不写文件。从仓库根目录在 MATLAB 执行 `addpath("scripts/tests"); test_nsga2_crowding`。2026-11-10 的本机 MATLAB 批处理尝试超时，尚未获得实测结果；此测试不包含在不依赖 MATLAB 的默认 CI 中。
+
 ## `CalcCrowdingDistance.m` 文件代码：
 
 ```matlab
@@ -66,23 +72,40 @@ function pop=CalcCrowdingDistance(pop,F)
     
     for k = 1:nF  % 遍历每一个非支配前沿
         
+        if isempty(F{k})
+            continue;
+        end
+
         Costs = [pop(F{k}).Cost];  % 获取当前非支配前沿个体的目标函数值
         
         nObj = size(Costs, 1);  % 目标函数的个数
         
         n = numel(F{k});  % 当前非支配前沿中个体的数量
         
+        if n <= 2
+            for i = 1:n
+                pop(F{k}(i)).CrowdingDistance = inf;
+            end
+            continue;
+        end
+
         d = zeros(n, nObj);  % 初始化拥挤度矩阵
         
         for j = 1:nObj  % 对每个目标函数计算拥挤度
             
             [cj, so] = sort(Costs(j,:));  % 按照第j个目标函数对个体进行排序
             
+            objectiveRange = cj(end) - cj(1);
+            if objectiveRange == 0
+                % 常量目标没有间距信息，跳过以避免 0/0。
+                continue;
+            end
+
             d(so(1), j) = inf;  % 最边界的个体的拥挤度设为无穷大
             
             for i = 2:n-1
                 % 计算第i个个体在第j个目标上的拥挤度
-                d(so(i), j) = abs(cj(i+1) - cj(i-1)) / abs(cj(1) - cj(end));
+                d(so(i), j) = abs(cj(i+1) - cj(i-1)) / objectiveRange;
                 % 公式： (下一邻居目标值 - 上一邻居目标值) / (最大目标值 - 最小目标值)
             end
             

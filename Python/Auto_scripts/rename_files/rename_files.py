@@ -18,6 +18,8 @@ def rename_files(directory_path, old_name, new_name, log_path=None, dry_run=True
     """
     if not old_name:
         raise ValueError('old_name 不能为空')
+    if any(separator in part for part in (old_name, new_name) for separator in ('/', '\\')):
+        raise ValueError('替换文本不能包含路径分隔符')
 
     if log_path is None:
         log_path = os.path.join(directory_path, "rename_files.log")
@@ -28,17 +30,21 @@ def rename_files(directory_path, old_name, new_name, log_path=None, dry_run=True
             continue
 
         # 检查当前项是否为文件，避免对目录进行重命名
-        if os.path.isfile(os.path.join(directory_path, filename)):
+        source_path = os.path.join(directory_path, filename)
+        if os.path.isfile(source_path) and not os.path.islink(source_path):
             # 检查文件名中是否包含旧的子字符串
             if old_name in filename:
                 # 创建新的文件名，将旧子字符串替换为新的子字符串
                 new_filename = filename.replace(old_name, new_name)
+                if new_filename in ('', '.', '..'):
+                    raise ValueError('替换结果必须是有效的文件名')
 
                 # 构建完整的旧文件路径和新文件路径
                 old_file = os.path.join(directory_path, filename)
                 new_file = os.path.join(directory_path, new_filename)
 
-                if os.path.exists(new_file):
+                # lexists also protects dangling symbolic links from being overwritten.
+                if os.path.lexists(new_file):
                     message = f"跳过重命名，目标文件已存在: '{new_filename}'"
                     print(message)
                     if not dry_run:

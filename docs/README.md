@@ -4,6 +4,8 @@
 
 ## 文件
 
+- [REPOSITORY_AUDIT.md](REPOSITORY_AUDIT.md)：2026-11-10 仓库检查范围、修复记录、测试结果和未覆盖项
+
 - [CURRENT_CODE_TUTORIALS.md](CURRENT_CODE_TUTORIALS.md)：当前官方代码教程精选，含 Python 3.14/3.15、uv、并发、Fetch、MCP、RRF、CSS @scope、Agent 评测与 DuckDB 教程入口
 
 - [LEARNING_PATH.md](LEARNING_PATH.md)：新手学习路线，按阶段说明 Markdown、GitHub、Linux、Python、HTML、Matlab、Mathematica 的推荐学习顺序

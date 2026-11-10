@@ -23,6 +23,7 @@ FORBIDDEN_DIRECTORIES = {
     ".pytest_cache",
     ".ruff_cache",
     ".venv",
+    "venv",
     "__pycache__",
     "build",
     "dist",
@@ -118,19 +119,21 @@ def audit_paths(paths: list[PurePosixPath]) -> list[str]:
         if readme not in path_set:
             issues.append(f"top-level directory is missing README.md: {directory}")
 
+    # Compare directory components too: Foo/a.py and foo/b.py collide on Windows.
     normalized_paths: dict[str, PurePosixPath] = {}
+    all_paths = set(paths)
     for path in paths:
-        path_text = path.as_posix()
+        all_paths.update(parent for parent in path.parents if parent != PurePosixPath("."))
+    for path in sorted(all_paths, key=lambda item: item.as_posix()):
         key = portable_key(path)
         previous = normalized_paths.get(key)
         if previous is not None and previous != path:
-            issues.append(
-                "portable path collision: "
-                f"{previous.as_posix()} <-> {path_text}"
-            )
+            issues.append(f"portable path collision: {previous.as_posix()} <-> {path.as_posix()}")
         else:
             normalized_paths[key] = path
 
+    for path in paths:
+        path_text = path.as_posix()
         for part in path.parts:
             if part.endswith((" ", ".")):
                 issues.append(f"path component ends with a space or dot: {path_text}")
@@ -141,7 +144,9 @@ def audit_paths(paths: list[PurePosixPath]) -> list[str]:
             if base_name in WINDOWS_RESERVED_NAMES:
                 issues.append(f"path uses a Windows reserved name: {path_text}")
 
-        if FORBIDDEN_DIRECTORIES.intersection(path.parts):
+        if FORBIDDEN_DIRECTORIES.intersection(path.parts) or any(
+            part.startswith(".venv") for part in path.parts[:-1]
+        ):
             issues.append(f"generated directory is tracked: {path_text}")
         if path.name in FORBIDDEN_FILE_NAMES:
             issues.append(f"generated file is tracked: {path_text}")

@@ -1,5 +1,11 @@
 # 删除空文件夹
 
+## 当前版本的安全边界
+
+预演会计算“子目录删除后也会变空”的父目录，并一并列出；真实执行以当时的目录状态为准。源码跳过符号链接，保留指定的根目录，默认不写日志也不删除任何目录；显式执行才记录日志。不要在其他进程持续修改的目录中使用。
+
+下文保留历史教学代码，不含完整预演保护；实际操作使用同目录 `.py`。
+
 > [!IMPORTANT]
 > 当前脚本默认只预演，不会删除目录。本页保留原始逐行讲解；实际使用请先看 [统一运行与安全说明](../STANDARDIZED_USAGE.md)，并以 [remove_empty_folders.py](remove_empty_folders.py) 为准。
 
@@ -112,16 +118,16 @@ if __name__ == "__main__":
 └── EmptyFolder2/
 ```
 
-运行脚本后，空的文件夹 `EmptyFolder1/` 和 `EmptyFolder2/` 以及 `ProjectB/tests/`（如果 `tests` 文件夹内没有文件）将被删除。删除后的目录结构如下：
+确认预演后，以当前源码显式执行 `dry_run=False`：`ProjectA/src`、`ProjectB/tests`、随后变空的 `ProjectB`，以及两个独立空目录都会删除。根目录与 `ProjectA/README.md` 保留；默认日志写在根目录：
 
-```
+```text
 /Users/username/Documents/
-│
 ├── ProjectA/
-│   ├── src/
 │   └── README.md
-└── ProjectB/
+└── remove_empty_folders.log
 ```
+
+只预演时，上述目录仍全部保留，也不创建日志。
 
 ### **注意事项**
 

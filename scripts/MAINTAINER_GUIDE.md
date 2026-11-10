@@ -45,8 +45,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
 检查内容：
 
 - Python 语法、行长、通配符导入、文本编码和网络请求超时。
-- JavaScript 与 PowerShell 语法。
-- HTML 页面的 doctype、语言、字符集、viewport、标题、重复 ID、图片 alt 和按钮类型。
+- 独立 `.js/.cjs/.mjs`、HTML 内嵌 JavaScript 与 PowerShell 语法；JavaScript 只解析，不执行页面逻辑。
+- HTML 页面的 doctype、语言、字符集、viewport、标题、重复 ID、图片 alt、按钮类型和相对路径资源文件存在性。
+- 安全回归：临时目录中的文件操作、预演一致性、类型校验以及检查器自身测试。
+
+这些不是完整 HTML/CSS 校验、浏览器兼容性测试或网络链接探活；缺少可选依赖时的跳过项需要单独报告，不能写成“所有功能已验证”。
 - Matlab 主函数名是否与文件名完全一致。
 
 详细规则见 [示例代码规范](../docs/CODE_STYLE.md)。Matlab Code Analyzer 的性能、未使用变量和旧 API 提示不会全部作为提交阻断项，应按案例逐步处理。

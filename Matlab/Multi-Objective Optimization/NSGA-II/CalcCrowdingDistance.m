@@ -5,23 +5,40 @@ function pop=CalcCrowdingDistance(pop,F)
     
     for k = 1:nF  % 遍历每一个非支配前沿
         
+        if isempty(F{k})
+            continue;
+        end
+
         Costs = [pop(F{k}).Cost];  % 获取当前非支配前沿个体的目标函数值
         
         nObj = size(Costs, 1);  % 目标函数的个数
         
         n = numel(F{k});  % 当前非支配前沿中个体的数量
         
+        if n <= 2
+            for i = 1:n
+                pop(F{k}(i)).CrowdingDistance = inf;
+            end
+            continue;
+        end
+
         d = zeros(n, nObj);  % 初始化拥挤度矩阵
         
         for j = 1:nObj  % 对每个目标函数计算拥挤度
             
             [cj, so] = sort(Costs(j,:));  % 按照第j个目标函数对个体进行排序
             
+            objectiveRange = cj(end) - cj(1);
+            if objectiveRange == 0
+                % A constant objective has no spacing information; avoid 0/0.
+                continue;
+            end
+
             d(so(1), j) = inf;  % 最边界的个体的拥挤度设为无穷大
             
             for i = 2:n-1
                 % 计算第i个个体在第j个目标上的拥挤度
-                d(so(i), j) = abs(cj(i+1) - cj(i-1)) / abs(cj(1) - cj(end));
+                d(so(i), j) = abs(cj(i+1) - cj(i-1)) / objectiveRange;
                 % 公式： (下一邻居目标值 - 上一邻居目标值) / (最大目标值 - 最小目标值)
             end
             

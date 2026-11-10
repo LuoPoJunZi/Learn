@@ -40,6 +40,16 @@
 | :--- | :--- | :--- |
 | 轻量数据面板 | [dashboard-lite/index.html](dashboard-lite/index.html) | 侧边栏、统计卡片、表格、状态标签 |
 
+## 页面配套说明
+
+直接打开 HTML 看效果后，使用下列说明了解结构与修改方法：
+
+- [作品集 / 简历说明](portfolio-resume/README.md)
+- [产品落地页说明](product-landing/README.md)
+- [餐厅页面说明](cafe-restaurant/README.md)
+- [价格页说明](pricing-page/README.md)
+- [轻量数据面板说明](dashboard-lite/README.md)
+
 ## 推荐学习方式
 
 1. 先打开页面看效果。

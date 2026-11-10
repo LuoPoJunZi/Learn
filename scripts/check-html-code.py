@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 
 class DocumentAudit(HTMLParser):
@@ -15,10 +16,19 @@ class DocumentAudit(HTMLParser):
         self.ids: dict[str, list[int]] = {}
         self.images_without_alt: list[int] = []
         self.buttons_without_type: list[int] = []
+        self.assets: list[tuple[int, str]] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = dict(attrs)
         line_number, _ = self.getpos()
+
+        asset = None
+        if tag in {"script", "img", "audio", "video", "source"}:
+            asset = attributes.get("src")
+        if tag == "link" and attributes.get("rel") == "stylesheet":
+            asset = attributes.get("href")
+        if asset:
+            self.assets.append((line_number, asset))
 
         element_id = attributes.get("id")
         if element_id:
@@ -45,6 +55,12 @@ def audit_file(path: Path) -> list[str]:
         issues.append(f"line {line_number}: img must define alt")
     for line_number in parser.buttons_without_type:
         issues.append(f"line {line_number}: button must define type")
+    for line_number, asset in parser.assets:
+        url = urlsplit(asset)
+        if url.scheme or url.netloc or not url.path or url.path.startswith("/"):
+            continue
+        if not (path.parent / unquote(url.path)).is_file():
+            issues.append(f"line {line_number}: missing local asset {asset}")
     return issues
 
 
@@ -58,11 +74,12 @@ def main() -> int:
     )
     args = parser.parse_args()
     root = args.root.resolve()
-    ignored_directories = {".agents", ".codex", ".git", ".venv"}
+    ignored_directories = {".agents", ".codex", ".git", "venv", "node_modules"}
     html_files = sorted(
         path
         for path in root.rglob("*.html")
-        if ignored_directories.isdisjoint(path.parts)
+        if ignored_directories.isdisjoint(path.relative_to(root).parts)
+        and not any(part.startswith(".venv") for part in path.relative_to(root).parts)
     )
 
     issue_count = 0

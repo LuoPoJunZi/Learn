@@ -134,11 +134,12 @@ def main() -> int:
     )
     args = parser.parse_args()
     root = args.root.resolve()
-    ignored_directories = {".agents", ".codex", ".git", ".venv"}
+    ignored_directories = {".agents", ".codex", ".git", "venv", "node_modules"}
     python_files = sorted(
         path
         for path in root.rglob("*.py")
-        if ignored_directories.isdisjoint(path.parts)
+        if ignored_directories.isdisjoint(path.relative_to(root).parts)
+        and not any(part.startswith(".venv") for part in path.relative_to(root).parts)
     )
 
     issue_count = 0

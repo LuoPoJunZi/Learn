@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
-$ignoredPathPattern = '[\\/]\.(git|agents|codex|venv)([\\/]|$)|[\\/]node_modules([\\/]|$)'
+$ignoredPathPattern = '[\\/](\.(git|agents|codex)|\.venv[^\\/]*|venv|node_modules)([\\/]|$)'
 $markdownFiles = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.md' |
     Where-Object {
         $_.FullName -notmatch $ignoredPathPattern -and
@@ -17,7 +17,7 @@ $unclosedFences = New-Object System.Collections.Generic.List[string]
 $missingReadmes = New-Object System.Collections.Generic.List[string]
 
 foreach ($file in $markdownFiles) {
-    $content = Get-Content -LiteralPath $file.FullName
+    $content = Get-Content -LiteralPath $file.FullName -Encoding UTF8
     $inFence = $false
     $fenceStart = 0
     $fenceLength = 0
@@ -84,7 +84,7 @@ foreach ($file in $markdownFiles) {
 }
 
 $topDirs = Get-ChildItem -LiteralPath $rootPath -Directory |
-    Where-Object { -not $_.Name.StartsWith('.') }
+    Where-Object { -not $_.Name.StartsWith('.') -and $_.Name -notin @('venv', 'node_modules') }
 
 foreach ($dir in $topDirs) {
     $readme = Join-Path $dir.FullName 'README.md'

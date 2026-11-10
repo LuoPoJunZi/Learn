@@ -15,7 +15,11 @@ concurrency:
 jobs:
   checks:
     name: Repository, code, and documentation
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
 
     steps:

@@ -141,6 +141,7 @@
 - [Python 多目标优化算法索引](<Python/Multi-Objective Optimization/ALGORITHM_INDEX.md>)
 - [Markdown 示例与模板](Markdown/examples/README.md)
 - [README 模板](Markdown/examples/readme-template.md)
+- [仓库审查报告与验证边界](docs/REPOSITORY_AUDIT.md)
 - [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
 - [代码与文档检查脚本](scripts/README.md)
 - [参与贡献](CONTRIBUTING.md)

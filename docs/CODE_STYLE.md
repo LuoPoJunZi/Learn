@@ -92,7 +92,7 @@ if __name__ == "__main__":
 powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 ```
 
-统一入口会检查仓库结构、Python 语法和常见风险、JavaScript 语法、HTML 基础结构与常用属性、PowerShell 语法、Matlab 主函数名、文档链接、代码块和 Git 空白错误。Matlab 案例还应在安装了 Matlab 的电脑上运行 Code Analyzer，并用小规模参数执行入口脚本。
+统一入口会检查仓库结构、Python 语法和常见风险、独立及 HTML 内嵌 JavaScript 语法、HTML 基础结构与相对路径资源、PowerShell 语法、Matlab 主函数名、文档链接、代码块和 Git 空白错误，并执行已登记的回归测试。可选依赖的跳过项必须单列；静态检查不替代浏览器和科学计算运行环境验证。Matlab 案例还应在安装了 Matlab 的电脑上运行 Code Analyzer，并用小规模参数执行入口脚本。
 
 ## 下一步入口
 
