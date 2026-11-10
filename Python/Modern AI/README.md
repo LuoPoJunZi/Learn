@@ -53,7 +53,9 @@
 
 案例 11、12 配有 [RoPE 与分块注意力中文讲解](ATTENTION_MECHANICS_GUIDE.md)，建议在案例 1 之后阅读，再与 GQA、KV Cache 对照。
 
-## 工程专题：协议与检索
+## 工程专题：评测、协议与检索
+
+- [Agent 评测入门](AGENT_EVALUATION_GUIDE.md)：固定用例、答案与过程分别计分、缺失记录检查和日志脱敏；配 [离线评测台](examples/agent_evaluation.py)，不调用真实模型。
 
 - [MCP 工具协议与安全边界](MCP_TOOLS_GUIDE.md)：固定版本规范、工具发现与调用、结构化结果；配 [离线消息练习](examples/mcp_tool_messages.py)，不是可接入客户端的服务器。
 - [混合检索与 RRF](HYBRID_RETRIEVAL_GUIDE.md)：多路排名融合、权重、统一文档 ID 与 Recall@K；配 [标准库实现](examples/reciprocal_rank_fusion.py)，不下载 Embedding 模型。

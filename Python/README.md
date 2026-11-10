@@ -18,6 +18,10 @@
 
 ### 现代开发实践
 
+- [Python 3.15 新特性与迁移](Modern%20Python/PYTHON_315_MIGRATION_GUIDE.md)：先检查解释器与编码，再在独立环境验证新特性，不覆盖旧环境。
+- [DuckDB 数据分析入门](Data%20Analysis/README.md)：读取固定 CSV、执行分组汇总与参数化筛选，附可选 Parquet 临时文件验证。
+- [Agent 评测入门](Modern%20AI/AGENT_EVALUATION_GUIDE.md)：纯标准库离线评测台，区分答案准确率、严格任务成功率和工具错误率。
+
 - [uv 项目工作流](UV_WORKFLOW_GUIDE.md)：从依赖声明、锁文件到环境同步与测试，在独立练习目录操作。
 - [Modern Python：结构化并发](Modern%20Python/README.md)：Python 3.11+ 标准库演示 TaskGroup、超时和取消，附六项离线测试。
 - [当前代码教程精选](../docs/CURRENT_CODE_TUTORIALS.md)：官方来源、核验日期与 Python 3.14 特性导读；明确区分版本新增与成熟实践。

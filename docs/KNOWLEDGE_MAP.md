@@ -71,6 +71,12 @@ flowchart TD
 3. [Python 结构化并发](../Python/Modern%20Python/README.md)：观察任务失败、取消与清理。
 4. [可靠 Fetch 请求](../HTML/Examples/reliable-fetch/README.md)：将错误处理与竞态保护落实到网页。
 
+### 我想让已有脚本更可靠
+
+1. [Python 3.15 迁移](../Python/Modern%20Python/PYTHON_315_MIGRATION_GUIDE.md)：核对编码、版本与回退。
+2. [Agent 评测](../Python/Modern%20AI/AGENT_EVALUATION_GUIDE.md)：对比答案和工具过程，不只看成功演示。
+3. [DuckDB 数据分析](../Python/Data%20Analysis/README.md)：用 SQL 汇总本地表格，再核对数据类型与结果。
+
 ### 我想做算法和建模
 
 推荐路线：

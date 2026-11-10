@@ -1,0 +1,6 @@
+order_id,category,quantity,unit_price_cents
+1,books,2,3500
+2,courses,1,9900
+3,books,1,4500
+4,tools,3,1200
+5,courses,2,4900

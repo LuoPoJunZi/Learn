@@ -55,6 +55,10 @@
 
 ### 常用教程
 
+- [Python 3.15 新特性与迁移](Python/Modern%20Python/PYTHON_315_MIGRATION_GUIDE.md)：编码、哨兵值、导入变化与回退流程
+- [Agent 评测入门](Python/Modern%20AI/AGENT_EVALUATION_GUIDE.md)：答案与过程分别计分、固定用例和离线评测
+- [DuckDB 数据分析入门](Python/Data%20Analysis/README.md)：CSV、SQL 汇总、参数绑定与临时 Parquet 往返
+
 - [MCP 工具协议与安全边界](Python/Modern%20AI/MCP_TOOLS_GUIDE.md)：工具发现、调用消息与离线练习
 - [混合检索与 RRF 排名融合](Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)：多路排名、权重与检索评估
 - [CSS @scope 组件样式边界](HTML/Examples/scoped-css/README.md)：作用域、下界与基础回退

@@ -19,7 +19,8 @@ if ($null -eq $python) {
 
     $regressionFiles = @(
         'scripts/tests/test_modern_ai_examples.py',
-        'scripts/tests/test_retrieval_and_protocol.py'
+        'scripts/tests/test_retrieval_and_protocol.py',
+        'scripts/tests/test_learning_workflows.py'
     )
     foreach ($relativeTestPath in $regressionFiles) {
         $regressionTests = Join-Path $rootPath $relativeTestPath
