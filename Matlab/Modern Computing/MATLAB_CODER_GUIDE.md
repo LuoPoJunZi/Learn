@@ -185,5 +185,5 @@ MATLAB 会在 `codegen/lib/moving_average/` 目录下生成：
 ## 下一步
 
 - [MATLAB 基础脚本与函数](../Basics/README.md)
-- [Simulink RC 滤波电路仿真](simulink_rc_circuit_guide.md)
-- [MATLAB 与 PyTorch / ONNX 模型互通](matlab_onnx_interop.md)
+- [Simulink RC 滤波电路仿真](SIMULINK_RC_CIRCUIT_GUIDE.md)
+- [MATLAB 与 PyTorch / ONNX 模型互通](MATLAB_ONNX_INTEROP_GUIDE.md)

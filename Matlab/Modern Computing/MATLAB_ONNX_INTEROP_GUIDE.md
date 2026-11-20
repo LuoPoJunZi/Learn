@@ -218,5 +218,5 @@ disp('已成功导出 ONNX 模型包');
 
 - [MATLAB 深度学习现代工作流与旧案例迁移](../Neural%20Network/MODERN_WORKFLOW_GUIDE.md)
 - [MATLAB 现代计算案例](README.md)
-- [Simulink RC 滤波电路仿真](simulink_rc_circuit_guide.md)
-- [MATLAB Coder 入门：从 M 代码到 C/C++ 源码](matlab_coder_intro.md)
+- [Simulink RC 滤波电路仿真](SIMULINK_RC_CIRCUIT_GUIDE.md)
+- [MATLAB Coder 入门：从 M 代码到 C/C++ 源码](MATLAB_CODER_GUIDE.md)

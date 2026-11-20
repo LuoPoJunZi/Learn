@@ -17,6 +17,14 @@
 3. 理解 Iterator Helpers 的惰性求值与数组方法的区别
 4. 使用 `Object.groupBy()` 替代手写 `reduce` 分组
 
+## 文件说明
+
+| 文件 | 职责 |
+| :--- | :--- |
+| [index.html](index.html) | 语义化交互骨架与四组新特性演示区 |
+| [style.css](style.css) | 暗色控制台主题与移动端响应式布局 |
+| [script.js](script.js) | 运行时特性检测与四组 ES2024–ES2025 交互逻辑 |
+
 ## 演示内容
 
 | # | 特性 | 规范版本 | 核心方法 |

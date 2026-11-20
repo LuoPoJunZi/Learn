@@ -54,7 +54,9 @@ flowchart TD
 1. [Linux 学习导读](../Linux/LEARNING_GUIDE.md)
 2. [Linux 完全新手地图](../Linux/docs/part0-newbie-map.md)
 3. [VPS 操作安全清单](../Linux/docs/part4-vps-tools/4.2-vps-safety-checklist.md)
-4. [systemd 服务沙箱与凭据管理](../Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
+4. [Docker 容器极简入门](../Linux/docs/part4-vps-tools/4.3-docker-basics.md)
+5. [systemd 服务沙箱与凭据管理](../Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
+6. [systemd Timers 替代传统 Cron](../Linux/docs/part2-system-admin/2.6-systemd-timers.md)
 
 ### 我想写自动化脚本
 
@@ -95,13 +97,15 @@ flowchart TD
 3. [Mathematica 可运行案例](../Mathematica/Examples/README.md)
 4. [现代 Web API 实验台](../HTML/Examples/modern-web-apis/README.md)
 
-工程实践延伸：[MCP 工具协议与安全边界](../Python/Modern%20AI/MCP_TOOLS_GUIDE.md)、[RRF 混合检索](../Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)、[CSS @scope 组件边界](../HTML/Examples/scoped-css/README.md)。
+工程实践延伸：[MCP 工具协议与安全边界](../Python/Modern%20AI/MCP_TOOLS_GUIDE.md)、[A2A 多智能体协作协议](../Python/Modern%20AI/A2A_PROTOCOL_GUIDE.md)、[RRF 混合检索](../Python/Modern%20AI/HYBRID_RETRIEVAL_GUIDE.md)、[CSS @scope 组件边界](../HTML/Examples/scoped-css/README.md)、[Temporal 日期时间 API](../HTML/Examples/temporal-api/README.md)。
 
 按具体问题深入：
 
 | 想理解的问题 | 学习入口 |
 | :--- | :--- |
 | 注意力如何知道位置，如何分块保持同一个结果 | [Python RoPE 与分块注意力](<../Python/Modern AI/ATTENTION_MECHANICS_GUIDE.md>) |
+| 如何把长上下文 KV Cache 压缩进低维潜在空间 | [Python 多头潜在注意力 MLA](<../Python/Modern AI/MLA_GUIDE.md>) |
+| 推理模型如何去掉 Critic 网络做组内相对强化学习 | [Python 组相对策略优化 GRPO](<../Python/Modern AI/GRPO_GUIDE.md>) |
 | 回归结果如何增加预测区间 | [Python 保形预测](<../Python/Neural Network/UNCERTAINTY_GUIDE.md>) |
 | 速度场如何把噪声转成目标分布 | [Matlab Flow Matching](<../Matlab/Modern Computing/FLOW_MATCHING_GUIDE.md>) |
 | 如何确认手写梯度是否正确 | [Mathematica 梯度检查](../Mathematica/Examples/GRADIENT_CHECK_GUIDE.md) |

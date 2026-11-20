@@ -13,6 +13,7 @@
 - [仓库安全回归测试](tests/test_repository_safety.py)：路径穿越、预演/执行一致性、链接目标保护、评测输入类型与检查器自身回归；文件变更只在临时目录内
 - [现代 AI 回归测试](tests/test_modern_ai_examples.py)：检查受限算术、DPO 稳定损失、SSM 维度、VLM 切片与算术修正一致性，使用标准库 `unittest`
 - [检索与协议回归测试](tests/test_retrieval_and_protocol.py)：验证 RRF 公式、权重、重复 ID、Recall@K 和 MCP 消息的输入/输出与错误层次；纯标准库、无网络
+- [2026 前沿 AI 回归测试](tests/test_frontier_ai_2026.py)：验证 MLA 因果掩码与缓存压缩、GRPO 组内相对优势与零方差边界、A2A Agent Card 副本保护与任务状态机；纯标准库、无网络
 - [学习工作流回归测试](tests/test_learning_workflows.py)：迁移哨兵语义与 Agent 指标使用标准库验证；三项 DuckDB 集成测试仅在已安装依赖时运行，缺依赖明确跳过，不自动安装
 - [NSGA-II 拥挤距离测试](tests/test_nsga2_crowding.m)：空前沿、常量目标、单/双个体边界；需在 MATLAB 单独运行，不加入默认 CI；本轮批处理超时，未获得通过结果
 - [结构化并发测试](../Python/Modern%20Python/test_structured_concurrency.py)：验证结果顺序、异常清理、超时与外部取消，要求 Python 3.11+

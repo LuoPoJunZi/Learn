@@ -49,6 +49,13 @@
 | 原帖链接 `https://www.nodeseek.com/post-143131-1` | [VPS 常用脚本速查表](../part4-vps-tools/4.1-vps-script-index.md) 的“原始来源” |
 | 原“关注我”链接 | 本页“原始来源链接” |
 
+## 2026-11-20 目录与章节编号规范化映射
+
+| 旧路径 | 新位置 | 整理原因 |
+| :--- | :--- | :--- |
+| `Linux/docs/part1-basics/1.6-modern-cli-tools.md` | [1.5 现代终端效率工具](../part1-basics/1.5-modern-cli-tools.md) | 消除 `part1-basics` 中 `1.4` 跳号到 `1.6` 的编号空缺 |
+| `Linux/docs/part4-tools/4.1-docker-basics.md` | [4.3 Docker 容器极简入门](../part4-vps-tools/4.3-docker-basics.md) | 合并重复的 `part4-*` 目录并消除两个 `4.1` 编号冲突 |
+
 ## 原始来源链接
 
 - Linux 命令博客原文：`https://blog.luopojunzi.com/p/linuxCMD/`

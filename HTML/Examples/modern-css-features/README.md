@@ -20,7 +20,8 @@
 
 | 文件 | 职责 |
 | :--- | :--- |
-| [index.html](index.html) | 单文件演示页面，包含内嵌样式、语义化 HTML5 结构与实时交互组件 |
+| [index.html](index.html) | 语义化 HTML5 结构与实时交互控件 |
+| [style.css](style.css) | 纯原生 CSS 嵌套与 `:has()` 样式规则（无 JavaScript） |
 
 ## 如何打开
 

@@ -2,6 +2,20 @@
 
 这个文件记录仓库中比较重要的文档结构调整，方便以后回看每一轮优化做了什么。
 
+## 2026-11-20
+
+### 目录与代码规范化
+
+- **Linux 目录与编号规范**：合并重复目录 `Linux/docs/part4-tools/` 至 `Linux/docs/part4-vps-tools/4.3-docker-basics.md`，消除两个 `4.1` 编号冲突；将 `Linux/docs/part1-basics/1.6-modern-cli-tools.md` 顺延规范为 `1.5-modern-cli-tools.md` 并补齐遗漏的三级标题，在 [旧内容迁移索引](Linux/docs/appendix/original-content-map.md) 中记录路径映射。
+- **HTML/Examples 结构统一**：将 `modern-css-features`、`es2024-2026-features`、`webgpu-basics` 三个单文件页面拆分为与其他案例一致的 `index.html` + `style.css`（+ `script.js`）分离结构，并将内联 `onclick` 改为事件监听器绑定。
+- **Matlab 指南命名统一**：将 `Matlab/Modern Computing/` 下三篇指南统一规范为全大写 `SIMULINK_RC_CIRCUIT_GUIDE.md`、`MATLAB_CODER_GUIDE.md`、`MATLAB_ONNX_INTEROP_GUIDE.md`，并在对应 README 中保留旧文件名映射表。
+- **维护索引同步**：在 [scripts/README.md](scripts/README.md) 登记 `test_frontier_ai_2026.py`，并更新 [知识地图](docs/KNOWLEDGE_MAP.md) 与根目录导航。
+
+### 新增前沿教程
+
+- 新增 [多头潜在注意力 MLA](<Python/Modern AI/MLA_GUIDE.md>)、[组相对策略优化 GRPO](<Python/Modern AI/GRPO_GUIDE.md>) 与 [A2A 多智能体协议](<Python/Modern AI/A2A_PROTOCOL_GUIDE.md>) 教程、标准库实现及 8 项离线回归测试。
+- 新增 [JavaScript Temporal API 实验台](HTML/Examples/temporal-api/README.md)、[原生互斥手风琴与 oklch/color-mix 实验台](HTML/Examples/native-accordion-color/README.md) 与 [systemd Timers 教程](Linux/docs/part2-system-admin/2.6-systemd-timers.md)。
+
 ## 2026-11-10
 
 ### 仓库审查与修复

@@ -1,0 +1,240 @@
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --success: #16a34a;
+  --error: #dc2626;
+  --error-bg: #fee2e2;
+}
+
+/* 纯 CSS 驱动的全局暗黑主题：无需一行 JavaScript！ */
+body:has(#dark-mode-toggle:checked) {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --primary: #38bdf8;
+  --primary-light: #0369a1;
+  --error-bg: #450a0a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.theme-switch input {
+  cursor: pointer;
+}
+
+/* --- 1. 原生 CSS 嵌套 (Native CSS Nesting) 演示 --- */
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  & .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    & h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    & .badge {
+      font-size: 0.75rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+  }
+
+  & p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  & .code-snippet {
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 1rem;
+
+    & .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+}
+
+.demo-heading {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-heading-spaced {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- 2. :has() 父级与关系选择器实战 --- */
+.form-group {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s, background-color 0.2s;
+
+  & label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  & input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+
+    &:focus {
+      border-color: var(--primary);
+    }
+  }
+
+  & .error-hint {
+    display: none;
+    color: var(--error);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  &:has(input:invalid:not(:placeholder-shown)) {
+    border-color: var(--error);
+    background-color: var(--error-bg);
+
+    & .error-hint {
+      display: block;
+    }
+  }
+}
+
+.interactive-card {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  & .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  & .action-panel {
+    display: none;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  & .action-hint {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--success);
+    font-weight: 500;
+  }
+
+  &:has(input[type="checkbox"]:checked) {
+    border-style: solid;
+    border-color: var(--success);
+    background: rgba(22, 163, 74, 0.05);
+
+    & .action-panel {
+      display: block;
+    }
+  }
+}
+
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}

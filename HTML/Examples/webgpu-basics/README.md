@@ -6,7 +6,7 @@
 
 - 了解基础 JavaScript，希望探索硬件加速与底层渲染/计算原理的初学者。
 - 听说过端侧浏览器大模型推理（如 Transformers.js、WebLLM），好奇“浏览器不依赖后端是如何跑 AI”的开发者。
-- 了解 WebGL 但对现代现代显卡 API（DirectX 12、Vulkan、Metal）设计思想感兴趣的学习者。
+- 了解 WebGL 但对现代显卡 API（DirectX 12、Vulkan、Metal）设计思想感兴趣的学习者。
 
 ## 学习目标
 
@@ -21,7 +21,9 @@
 
 | 文件 | 职责 |
 | :--- | :--- |
-| [index.html](index.html) | 单文件演示页面，包含 WebGPU 环境检测、WGSL 着色器构建与向量并行相加演示 |
+| [index.html](index.html) | 语义化页面结构、计算管线图解与 WGSL 展示区 |
+| [style.css](style.css) | 暗色实验台样式与状态提示条 |
+| [script.js](script.js) | WebGPU 特性检测、WGSL 计算着色器、Buffer 生命周期与显存回收 |
 
 ## 如何打开
 

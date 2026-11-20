@@ -33,7 +33,7 @@
 - [文件和目录操作](docs/part1-basics/1.2-files-and-directories.md)
 - [文件查看、编辑与搜索](docs/part1-basics/1.3-file-view-edit.md)
 - [权限与所有者](docs/part1-basics/1.4-permissions.md)
-- [现代终端效率工具（eza/bat/rg/fd/zoxide）](docs/part1-basics/1.6-modern-cli-tools.md)
+- [现代终端效率工具（eza/bat/rg/fd/zoxide）](docs/part1-basics/1.5-modern-cli-tools.md)
 
 ### 系统管理
 
@@ -52,9 +52,9 @@
 
 ### 容器与 VPS 工具
 
-- [Docker 容器极简入门](docs/part4-tools/4.1-docker-basics.md)
 - [VPS 常用脚本速查表](docs/part4-vps-tools/4.1-vps-script-index.md)
 - [VPS 操作安全清单](docs/part4-vps-tools/4.2-vps-safety-checklist.md)
+- [Docker 容器极简入门](docs/part4-vps-tools/4.3-docker-basics.md)
 
 ### 附录
 

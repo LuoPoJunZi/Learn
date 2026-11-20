@@ -21,9 +21,9 @@
 | 物理约束损失 | [physics_informed_loss_demo.m](physics_informed_loss_demo.m) | 数据损失、ODE 残差、损失权重、参数搜索 | 基础 Matlab |
 | Fourier Neural Operator 直觉 | [fourier_neural_operator_demo.m](fourier_neural_operator_demo.m) | FFT、频域乘子、模态截断、函数空间映射 | 基础 Matlab |
 | Flow Matching 速度场学习 | [flow_matching_demo.m](flow_matching_demo.m) | 条件路径、最小二乘、边际速度、ODE 采样 | 基础 Matlab |
-| Simulink RC 滤波仿真 | [simulink_rc_circuit_guide.md](simulink_rc_circuit_guide.md) | 框图建模、积分器、闭环负反馈、Scope 示波器 | Simulink |
-| MATLAB Coder 源码生成 | [matlab_coder_intro.md](matlab_coder_intro.md) | `%#codegen`、静态类型、MEX 10x 加速、独立 C 源码 | MATLAB Coder |
-| PyTorch 与 ONNX 互通 | [matlab_onnx_interop.md](matlab_onnx_interop.md) | `importONNXNetwork`、张量维度 NCHW/SSCB 对齐、Simulink AI 闭环 | Deep Learning Toolbox |
+| Simulink RC 滤波仿真 | [SIMULINK_RC_CIRCUIT_GUIDE.md](SIMULINK_RC_CIRCUIT_GUIDE.md) | 框图建模、积分器、闭环负反馈、Scope 示波器 | Simulink |
+| MATLAB Coder 源码生成 | [MATLAB_CODER_GUIDE.md](MATLAB_CODER_GUIDE.md) | `%#codegen`、静态类型、MEX 10x 加速、独立 C 源码 | MATLAB Coder |
+| PyTorch 与 ONNX 互通 | [MATLAB_ONNX_INTEROP_GUIDE.md](MATLAB_ONNX_INTEROP_GUIDE.md) | `importONNXNetwork`、张量维度 NCHW/SSCB 对齐、Simulink AI 闭环 | Deep Learning Toolbox |
 
 Flow Matching 配有 [完整中文讲解](FLOW_MATCHING_GUIDE.md)，包含训练与采样的区别、矩阵维度、解析对照和来源说明。
 
@@ -110,6 +110,16 @@ du/dt + u = 0,  u(0) = 1
 - [Flow Matching Guide and Code](https://arxiv.org/abs/2412.06264)
 
 本目录脚本为依据公式重新编写的原创教学示例，没有复制 MathWorks 示例源码。
+
+## 文档改名映射（2026-11-20）
+
+为与仓库内其他专题指南（如 `FLOW_MATCHING_GUIDE.md`）命名保持一致，以下三篇指南已统一改为大写 `*_GUIDE.md`：
+
+| 旧文件名 | 新位置 |
+| :--- | :--- |
+| `simulink_rc_circuit_guide.md` | [SIMULINK_RC_CIRCUIT_GUIDE.md](SIMULINK_RC_CIRCUIT_GUIDE.md) |
+| `matlab_coder_intro.md` | [MATLAB_CODER_GUIDE.md](MATLAB_CODER_GUIDE.md) |
+| `matlab_onnx_interop.md` | [MATLAB_ONNX_INTEROP_GUIDE.md](MATLAB_ONNX_INTEROP_GUIDE.md) |
 
 ## 下一步
 

@@ -167,4 +167,4 @@ legend('解析解 (1 - e^{-t/\tau})', '数值积分模拟', 'Location', 'SouthEa
 
 - [MATLAB 基础教程](../Basics/README.md)
 - [MATLAB 现代计算案例](README.md)
-- [MATLAB Coder 入门：从 M 代码到 C/C++ 源码](matlab_coder_intro.md)
+- [MATLAB Coder 入门：从 M 代码到 C/C++ 源码](MATLAB_CODER_GUIDE.md)
