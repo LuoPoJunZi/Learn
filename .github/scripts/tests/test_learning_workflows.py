@@ -9,7 +9,7 @@ from pathlib import Path
 from types import ModuleType
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 
 def load_example(name: str, relative_path: str) -> ModuleType:

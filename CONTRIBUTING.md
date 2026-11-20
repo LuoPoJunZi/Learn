@@ -52,7 +52,7 @@
 在仓库根目录运行统一检查：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 检查内容包括仓库结构、跨平台路径、误提交缓存、Python/JavaScript/PowerShell/HTML/Matlab 代码、Markdown 链接、代码块和 Git 空白错误。

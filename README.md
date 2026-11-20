@@ -145,15 +145,15 @@
 - [Markdown 示例与模板](Markdown/examples/README.md)
 - [README 模板](Markdown/examples/readme-template.md)
 - [仓库审查报告与验证边界](docs/REPOSITORY_AUDIT.md)
-- [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
-- [代码与文档检查脚本](scripts/README.md)
+- [文档维护者指南](.github/scripts/MAINTAINER_GUIDE.md)
+- [代码与文档检查脚本](.github/scripts/README.md)
 - [参与贡献](CONTRIBUTING.md)
 
 ## 目录概览
 
 ```text
 Learn/
-├── .github/         GitHub Actions 与 Pull Request 模板
+├── .github/         GitHub Actions、PR 模板与代码/文档检查脚本
 ├── Github/          GitHub 新手教程
 ├── Linux/           Linux 与 VPS 实用手册
 ├── Markdown/        Markdown 语法教程和写作模板
@@ -161,8 +161,7 @@ Learn/
 ├── HTML/            HTML/CSS/JavaScript 基础和网页示例
 ├── Matlab/          Matlab 基础、优化算法、神经网络案例
 ├── Mathematica/     Mathematica / Wolfram Language 教程
-├── docs/            仓库级学习路线、练习题和文档规范
-└── scripts/         代码与文档检查脚本
+└── docs/            仓库级学习路线、练习题和文档规范
 ```
 
 ## 各目录说明
@@ -298,7 +297,7 @@ Learn/
 提交前运行统一检查入口：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 GitHub Actions 会在推送和 Pull Request 中运行同一套检查。
@@ -307,8 +306,8 @@ GitHub Actions 会在推送和 Pull Request 中运行同一套检查。
 
 - [文档整理规范](docs/STYLE_GUIDE.md)
 - [示例代码规范](docs/CODE_STYLE.md)
-- [文档维护者指南](scripts/MAINTAINER_GUIDE.md)
-- [代码与文档检查脚本说明](scripts/README.md)
+- [文档维护者指南](.github/scripts/MAINTAINER_GUIDE.md)
+- [代码与文档检查脚本说明](.github/scripts/README.md)
 - [参与贡献](CONTRIBUTING.md)
 - [更新日志](CHANGELOG.md)
 

@@ -38,4 +38,4 @@ jobs:
 
       - name: Run all checks
         shell: pwsh
-        run: ./scripts/check-all.ps1
+        run: ./.github/scripts/check-all.ps1

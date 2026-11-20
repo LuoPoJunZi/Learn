@@ -57,7 +57,7 @@ MLA（多头潜在）   : 不直接存各头 K/V，只存低维潜在向量 c_t 
 
 ```powershell
 python "Python\Modern AI\examples\multi_head_latent_attention.py"
-python -m unittest discover -s scripts/tests -p "test_frontier_ai_2026.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_frontier_ai_2026.py" -v
 ```
 
 运行后会打印：

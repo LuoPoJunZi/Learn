@@ -9,7 +9,8 @@
 - **Linux 目录与编号规范**：合并重复目录 `Linux/docs/part4-tools/` 至 `Linux/docs/part4-vps-tools/4.3-docker-basics.md`，消除两个 `4.1` 编号冲突；将 `Linux/docs/part1-basics/1.6-modern-cli-tools.md` 顺延规范为 `1.5-modern-cli-tools.md` 并补齐遗漏的三级标题，在 [旧内容迁移索引](Linux/docs/appendix/original-content-map.md) 中记录路径映射。
 - **HTML/Examples 结构统一**：将 `modern-css-features`、`es2024-2026-features`、`webgpu-basics` 三个单文件页面拆分为与其他案例一致的 `index.html` + `style.css`（+ `script.js`）分离结构，并将内联 `onclick` 改为事件监听器绑定。
 - **Matlab 指南命名统一**：将 `Matlab/Modern Computing/` 下三篇指南统一规范为全大写 `SIMULINK_RC_CIRCUIT_GUIDE.md`、`MATLAB_CODER_GUIDE.md`、`MATLAB_ONNX_INTEROP_GUIDE.md`，并在对应 README 中保留旧文件名映射表。
-- **维护索引同步**：在 [scripts/README.md](scripts/README.md) 登记 `test_frontier_ai_2026.py`，并更新 [知识地图](docs/KNOWLEDGE_MAP.md) 与根目录导航。
+- **维护脚本收归 `.github/scripts/`**：将根目录非教程维护目录 `scripts/` 迁移至 [.github/scripts/](.github/scripts/README.md)，让根目录仅保留学习专题与 `docs/`，同时保持 GitHub Actions 与全部离线回归测试正常执行。
+- **维护索引同步**：在 [.github/scripts/README.md](.github/scripts/README.md) 登记 `test_frontier_ai_2026.py`，并更新 [知识地图](docs/KNOWLEDGE_MAP.md) 与根目录导航。
 
 ### 新增前沿教程
 
@@ -91,7 +92,7 @@
 ### 新增
 
 - 新增根目录 [参与贡献指南](CONTRIBUTING.md) 与 Pull Request 模板，统一内容保留、来源标注、验证和安全要求。
-- 新增 [仓库结构检查](scripts/check-repository.py) 和 [一键全检入口](scripts/check-all.ps1)，覆盖必要文件、跨平台路径冲突、生成文件、代码、文档与 Git 空白错误。
+- 新增 [仓库结构检查](.github/scripts/check-repository.py) 和 [一键全检入口](.github/scripts/check-all.ps1)，覆盖必要文件、跨平台路径冲突、生成文件、代码、文档与 Git 空白错误。
 - 新增实际运行的 [Repository quality 工作流](.github/workflows/quality.yml)，让推送、Pull Request 与本地使用同一套检查。
 
 ### 优化
@@ -151,7 +152,7 @@
 ### 新增
 
 - 新增仓库级 `.editorconfig`、`.gitattributes` 和 `.gitignore`，统一 UTF-8、换行、缩进与常见生成文件忽略规则。
-- 新增 [示例代码规范](docs/CODE_STYLE.md)、[代码检查脚本](scripts/check-code.ps1) 和无第三方依赖的 Python 静态检查器。
+- 新增 [示例代码规范](docs/CODE_STYLE.md)、[代码检查脚本](.github/scripts/check-code.ps1) 和无第三方依赖的 Python 静态检查器。
 - 新增 [Python 自动化脚本统一运行与安全说明](Python/Auto_scripts/STANDARDIZED_USAGE.md)，说明预演模式、环境变量和标准化后的安全默认值。
 
 ### 优化
@@ -167,7 +168,7 @@
 
 - 新增 [HTML 静态网页案例集合](HTML/Examples/README.md) 和 [HTML 优秀网页项目导读](HTML/EXTERNAL_REPOSITORIES.md)，包含作品集、产品落地页、餐厅展示页、轻量数据面板、交互组件和价格页等初学者可直接打开修改的案例。
 - 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 的学习导读，重点补充学习路线、概念解释、典型场景、常见误区和外部资源。
-- 新增 [30 天学习计划](docs/30_DAY_PLAN.md)、[知识地图总览](docs/KNOWLEDGE_MAP.md)、[新手术语表](docs/GLOSSARY.md) 和 [文档维护者指南](scripts/MAINTAINER_GUIDE.md)，增强仓库级学习入口和维护说明。
+- 新增 [30 天学习计划](docs/30_DAY_PLAN.md)、[知识地图总览](docs/KNOWLEDGE_MAP.md)、[新手术语表](docs/GLOSSARY.md) 和 [文档维护者指南](.github/scripts/MAINTAINER_GUIDE.md)，增强仓库级学习入口和维护说明。
 - 新增 GitHub、Linux、Markdown、Python、Matlab、Mathematica 常见问题文档，以及 [内容阅读指南](docs/READING_GUIDE.md)，方便新手按目标和报错快速定位内容。
 - 新增 GitHub 真实场景、Linux VPS 运维、Markdown 写作进阶、Python 小项目路线、Matlab 案例阅读、Mathematica 专题学习和 [后续深入路线](docs/NEXT_STEP_ROUTES.md)，继续增强场景型学习内容。
 - 新增 PR Review、VPS 基础安全、README 审查、Python 环境依赖、Matlab 数据绘图、Mathematica Notebook 和 [新手检查清单合集](docs/CHECKLISTS.md)，补齐新手执行前后的检查流程。

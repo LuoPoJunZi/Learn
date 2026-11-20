@@ -9,7 +9,7 @@ import runpy
 import unittest
 
 
-EXAMPLES = Path(__file__).resolve().parents[2] / "Python" / "Modern AI" / "examples"
+EXAMPLES = Path(__file__).resolve().parents[3] / "Python" / "Modern AI" / "examples"
 
 
 class ModernAIExamplesTests(unittest.TestCase):

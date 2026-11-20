@@ -20,7 +20,7 @@ DuckDB 与 pandas 可以互补，不是谁必须取代谁。按列分析时 Parq
 
 - [sales.csv](sales.csv)：五条固定订单，金额使用整数“分”。
 - [duckdb_sales.py](duckdb_sales.py)：读取固定本地 CSV，在 `:memory:` 连接中执行查询。
-- [回归测试](../../scripts/tests/test_learning_workflows.py)：有 DuckDB 时核对汇总、筛选、参数拒绝与 Parquet 往返；缺依赖时明确跳过。
+- [回归测试](../../.github/scripts/tests/test_learning_workflows.py)：有 DuckDB 时核对汇总、筛选、参数拒绝与 Parquet 往返；缺依赖时明确跳过。
 
 默认运行只读取示例 CSV、打印结果，不写输出文件。添加 `--parquet` 时仅在新建的系统临时目录内写一个 Parquet 文件，退出后清理临时目录，不修改原 CSV 或用户数据。分析引擎资源使用仍受运行环境影响；真实大数据任务需另行设置内存和临时存储预算。
 
@@ -114,7 +114,7 @@ connection.execute(SUMMARY_SQL, [min_quantity]).fetchall()
 在相同环境执行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s scripts/tests -p "test_learning_workflows.py" -v
+.\.venv\Scripts\python.exe -m unittest discover -s .github/scripts/tests -p "test_learning_workflows.py" -v
 ```
 
 安装 DuckDB 后，三项 DuckDB 测试应实际运行；未安装时显示 `skipped`，不算验证了 SQL 或 Parquet。

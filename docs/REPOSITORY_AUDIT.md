@@ -29,7 +29,7 @@
 在仓库根目录执行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 本地环境为 Windows、Python 3.13、Node.js 20。结果包括：
@@ -39,7 +39,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 - JavaScript 语法：8 个独立文件、7 个内嵌脚本块。
 - PowerShell 解析、Matlab 主函数名、Markdown 本地链接与代码块、仓库结构和 Git 空白检查通过。
 - Python 测试：47 项通过、3 项因未安装 DuckDB 跳过；Node Fetch 测试：8 项通过。合计 **55 项通过，3 项跳过**。
-- 本轮新增的 [安全与检查器测试](../scripts/tests/test_repository_safety.py) 共 14 项，已接入统一检查。
+- 本轮新增的 [安全与检查器测试](../.github/scripts/tests/test_repository_safety.py) 共 14 项，已接入统一检查。
 
 ### 独立入口运行
 
@@ -49,7 +49,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 
 ### Matlab 定向验证尝试
 
-[NSGA-II 边界测试](../scripts/tests/test_nsga2_crowding.m) 检查常量目标、空前沿、单/双个体和普通间距。已尝试 `matlab -batch "addpath('scripts/tests'); test_nsga2_crowding"`，工具在 120 秒超时，未收到测试输出。不据此推断是许可证、启动过程还是算法导致，也不计为通过；该项须在可响应的 MATLAB 会话中另行运行。
+[NSGA-II 边界测试](../.github/scripts/tests/test_nsga2_crowding.m) 检查常量目标、空前沿、单/双个体和普通间距。已尝试 `matlab -batch "addpath('.github/scripts/tests'); test_nsga2_crowding"`，工具在 120 秒超时，未收到测试输出。不据此推断是许可证、启动过程还是算法导致，也不计为通过；该项须在可响应的 MATLAB 会话中另行运行。
 
 ### 安全与历史资料保留
 
@@ -79,8 +79,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 
 ## 维护入口
 
-- [统一检查脚本说明](../scripts/README.md)
-- [文档维护者指南](../scripts/MAINTAINER_GUIDE.md)
+- [统一检查脚本说明](../.github/scripts/README.md)
+- [文档维护者指南](../.github/scripts/MAINTAINER_GUIDE.md)
 - [自动化脚本安全说明](../Python/Auto_scripts/STANDARDIZED_USAGE.md)
 - [知识地图](KNOWLEDGE_MAP.md)
 

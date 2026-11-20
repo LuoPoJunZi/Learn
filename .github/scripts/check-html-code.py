@@ -69,7 +69,7 @@ def main() -> int:
     parser.add_argument(
         "--root",
         type=Path,
-        default=Path(__file__).resolve().parents[1],
+        default=Path(__file__).resolve().parents[2],
         help="repository root (default: inferred from this script)",
     )
     args = parser.parse_args()

@@ -74,7 +74,7 @@ Schema 是数据约定，不是权限系统。即使工具宣称“只读”，�
 
 ```powershell
 python "Python/Modern AI/examples/mcp_tool_messages.py"
-python -m unittest discover -s scripts/tests -p "test_retrieval_and_protocol.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_retrieval_and_protocol.py" -v
 ```
 
 输出先展示工具定义，再展示商为 3.5 的结果，最后展示分母为零的工具失败。测试覆盖元数据复制、输入验证、请求 ID、错误层次与文本/结构化结果一致性。

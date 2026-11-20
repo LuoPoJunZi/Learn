@@ -16,7 +16,7 @@
 2. [README 审查清单](../Markdown/README_REVIEW_CHECKLIST.md)
 3. [Markdown 常见问题](../Markdown/FAQ.md)
 4. [文档整理规范](STYLE_GUIDE.md)
-5. [文档维护者指南](../scripts/MAINTAINER_GUIDE.md)
+5. [文档维护者指南](../.github/scripts/MAINTAINER_GUIDE.md)
 
 阶段目标：能新增一篇教程，并正确更新 README、学习路线和更新日志。
 

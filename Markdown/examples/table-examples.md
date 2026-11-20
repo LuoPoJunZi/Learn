@@ -9,7 +9,7 @@
 | :--- | :--- |
 | README.md | 项目首页 |
 | docs/ | 教程文档 |
-| scripts/ | 维护脚本 |
+| .github/scripts/ | 维护与检查脚本 |
 ```
 
 ## 参数说明表

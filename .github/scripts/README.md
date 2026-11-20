@@ -1,6 +1,6 @@
-# scripts
+# .github/scripts
 
-这个目录保存仓库维护脚本，不需要安装 npm 或额外的 Python 检查库。
+这个目录保存仓库维护脚本与离线回归测试（位于 `.github/` 下以保持根目录专注学习内容），不需要安装 npm 或额外的 Python 检查库。
 
 ## 文件
 
@@ -16,15 +16,15 @@
 - [2026 前沿 AI 回归测试](tests/test_frontier_ai_2026.py)：验证 MLA 因果掩码与缓存压缩、GRPO 组内相对优势与零方差边界、A2A Agent Card 副本保护与任务状态机；纯标准库、无网络
 - [学习工作流回归测试](tests/test_learning_workflows.py)：迁移哨兵语义与 Agent 指标使用标准库验证；三项 DuckDB 集成测试仅在已安装依赖时运行，缺依赖明确跳过，不自动安装
 - [NSGA-II 拥挤距离测试](tests/test_nsga2_crowding.m)：空前沿、常量目标、单/双个体边界；需在 MATLAB 单独运行，不加入默认 CI；本轮批处理超时，未获得通过结果
-- [结构化并发测试](../Python/Modern%20Python/test_structured_concurrency.py)：验证结果顺序、异常清理、超时与外部取消，要求 Python 3.11+
-- [可靠 Fetch 测试](../HTML/Examples/reliable-fetch/test-request.cjs)：验证 HTTP/解析/网络错误、取消、超时与旧响应竞态，要求 Node.js 18+
+- [结构化并发测试](../../Python/Modern%20Python/test_structured_concurrency.py)：验证结果顺序、异常清理、超时与外部取消，要求 Python 3.11+
+- [可靠 Fetch 测试](../../HTML/Examples/reliable-fetch/test-request.cjs)：验证 HTTP/解析/网络错误、取消、超时与旧响应竞态，要求 Node.js 18+
 - [check-docs.ps1](check-docs.ps1)：检查 Markdown 本地链接、代码块闭合情况，以及一级目录是否包含 README
 - [MAINTAINER_GUIDE.md](MAINTAINER_GUIDE.md)：文档维护者指南，说明新增教程、更新导航和排查检查失败的流程
 
 日常提交前只需要运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 总入口会依次检查：
@@ -36,8 +36,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 
 `check-all.ps1` 需要系统能够找到 `git`、Python 3.11+ 和 Node.js 18+（CI 分别使用 Python 3.12 与 Node.js 22）。它运行静态检查、离线数值回归、学习工作流、结构化并发和 Fetch 单元测试；若已安装 DuckDB，还会读取仓库固定 CSV，并在新建临时目录内验证 Parquet 往返，不调用网络、删除、邮件或真实账号脚本。需要定位单项问题时，仍可单独运行 `check-code.ps1` 或 `check-docs.ps1`。
 
-GitHub Actions 的 [quality 工作流](../.github/workflows/quality.yml) 配置 Ubuntu/Windows 矩阵并使用同一个总入口，避免本地规则和 CI 规则不一致；配置更改不等于远程已经运行通过。
+GitHub Actions 的 [quality 工作流](../workflows/quality.yml) 配置 Ubuntu/Windows 矩阵并使用同一个总入口，避免本地规则和 CI 规则不一致；配置更改不等于远程已经运行通过。
 
 检查器跳过 `.venv*`、`venv` 和 `node_modules`，`.gitignore` 同步忽略这些本地环境。结构检查仍会拒绝被强制加入 Git 的虚拟环境文件。
 
-检查范围与残余限制见 [仓库审查报告](../docs/REPOSITORY_AUDIT.md)。
+检查范围与残余限制见 [仓库审查报告](../../docs/REPOSITORY_AUDIT.md)。

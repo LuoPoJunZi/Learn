@@ -164,7 +164,7 @@ pip install requests
 
 - 新增 README 入口。
 - 原来的文档没有删除，只是增加了索引。
-- 已运行 `scripts/check-docs.ps1`，检查通过。
+- 已运行 `.github/scripts/check-docs.ps1`，检查通过。
 ```
 
 ## 每周复盘模板

@@ -147,7 +147,7 @@ flowchart LR
 写完文档后，运行仓库的文档检查脚本：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-docs.ps1
 ```
 
 然后从读者角度打开 README，问自己：第一次来的人能不能在 30 秒内知道下一步点哪里？

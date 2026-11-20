@@ -52,7 +52,7 @@ b 两次排在前面，最终超过只出现一次的 a。关键词 BM25 和向�
 
 ```powershell
 python "Python/Modern AI/examples/reciprocal_rank_fusion.py"
-python -m unittest discover -s scripts/tests -p "test_retrieval_and_protocol.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_retrieval_and_protocol.py" -v
 ```
 
 源码：[reciprocal_rank_fusion.py](examples/reciprocal_rank_fusion.py)。输入是**手工编写的两路结果列表**，其中所谓 semantic 列表只是固定教学数据，不代表代码运行了 Embedding 或语义检索。

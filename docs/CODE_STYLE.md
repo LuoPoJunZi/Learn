@@ -89,7 +89,7 @@ if __name__ == "__main__":
 在仓库根目录运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 统一入口会检查仓库结构、Python 语法和常见风险、独立及 HTML 内嵌 JavaScript 语法、HTML 基础结构与相对路径资源、PowerShell 语法、Matlab 主函数名、文档链接、代码块和 Git 空白错误，并执行已登记的回归测试。可选依赖的跳过项必须单列；静态检查不替代浏览器和科学计算运行环境验证。Matlab 案例还应在安装了 Matlab 的电脑上运行 Code Analyzer，并用小规模参数执行入口脚本。
@@ -97,6 +97,6 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 ## 下一步入口
 
 - [文档整理规范](STYLE_GUIDE.md)
-- [文档维护者指南](../scripts/MAINTAINER_GUIDE.md)
+- [文档维护者指南](../.github/scripts/MAINTAINER_GUIDE.md)
 - [Python 环境与依赖管理指南](../Python/ENVIRONMENT_GUIDE.md)
 - [Matlab 示例运行指南](../Matlab/RUNNING_EXAMPLES.md)

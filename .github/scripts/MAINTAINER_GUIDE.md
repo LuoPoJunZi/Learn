@@ -25,7 +25,7 @@
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-docs.ps1
 ```
 
 检查内容：
@@ -39,7 +39,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-code.ps1
 ```
 
 检查内容：
@@ -52,7 +52,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
 这些不是完整 HTML/CSS 校验、浏览器兼容性测试或网络链接探活；缺少可选依赖时的跳过项需要单独报告，不能写成“所有功能已验证”。
 - Matlab 主函数名是否与文件名完全一致。
 
-详细规则见 [示例代码规范](../docs/CODE_STYLE.md)。Matlab Code Analyzer 的性能、未使用变量和旧 API 提示不会全部作为提交阻断项，应按案例逐步处理。
+详细规则见 [示例代码规范](../../docs/CODE_STYLE.md)。Matlab Code Analyzer 的性能、未使用变量和旧 API 提示不会全部作为提交阻断项，应按案例逐步处理。
 
 ## 常见失败原因
 
@@ -97,7 +97,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\check-code.ps1
 ```powershell
 git status --short
 git diff --stat
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 如果出现缓存、临时文件、下载包、系统生成文件，不要一起提交。

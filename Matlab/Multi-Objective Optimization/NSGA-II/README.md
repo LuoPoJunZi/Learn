@@ -60,7 +60,7 @@ NSGA-II是一种强大的多目标优化算法，通过非支配排序和拥挤�
 
 空前沿跳过，只有一两个个体的前沿设为无穷大。目标跨度为零时该目标不贡献间距，避免除零；若三个及以上个体的全部目标都相同，距离均为 0。相同目标值不携带排序信息，不人为挑选边界优胜者。
 
-[边界回归测试](../../../scripts/tests/test_nsga2_crowding.m) 不训练模型、不绘图、不写文件。从仓库根目录在 MATLAB 执行 `addpath("scripts/tests"); test_nsga2_crowding`。2026-11-10 的本机 MATLAB 批处理尝试超时，尚未获得实测结果；此测试不包含在不依赖 MATLAB 的默认 CI 中。
+[边界回归测试](../../../.github/scripts/tests/test_nsga2_crowding.m) 不训练模型、不绘图、不写文件。从仓库根目录在 MATLAB 执行 `addpath(".github/scripts/tests"); test_nsga2_crowding`。2026-11-10 的本机 MATLAB 批处理尝试超时，尚未获得实测结果；此测试不包含在不依赖 MATLAB 的默认 CI 中。
 
 ## `CalcCrowdingDistance.m` 文件代码：
 

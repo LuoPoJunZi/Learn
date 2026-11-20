@@ -18,11 +18,11 @@ if ($null -eq $python) {
     }
 
     $regressionFiles = @(
-        'scripts/tests/test_modern_ai_examples.py',
-        'scripts/tests/test_retrieval_and_protocol.py',
-        'scripts/tests/test_learning_workflows.py',
-        'scripts/tests/test_frontier_ai_2026.py',
-        'scripts/tests/test_repository_safety.py'
+        '.github/scripts/tests/test_modern_ai_examples.py',
+        '.github/scripts/tests/test_retrieval_and_protocol.py',
+        '.github/scripts/tests/test_learning_workflows.py',
+        '.github/scripts/tests/test_frontier_ai_2026.py',
+        '.github/scripts/tests/test_repository_safety.py'
     )
     foreach ($relativeTestPath in $regressionFiles) {
         $regressionTests = Join-Path $rootPath $relativeTestPath

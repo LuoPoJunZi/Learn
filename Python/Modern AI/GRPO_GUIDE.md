@@ -58,7 +58,7 @@ $$\min\Big(\rho_i A_i,\ \text{clip}(\rho_i, 1-\epsilon, 1+\epsilon) A_i\Big) - \
 
 ```powershell
 python "Python\Modern AI\examples\grpo_group_relative_policy.py"
-python -m unittest discover -s scripts/tests -p "test_frontier_ai_2026.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_frontier_ai_2026.py" -v
 ```
 
 运行后会展示：

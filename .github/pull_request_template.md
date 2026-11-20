@@ -20,7 +20,7 @@
 
 ## 验证
 
-- [ ] 已运行 `powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1`
+- [ ] 已运行 `powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1`
 - [ ] 已实际运行本次修改涉及的安全案例
 - [ ] 未提交密码、Token、缓存、构建产物或临时文件
 

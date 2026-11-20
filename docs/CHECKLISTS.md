@@ -60,4 +60,4 @@
 
 ## 下一步
 
-如果你是维护者，继续看 [文档维护者指南](../scripts/MAINTAINER_GUIDE.md)。如果你是学习者，先从 [内容阅读指南](READING_GUIDE.md) 选择方向。
+如果你是维护者，继续看 [文档维护者指南](../.github/scripts/MAINTAINER_GUIDE.md)。如果你是学习者，先从 [内容阅读指南](READING_GUIDE.md) 选择方向。

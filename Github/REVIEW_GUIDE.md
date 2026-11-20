@@ -23,7 +23,7 @@ Review 是团队协作里非常重要的一环。它不是挑错大会，而是�
 在本仓库发起 PR 前，建议运行统一检查：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-all.ps1
 ```
 
 ## PR 描述模板

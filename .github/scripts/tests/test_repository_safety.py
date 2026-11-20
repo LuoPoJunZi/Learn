@@ -13,7 +13,7 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 
 def load(name: str, path: str):
@@ -26,9 +26,9 @@ def load(name: str, path: str):
     return module
 
 
-repository = load("audit_repository", "scripts/check-repository.py")
-html = load("audit_html", "scripts/check-html-code.py")
-javascript = load("audit_javascript", "scripts/check-javascript.py")
+repository = load("audit_repository", ".github/scripts/check-repository.py")
+html = load("audit_html", ".github/scripts/check-html-code.py")
+javascript = load("audit_javascript", ".github/scripts/check-javascript.py")
 evaluation = load("audit_evaluation", "Python/Modern AI/examples/agent_evaluation.py")
 rename = load("audit_rename", "Python/Auto_scripts/rename_files/rename_files.py")
 sort = load("audit_sort", "Python/Auto_scripts/sort_files/sort_files.py")

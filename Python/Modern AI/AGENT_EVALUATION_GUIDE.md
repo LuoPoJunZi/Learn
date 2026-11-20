@@ -42,7 +42,7 @@
 
 ```powershell
 python "Python/Modern AI/examples/agent_evaluation.py"
-python -m unittest discover -s scripts/tests -p "test_learning_workflows.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_learning_workflows.py" -v
 ```
 
 第二条命令还包含迁移与可选 DuckDB 测试；没装 DuckDB 时，其三项测试明确显示跳过，Agent 测试照常运行。

@@ -72,7 +72,7 @@ submitted ──> working ──> completed (终态)
 
 ```powershell
 python "Python\Modern AI\examples\a2a_agent_protocol.py"
-python -m unittest discover -s scripts/tests -p "test_frontier_ai_2026.py" -v
+python -m unittest discover -s .github/scripts/tests -p "test_frontier_ai_2026.py" -v
 ```
 
 ---

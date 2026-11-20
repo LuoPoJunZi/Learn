@@ -69,7 +69,7 @@
 - [组相对策略优化 GRPO 入门](GRPO_GUIDE.md)：对比 PPO/DPO/GRPO、组内相对优势与非负 KL 惩罚；配 [标准库实现](examples/grpo_group_relative_policy.py)。
 - [A2A 多智能体协作协议入门](A2A_PROTOCOL_GUIDE.md)：与 MCP 互补的水平层协议、Agent Card 与任务状态机；配 [离线模拟器](examples/a2a_agent_protocol.py)。
 
-以上专题在已有案例之上扩展，不替代原有源码；质量回归通过 [检索与协议测试](../../scripts/tests/test_retrieval_and_protocol.py) 与 [2026 前沿 AI 离线测试](../../scripts/tests/test_frontier_ai_2026.py) 验证。
+以上专题在已有案例之上扩展，不替代原有源码；质量回归通过 [检索与协议测试](../../.github/scripts/tests/test_retrieval_and_protocol.py) 与 [2026 前沿 AI 离线测试](../../.github/scripts/tests/test_frontier_ai_2026.py) 验证。
 
 ## 如何运行
 

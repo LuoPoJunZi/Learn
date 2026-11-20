@@ -1,6 +1,6 @@
 function test_nsga2_crowding()
 % Check NSGA-II crowding edge cases without training, plotting or file writes.
-    root = fileparts(fileparts(fileparts(mfilename('fullpath'))));
+    root = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
     previousPath = path;
     restorePath = onCleanup(@() path(previousPath)); %#ok<NASGU>
     addpath(fullfile(root, 'Matlab', 'Multi-Objective Optimization', 'NSGA-II'));

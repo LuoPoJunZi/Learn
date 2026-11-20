@@ -26,7 +26,7 @@
 本仓库可以运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\check-docs.ps1
+powershell -ExecutionPolicy Bypass -File .\.github\scripts\check-docs.ps1
 ```
 
 ## 安装和运行
