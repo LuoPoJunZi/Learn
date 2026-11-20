@@ -21,6 +21,7 @@ if ($null -eq $python) {
         'scripts/tests/test_modern_ai_examples.py',
         'scripts/tests/test_retrieval_and_protocol.py',
         'scripts/tests/test_learning_workflows.py',
+        'scripts/tests/test_frontier_ai_2026.py',
         'scripts/tests/test_repository_safety.py'
     )
     foreach ($relativeTestPath in $regressionFiles) {

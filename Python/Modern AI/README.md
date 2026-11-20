@@ -28,6 +28,9 @@
 - 测试时计算扩展（Scaling Law）如何通过长思考、多路采样投票与自我反思提升复杂推理上限。
 - Mamba 选择性状态空间模型如何以 O(L) 线性时间与 O(1) 状态打破传统注意力显存瓶颈。
 - 视觉多模态大模型 VLM 如何将图像切片为 Patch 向量并与文本 Token 进行统一跨模态注意力交互。
+- 多头潜在注意力 MLA 如何通过低维潜在向量压缩 KV Cache 并按头恢复。
+- 组相对策略优化 GRPO 为什么能省去 Critic 价值模型，在同题采样组内归一化优势值。
+- A2A 协议如何通过 Agent Card 与任务状态机实现跨智能体安全委派与取消。
 
 ## 案例索引
 
@@ -50,6 +53,9 @@
 | 15 | [测试时计算扩展与慢思考](examples/test_time_compute_scaling.py) | 推理算力 Scaling、Best-of-N、PRM 过程奖励、反思修正 | 标准库 |
 | 16 | [Mamba 选择性状态空间模型](examples/mamba_state_space_model.py) | 经典 LTI SSM 衰减、输入依赖选择性扫描、O(L) 线性推断 | 标准库 |
 | 17 | [视觉多模态大模型 VLM](examples/vlm_vision_language_model.py) | Patch 图像切片、模态投影器、统一注意力、动态分辨率 | 标准库 |
+| 18 | [多头潜在注意力 MLA](examples/multi_head_latent_attention.py) | KV 低维潜在压缩、按头恢复、MHA/GQA/MLA 缓存对比 | 标准库 |
+| 19 | [组相对策略优化 GRPO](examples/grpo_group_relative_policy.py) | 组内相对优势、零方差边界、裁剪目标、非负 KL 惩罚 | 标准库 |
+| 20 | [A2A 多智能体协作协议](examples/a2a_agent_protocol.py) | Agent Card 能力发现、任务状态机、协议错误与任务失败分层 | 标准库 |
 
 案例 11、12 配有 [RoPE 与分块注意力中文讲解](ATTENTION_MECHANICS_GUIDE.md)，建议在案例 1 之后阅读，再与 GQA、KV Cache 对照。
 
@@ -59,8 +65,11 @@
 
 - [MCP 工具协议与安全边界](MCP_TOOLS_GUIDE.md)：固定版本规范、工具发现与调用、结构化结果；配 [离线消息练习](examples/mcp_tool_messages.py)，不是可接入客户端的服务器。
 - [混合检索与 RRF](HYBRID_RETRIEVAL_GUIDE.md)：多路排名融合、权重、统一文档 ID 与 Recall@K；配 [标准库实现](examples/reciprocal_rank_fusion.py)，不下载 Embedding 模型。
+- [多头潜在注意力 MLA 原理入门](MLA_GUIDE.md)：KV Cache 低维潜在压缩、显存对比与矩阵吸收直觉；配 [标准库实现](examples/multi_head_latent_attention.py)。
+- [组相对策略优化 GRPO 入门](GRPO_GUIDE.md)：对比 PPO/DPO/GRPO、组内相对优势与非负 KL 惩罚；配 [标准库实现](examples/grpo_group_relative_policy.py)。
+- [A2A 多智能体协作协议入门](A2A_PROTOCOL_GUIDE.md)：与 MCP 互补的水平层协议、Agent Card 与任务状态机；配 [离线模拟器](examples/a2a_agent_protocol.py)。
 
-这两个专题在已有 Agent 与 RAG 案例之上扩展，不替代原有源码；质量回归通过 [离线测试](../../scripts/tests/test_retrieval_and_protocol.py) 验证。
+以上专题在已有案例之上扩展，不替代原有源码；质量回归通过 [检索与协议测试](../../scripts/tests/test_retrieval_and_protocol.py) 与 [2026 前沿 AI 离线测试](../../scripts/tests/test_frontier_ai_2026.py) 验证。
 
 ## 如何运行
 
@@ -84,6 +93,9 @@ python "Python\Modern AI\examples\rlhf_to_dpo_alignment.py"
 python "Python\Modern AI\examples\test_time_compute_scaling.py"
 python "Python\Modern AI\examples\mamba_state_space_model.py"
 python "Python\Modern AI\examples\vlm_vision_language_model.py"
+python "Python\Modern AI\examples\multi_head_latent_attention.py"
+python "Python\Modern AI\examples\grpo_group_relative_policy.py"
+python "Python\Modern AI\examples\a2a_agent_protocol.py"
 ```
 
 这些脚本只使用标准库，不需要安装第三方依赖。
@@ -115,6 +127,9 @@ python "Python\Modern AI\examples\vlm_vision_language_model.py"
 - 测试时计算案例使用合成算术题；ORM 真值和 PRM 标签只用于教学评分。修正器是该固定题目的规则复算器，票数占比不是校准置信度。
 - SSM 使用手工参数、指数状态转移和一阶输入近似，没有训练 Mamba 网络或实现 GPU 并行扫描。
 - VLM 只演示固定切片、线性投影与点积权重，没有视觉编码器训练、位置编码、因果掩码或回答生成，不能证明空间语义识别。
+- MLA 案例演示低维潜在压缩与显式按头恢复，不包含 Decoupled RoPE、Query 低秩压缩或 GPU 矩阵吸收内核。
+- GRPO 案例在 4 个离散候选回答的玩具概率表上演示组内优势归一化与策略更新，不包含真实自回归 Token 采样或分布式 RL 框架。
+- A2A 案例为内存离线消息与状态机模拟器，不监听端口、不实现 HTTP/SSE 传输或 OAuth2 鉴权。
 
 这些限制是刻意设计的。先理解最小闭环，再进入大型框架，会比直接面对数千行库代码更容易。
 

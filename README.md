@@ -84,6 +84,7 @@
 - [Linux 现代终端效率工具](Linux/docs/part1-basics/1.6-modern-cli-tools.md)
 - [Docker 容器极简入门](Linux/docs/part4-tools/4.1-docker-basics.md)
 - [eBPF 内核观测入门](Linux/docs/part2-system-admin/2.5-ebpf-intro.md)
+- [systemd Timers 替代传统 Cron 定时任务](Linux/docs/part2-system-admin/2.6-systemd-timers.md)
 - [UFW 防火墙与自动安全更新](Linux/docs/part3-network-ssh/3.3-firewall-updates.md)
 - [systemd 服务沙箱与凭据管理](Linux/docs/part2-system-admin/2.4-systemd-hardening.md)
 - [Markdown 学习导读](Markdown/LEARNING_GUIDE.md)
@@ -104,6 +105,8 @@
 - [现代 CSS 新特性实验台](HTML/Examples/modern-css-features/README.md)
 - [现代 JavaScript ES2024-2026 新特性](HTML/Examples/es2024-2026-features/README.md)
 - [WebGPU 初学导引](HTML/Examples/webgpu-basics/README.md)
+- [JavaScript Temporal API 实验台](HTML/Examples/temporal-api/README.md)
+- [原生互斥手风琴与 oklch/color-mix 实验台](HTML/Examples/native-accordion-color/README.md)
 - [原生 UI 2026 实验台](HTML/Examples/native-ui-2026/README.md)
 - [HTML 优秀网页项目导读](HTML/EXTERNAL_REPOSITORIES.md)
 

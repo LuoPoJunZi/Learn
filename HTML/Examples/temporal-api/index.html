@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JavaScript Temporal API 实验台：不可变日期时间、严格溢出校验与跨时区转换">
+  <link rel="icon" href="data:,">
+  <title>JavaScript Temporal API 实验台</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">ECMAScript Temporal API</p>
+    <h1>JavaScript Temporal API 日期时间实验台</h1>
+    <p class="lead">对比 1995 年遗留的 <code>Date</code> 对象，体验不可变日期、严格日期校验与显式时区转换。</p>
+  </header>
+
+  <main class="container">
+    <section class="status-box" aria-labelledby="support-title">
+      <h2 id="support-title">1. 当前运行环境检测</h2>
+      <p id="support-message" role="status">正在检测 <code>globalThis.Temporal</code>...</p>
+    </section>
+
+    <section class="panel" aria-labelledby="immutability-title">
+      <h2 id="immutability-title">2. 不可变性与月份编号（不再从 0 开始）</h2>
+      <p>遗留 <code>Date</code> 调用 <code>setDate()</code> 会原地修改对象，且月份从 <code>0</code>（一月）到 <code>11</code>（十二月）；<code>Temporal.PlainDate</code> 始终返回新对象且月份从 <code>1</code> 到 <code>12</code>。</p>
+      <div class="controls">
+        <label for="base-date">起始日期：</label>
+        <input id="base-date" type="date" value="2026-01-31">
+        <label for="add-months">增加月数：</label>
+        <input id="add-months" type="number" value="1" min="-24" max="24">
+        <button id="run-date-math" type="button">对比计算</button>
+      </div>
+      <pre id="date-math-output" class="console-out" aria-live="polite"></pre>
+    </section>
+
+    <section class="panel" aria-labelledby="validation-title">
+      <h2 id="validation-title">3. 失败路径：非法日期不再悄悄“进位”</h2>
+      <p>传入 <code>2026-02-30</code> 时，旧 <code>new Date(2026, 1, 30)</code> 会静默变成 3 月 2 日；而 <code>Temporal.PlainDate.from(..., { overflow: "reject" })</code> 会明确抛出 <code>RangeError</code>。</p>
+      <button id="run-invalid-date" type="button">测试非法日期 2026-02-30</button>
+      <pre id="invalid-date-output" class="console-out" aria-live="polite"></pre>
+    </section>
+
+    <section class="panel" aria-labelledby="timezone-title">
+      <h2 id="timezone-title">4. 显式时区转换（ZonedDateTime）</h2>
+      <p>将同一个瞬间安全转换到不同 IANA 时区，避免手写 <code>+8</code> 偏移量带来的夏令时误差。</p>
+      <div class="controls">
+        <label for="target-tz">目标时区：</label>
+        <select id="target-tz">
+          <option value="Asia/Shanghai">Asia/Shanghai (北京/上海)</option>
+          <option value="America/New_York">America/New_York (纽约)</option>
+          <option value="Europe/London">Europe/London (伦敦)</option>
+          <option value="UTC">UTC (协调世界时)</option>
+        </select>
+        <button id="run-timezone" type="button">转换当前时间</button>
+      </div>
+      <pre id="timezone-output" class="console-out" aria-live="polite"></pre>
+    </section>
+  </main>
+</body>
+</html>

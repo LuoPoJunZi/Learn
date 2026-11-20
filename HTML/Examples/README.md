@@ -33,6 +33,8 @@
 | 现代 CSS 新特性实验台 | [modern-css-features/index.html](modern-css-features/index.html) | 原生 CSS 嵌套 (Nesting)、父级关系选择器 `:has()` |
 | 现代 JavaScript ES2024-2026 | [es2024-2026-features/index.html](es2024-2026-features/index.html) | 原生 Set 集合运算、Promise.withResolvers、Iterator Helpers 懒计算 |
 | WebGPU 初学导引 | [webgpu-basics/index.html](webgpu-basics/index.html) | WebGPU 计算管线、WGSL 着色语言、向量并行相加 |
+| JavaScript Temporal API | [temporal-api/README.md](temporal-api/README.md) | 不可变日期时间、`overflow: "reject"` 校验、跨时区转换与回退 |
+| 原生手风琴与 oklch 色彩 | [native-accordion-color/README.md](native-accordion-color/README.md) | `<details name>` 零 JS 互斥折叠、`oklch()` 与 `color-mix()` |
 
 ### 布局类
 

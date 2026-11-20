@@ -1,6 +1,6 @@
 # 当前代码教程精选与阅读路线
 
-本页用于把“找到新教程”变成“在仓库里真正学会并运行”。初始来源核验日期为 **2026-10-29**，新增专题核验日期为 **2026-10-30** 和 **2026-11-10**；日期表示对应批次检查时间，不代表来源页面发布日期，也不保证外部链接永远不变。
+本页用于把“找到新教程”变成“在仓库里真正学会并运行”。初始来源核验日期为 **2026-10-29**，新增专题核验日期为 **2026-10-30**、**2026-11-10** 和 **2026-11-20**；日期表示对应批次检查时间，不代表来源页面发布日期，也不保证外部链接永远不变。
 
 优先选择官方维护的文档，配本仓库中文讲解和小示例，而不是按热度收集大量链接。下表区分了版本新增特性与持续适用的工程实践，**不是各语言最新稳定版本排行榜**。
 
@@ -10,6 +10,17 @@
 - 已经能写小脚本：先学 uv 管理环境，再学结构化并发。
 - 已经会按钮事件和 `async/await`：直接运行可靠 Fetch 案例。
 - 想了解语言变化：阅读下面的 Python 3.14 导读，按自己项目的目标版本选择，不必为了“追新”升级所有脚本。
+
+## 2026-11-20 新增：MLA、GRPO、A2A 协议、Temporal、现代色彩与 systemd Timers
+
+| 方向 | 本仓库教程 | 来源与验证边界 |
+| :--- | :--- | :--- |
+| 多头潜在注意力 MLA | [MLA 原理入门](../Python/Modern%20AI/MLA_GUIDE.md) | [DeepSeek-V2 论文](https://arxiv.org/abs/2405.04434)；纯标准库离线可运行并通过单元测试，不含 Decoupled RoPE 与 GPU 内核 |
+| 组相对策略优化 GRPO | [GRPO 推理强化学习入门](../Python/Modern%20AI/GRPO_GUIDE.md) | [DeepSeekMath](https://arxiv.org/abs/2402.03300) / [DeepSeek-R1](https://arxiv.org/abs/2501.12948)；玩具离散候选表验证优势归一化与 KL 惩罚，不训练真实 LLM |
+| A2A 协作协议 | [A2A 多智能体协议入门](../Python/Modern%20AI/A2A_PROTOCOL_GUIDE.md) | [A2A Protocol](https://a2a-protocol.org/)；内存中离线模拟 Agent Card 与任务状态机，不是 HTTP/SSE 服务器 |
+| JavaScript Temporal | [Temporal API 实验台](../HTML/Examples/temporal-api/README.md) | [MDN Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)；含运行时检测与 `Intl.DateTimeFormat` 回退，旧浏览器不伪造通过 |
+| 原生手风琴与 oklch | [原生互斥手风琴与色彩实验台](../HTML/Examples/native-accordion-color/README.md) | [MDN `<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) / [oklch()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch)；含 sRGB 与 `@supports` 渐进增强 |
+| systemd Timers | [systemd Timers 替代 Cron](../Linux/docs/part2-system-admin/2.6-systemd-timers.md) | [systemd.timer(5)](https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html)；仅限 PID 1 为 systemd 的 Linux，含用户级练习与完整回滚步骤 |
 
 ## 2026-11-10 新增：版本迁移、Agent 评测与数据分析
 

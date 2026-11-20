@@ -29,6 +29,8 @@
 
 想控制组件样式的匹配范围，可以继续学习 [CSS @scope 组件边界](Examples/scoped-css/README.md)，对比根内部、嵌入子树和组件外部，并理解它与继承、Shadow DOM 的区别。
 
+想体验现代日期时间标准与零 JS 折叠配色方案，可以查看 [JavaScript Temporal API 实验台](Examples/temporal-api/README.md) 与 [原生互斥手风琴与 oklch/color-mix 实验台](Examples/native-accordion-color/README.md)。
+
 ## 学习建议
 
 阅读示例时可以按这个顺序看：

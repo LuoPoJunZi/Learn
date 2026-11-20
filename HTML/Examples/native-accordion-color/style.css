@@ -1,0 +1,139 @@
+:root {
+  --brand-hue: 250;
+  /* Safe sRGB fallbacks for older browsers */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #cbd5e1;
+  --brand: #2563eb;
+  --brand-tint: #dbeafe;
+  --brand-deep: #1e3a8a;
+}
+
+@supports (color: oklch(0.55 0.16 250)) {
+  :root {
+    --brand: oklch(0.55 0.16 var(--brand-hue));
+  }
+}
+
+@supports (color: color-mix(in oklch, red 20%, white)) {
+  :root {
+    --brand-tint: color-mix(in oklch, var(--brand) 14%, white);
+    --brand-deep: color-mix(in oklch, var(--brand) 78%, black);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem 3rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.page-header,
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-transform: uppercase;
+}
+
+.lead {
+  color: var(--muted);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.slider-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem;
+}
+
+.swatch {
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.swatch-tint {
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+}
+
+.swatch-brand {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.swatch-deep {
+  background: var(--brand-deep);
+  color: #ffffff;
+}
+
+.accordion {
+  display: grid;
+  gap: 0.75rem;
+}
+
+details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+details[open] {
+  border-color: var(--brand);
+}
+
+summary {
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+}
+
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.details-body {
+  padding: 0.9rem 1rem;
+  color: var(--text);
+}
+
+.details-body p {
+  margin: 0;
+}

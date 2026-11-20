@@ -42,6 +42,7 @@
 - [软件包管理](docs/part2-system-admin/2.3-package-manager.md)
 - [systemd 服务沙箱与凭据管理](docs/part2-system-admin/2.4-systemd-hardening.md)
 - [eBPF 内核观测入门](docs/part2-system-admin/2.5-ebpf-intro.md)
+- [systemd Timers 替代传统 Cron 定时任务](docs/part2-system-admin/2.6-systemd-timers.md)
 
 ### 网络与 SSH
 
